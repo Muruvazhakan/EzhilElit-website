@@ -1,0 +1,57 @@
+.scroll-to-top-image{
+    position: sticky;
+    size: 20px;
+}
+.scr-img-styP{
+    animation-delay: 1s;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-name: styles-module__pulse__xf4Ba;
+    animation-timing-function: cubic-bezier(.4,0,.2,1);
+    border-color: inherit;
+    border-radius: 50%;
+    content: "";
+    height: 60px;
+    opacity: 0;
+    position:sticky;
+    width: 60px;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 100px;
+    background: orange;
+    color: white;
+    cursor: pointer;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 0 5px 10px #ccc;
+  }
+  
+  .back-to-top:hover {
+    background: red;
+  }
+
+  .styles_scroll-to-top {
+    background-color: #f0f0f0;
+    background-size: 50px;
+    right: 120px;
+    bottom: 35px;
+    position: fixed;
+    z-index: 2;
+    cursor: pointer;
+    /* border-radius: 7px; */
+    width: 55px;
+    height: 55px;
+    transition: opacity 1s ease-in-out;
+    box-shadow: -2px 5px 3px 3px rgb(132 128 177 / 28%);
+    border: 20px;
+    outline: aliceblue;
+    color: rgb(129, 128, 43);
+    border-radius: 40px;
+    size: 20px;
+  }
+  .button {
+    padding:0px;
+  }

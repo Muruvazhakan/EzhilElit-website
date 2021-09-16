@@ -1,0 +1,132 @@
+.img-container{
+    /* width:800px;     */
+    align-items: center;
+    justify-items: center;
+    /* padding-left: 10%; */
+    /* display: block; */
+    padding-bottom: 0%;    
+    font-weight: bold;
+  
+}
+
+.photo-desc{       
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: rgb(165, 150, 17);
+    font-style: italic;
+    font-size: 20px;
+    animation-direction: reverse;
+    animation-name: inherit;
+    width: 80%;
+    margin:0 0 10px 10%;
+    padding: 0 0 5px 0;
+}
+.photo-desc-lable{
+    color: rgb(11, 104, 121);
+    font-style: normal;
+    font-size: 22px;
+    padding: 10px 0 5px 0;
+}
+
+/* .img-container :hover{
+    transform: scale(1.15);
+    overflow: hidden;
+} */
+
+.carousel .slider :hover{
+    /* background-color: ivory; */
+    /* scale: inherit; */
+    border-color: aqua;
+    border-width: 20px;
+    border-radius: 20px;
+    
+    cursor: pointer;
+}
+.img-style:hover{
+    cursor: pointer; 
+    /* transform: scale(1.25);
+    overflow: hidden; */
+}
+.img-style{
+    justify-content: center;
+    /* height: fit-content; */
+    align-items: center;
+    background-size: cover;
+    /* max-height: 350px;     */
+    /* max-width: fit-content  ; */
+    /* max-width: 250px; */
+    border-radius: 50px;     
+    background-color: transparent;
+    align-items: center;
+    justify-items: center;
+   padding-bottom: 12px;
+   width: 270PX;
+   height: 270PX;
+   margin-left: 10px;
+}
+.sub-container {
+    /* width: 350px;
+} */
+width: 300px;
+max-height: 300px;
+
+}
+
+.sub-img-style{
+    /* max-height: 250px; */
+    width: 250PX;
+   height: 250PX;
+}
+.carousel .slide {
+    padding-right: 20px;
+}
+
+.carousel .thumb {   
+    display: none;
+    height: 100px;   
+    width: 100px;  
+    background-size: cover;
+   
+    /* max-width: 200px; */
+}
+.carousel .control-dots {
+    color: rgb(145, 235, 0);
+}
+
+.carousel .control-prev.control-arrow:before {
+    border-right: 8px solid #f00946;
+}
+.carousel .thumbs-wrapper{
+    padding-left: 10px ;
+    display: none; 
+}
+@media screen and (max-width: 750px) {
+    .carousel .thumbs {
+        display: none; 
+        max-width: 100px;        
+    }
+    .carousel .slider{
+        padding-right: 20px;
+    }
+    .img-style{
+        height: 150px;
+        border-radius: 10px;  
+    }
+    .carousel .slide {
+        padding-right: 10px;
+    }
+
+    .photo-desc{      
+        font-size: 10px;       
+        width: 90%;
+        margin:0 0 5px 5%;
+        padding-bottom: 5px;
+    }
+   
+  }
+  @media screen and (max-width: 550px) {
+    .sub-container{
+        width: 300px;
+    }
+  }

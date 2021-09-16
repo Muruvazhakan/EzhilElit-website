@@ -1,0 +1,76 @@
+.why_pvc_div-style{
+    /* height: 150px;
+    width: 150px; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 5px;
+}
+.why_pvc_img-style{
+    height: 100px;
+    width: 100px;
+    margin: 10px 3px 0 3px;
+    box-shadow: 5px;
+}
+.top-card-style{
+    border-radius: 25px;
+    margin: 10px 1px 0 1px;
+    padding: 5px;
+}
+.site_bg{
+    background-color: alieblue;
+}
+.site_img-style{
+    height: 120px;
+    /* width: 120px; */
+    margin: 10px 3px 0 3px;
+    box-shadow: 5px; 
+}  
+.my-site-card{
+    margin: 10px 0 0 0;
+    padding: 5px;
+}
+.why_pvc_card-style{
+    margin: 10px 1px 0 1px;
+    border-radius: 75px;
+    padding: 5px;
+}
+.sitetext-font{
+    padding:15px  0 15px 0;
+    margin: 0;
+}
+.top-card{
+    padding: 0;
+    margin: 0 15px 5px 15px;
+}
+.icon-title{
+    font-size: 12px;
+    padding: 5px;
+    color: rgb(85, 85, 85);
+    font-weight: bold;
+}
+.why_pvc_head{
+    padding: 20px 0 10px 0 ;
+    /* background-color: gray; */
+     margin: 10px 0 2px 0;
+     text-transform: none;     
+}
+
+@media screen and (max-width: 600px) {  
+    .why_pvc_img-style{
+        height: 65px;
+        width: 75px;
+        /* margin: 5px 2px 0 2px; */
+        box-shadow: 5px;
+    }
+    .why_pvc_card-style{
+        border-radius: 50px;
+    }
+    .sitetext-font{
+        padding:10px  0 10px 0;
+    }
+    .my-site-card{
+        margin: 5px 5px 5px 0;
+    }
+}

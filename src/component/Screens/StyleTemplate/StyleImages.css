@@ -1,0 +1,46 @@
+.Data-all{ 
+    padding: auto;
+   margin: 10px 2px 2px 15px;   
+    width: 350px;
+    height: 400px;
+    border-radius: 80px;
+    cursor: pointer;
+ 
+}
+.ImageViewer-big{
+    
+max-width: 450px;
+max-height: 450px;
+
+}
+
+@media screen and (max-width:600px){
+    .Data-all{     
+        max-width: 200px;
+        max-height: 200px;
+        width: 200px;
+        height: 250px;
+        border-radius: 50px;
+    }
+}
+.hole-img{
+    /* display: flex; */
+    align-items: baseline;
+    justify-content: space-around;
+    display: inline !important;
+}
+.styles-module_close__2I1sI{
+    top:50px;
+    border: seashell;
+    border-radius: 12px;
+    right: 50px;
+   
+}
+.full-img-container{
+    display: flex;    
+    align-items: stretch;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: row;
+  
+}

@@ -1,0 +1,47 @@
+.title-card-content{
+    height: 500px;
+    width: 450px;
+    background-size: cover;
+    display: block;
+    margin: 5px 10px 5px 10px;
+}
+.title-card-content img {
+    height: 480px;
+    width: 450px;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+
+.title-card-content:hover {
+    cursor: pointer;
+    transform: scale(1.25);    
+}
+.tile-card-line{
+    padding-top: 3px;
+    font: inherit;
+   font-family: auto;
+   font-size: 15px;
+}
+@media screen and (max-width:760px){
+    .title-card-content{
+        height: 330px;
+        width: 300px;
+        background-size: cover;
+        display: block;
+        margin: 5px 10px 5px 10px;
+    }
+    .title-card-content img {
+        height: 300px;
+        width: 300px;
+        z-index: 2;
+        overflow: hidden;
+    }
+    .tile-card-line{
+        font-size: 8px;
+    }
+    .title-card-content:hover {       
+        transform: scale(1.25);    
+    }
+}
