@@ -98,7 +98,7 @@ export const MainScreen = () => {
 
             <section id="SpecialOccation" >
 
-                <MainTemplate {...Datas.SpecialOccation} />
+                <MainTemplate {...Datas.SpecialOccation} screenname="Special" />
 
 
             </section>

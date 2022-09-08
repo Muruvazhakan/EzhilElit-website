@@ -1,0 +1,19 @@
+table {
+    border-collapse: collapse;
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    align-items: center;
+  }
+  td,
+  th {
+    padding: 10px;
+    margin: 5px;
+  }
+  button {
+    border: 1px solid grey;
+    background-color: rgba(226, 245, 61, 0.938);
+    margin: 5px;
+    padding: 5px;
+    color: #000000;
+  }

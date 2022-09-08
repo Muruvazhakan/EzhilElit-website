@@ -20,9 +20,8 @@ import StyleTemplate from '../StyleTemplate/StyleTemplate';
 
 const SareeDrapping = () => {
     return (
-        <>
-        <div>Saree Drapping</div>
-        {/* <StyleTemplate props={Datas.SareeDrapping} /> */}
+        <>      
+        <StyleTemplate types={Datas.SareeDrapping}  displaytype="0"/>
         </>
     )
 };
@@ -30,7 +29,7 @@ const SareeDrapping = () => {
 const EzhilAccessories = () => {
     return (
         <>
-         <StyleTemplate types={Datas.EzhilAccessories} displaytype="0"/>
+         <StyleTemplate types={Datas.EzhilAccessories} displaytype="3"/>
         </>
     )
 };

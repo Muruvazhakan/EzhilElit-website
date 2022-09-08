@@ -7,6 +7,13 @@ import StyleImages from "./StyleImages";
 
 import * as Datas from '../../Datas/Datas';
 import { NavItem } from "react-bootstrap";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+import CartComponent from "../CartComponent/CartComponent";
+const options = [
+  'one', 'two', 'three'
+];
+
 const StyleTemplate = (props) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -23,7 +30,7 @@ const StyleTemplate = (props) => {
   };
   const [allimg, setAllImg] = useState([]);
   const [state, setstate] = useState(initial);
-
+  let sp = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Hockey', 'Rugby','Snooker', 'Tennis'];
   useEffect(() => {
     console.log("[StyleTemplate] imgcount" + props.types.imgcount);
 
@@ -108,16 +115,15 @@ const StyleTemplate = (props) => {
       ...state,
       moreflag: props
     })
-    console.log("[MainGallery] Datas.EAProducts");
-    console.log(Datas.EAProducts);
-    console.log(Datas.EAProducts.Lens);
-    Datas.EAProducts.Lens.map(tit => {
-      console.log("[MainGallery] map Datas.EAProducts");
-      console.log(tit.title);
-    })
+   
   }
+  var Data     = ['this', 'example', 'isnt', 'funny'],
+            MakeItem = function(X) {
+                return <option>{X}</option>;
+            };
+
   return (
-    <div className="">
+    <div>
 
       {props.types.types.map((props, index) => (
 
@@ -195,15 +201,16 @@ const StyleTemplate = (props) => {
               </Button> : null}
           </>
         }
-        
+
 
       </div>
-      {Datas.EAProducts.Lens.map((tit, index) => {
-          <div className="top-line styleTemp-button">
-            {tit.title}
-            {index}
-          </div>
-        })}
+
+    
+
+  {/* <select>{Datas.EAProducts.Lens.map(MakeItem)}</select> */}
+
+     {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />; */}
+
     </div>
 
   );

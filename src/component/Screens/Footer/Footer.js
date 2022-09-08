@@ -306,7 +306,7 @@ function Footer() {
           </div>
         </section>
       </div>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </div>
   );
 }

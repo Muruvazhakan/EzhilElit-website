@@ -103,7 +103,7 @@ export const EELogo=`${Img_Server}/Main-Img/EElogoL.png`;
 export const MenuItem =[
   {
       title:'Home',
-      url:'MainScreen',
+      url:'/',
       cName:'nav-link',
       display:'menu',
   },
@@ -197,7 +197,7 @@ export const BridalMakeup = {
   title:'Be Special on you Big-Day!',
   imgStart: 'end',
   img: 'images/svg-1.svg',
-  imgcount:6,
+  imgcount:12,
   imgurl:`${Img_Server}/BridalMakeup/`,
   titleimage:`${Img_Server}/MainSlide/8.jpg`,
   alt: 'img',
@@ -205,10 +205,10 @@ export const BridalMakeup = {
   buttonLabel:"View More",
   url:"BridalMakeup",
   // types:["Bridal Makeup","Puberty Makeup","Baby Shower"],
-  types:[{topLine:"Bridal Makeup",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
-  {topLine:"Puberty Makeup",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
-  {topLine:"Puberty Makeup",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
-  {topLine:"Baby Shower",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',}],
+  types:[{topLine:"Bridal Makeup",url:`${Img_Server}/BridalMakeup/2.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
+  // {topLine:"Puberty Makeup",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
+  {topLine:"Puberty Makeup",url:`${Img_Server}/BridalMakeup/8.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
+  {topLine:"Baby Shower",url:`${Img_Server}/BridalMakeup/9.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',}],
   
 };
 
@@ -221,16 +221,16 @@ export const Hairstyle = {
     title:'Design with Your deam Hairstyle',
     imgStart: 'start',
     img: 'images/svg-1.svg',
-    imgcount:3,    
+    imgcount:28,    
     imgurl:`${Img_Server}/Hairstyle/`,
     titleimage:`${Img_Server}/MainSlide/5.jpg`,
     alt: 'Trendy Kitchens built with anodize',
     autoplay:"true",
     buttonLabel:"View More",
     url:"Hairstyle",
-    types:[{topLine:"Bridas",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of briads without extensions',},
-    {topLine:"Buns",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of Buns',},
-    {topLine:"Curls",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of Curls',}],
+    types:[{topLine:"Bridas",url:`${Img_Server}/Hairstyle/5.jpg`,label: 'Different types of briads without extensions',},
+    {topLine:"Buns",url:`${Img_Server}/Hairstyle/6.jpg`,label: 'Different types of Buns',},
+    {topLine:"Curls",url:`${Img_Server}/Hairstyle/7.jpg`,label: 'Different types of Curls',}],
   };
 
   export const SareeDrapping = {
@@ -242,15 +242,16 @@ export const Hairstyle = {
     title:'It is an outfit that can be worn on almost all occasions.' ,
     imgStart: 'end',
     img: 'images/svg-1.svg',
-    imgcount:Our_Work[0].counts,
+    imgcount:6,
     imgurl:`${Img_Server}/SareeDrapping/`,
     titleimage:`${Img_Server}/MainSlide/6.jpg`,
     alt: 'img',
     autoplay:"true",
     buttonLabel:"View More",
     url:"SareeDrapping",
-    types:[{topLine:"Can-Can",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of briads without extensions',},
-    // {topLine:"Buns",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of Buns',},
+    types:[
+      {topLine:"Traditional Saree Draping",url:`${Img_Server}/SareeDrapping/3.jpg`,label: 'When you feel troubles wrapping up your life, wrap yourself in a saree and fight them in style!',},
+      // {topLine:"Can-Can",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of briads without extensions',},   
     // {topLine:"Curls",url:`${Img_Server}/MainSlide/7.jpg`,label: 'Different types of Curls',}
   ],
   };
@@ -271,21 +272,12 @@ export const Hairstyle = {
     autoplay:"true",
     buttonLabel:"View More",
     url:"SpecialOccation",
-    types:[{topLine:"Puberty",url:`${Img_Server}/EzhilAccessories/1.jpg`,label: 'Every Eye has it Look',},
+    types:[{topLine:"Shoots",url:`${Img_Server}/EzhilAccessories/1.jpg`,label: 'Every Eye has it Look',},
     {topLine:"Outdoor Paties",url:`${Img_Server}/EzhilAccessories/4.jpg`,label: 'Life isn\'T perfect but your Eye Brows can be ',},
     {topLine:"Hair Spray",url:`${Img_Server}/EzhilAccessories/1.jpg`,label: 'Life isn\'T perfect but your Eye Brows can be!',},
     {topLine:"Dust Powder",url:`${Img_Server}/EzhilAccessories/1.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',}],
   };
-export const EAProducts={
-  Lens:[
-    {title:"Grey",},
-    {title:"Hazel",},
-  ],
-  Lashes:[
-    {title:"No50",},
-    {title:"3d",},
-  ]
-}
+
   export const EzhilAccessories = {
     lightBg: true,
     lightText: false,
@@ -304,7 +296,7 @@ export const EAProducts={
     url:"EzhilAccessories",
     types:[{topLine:"Lens",url:`${Img_Server}/EzhilAccessories/1.jpg`,label: 'Every Eye has it Look',},
   {topLine:"Lashes",url:`${Img_Server}/EzhilAccessories/4.jpg`,label: 'Life isn\'T perfect but your Eye Brows can be ',},
-  {topLine:"Hair Spray",url:`${Img_Server}/EzhilAccessories/3.jpg`,label: 'Life isn\'T perfect but your Eye Brows can be!',},
+  {topLine:"Hair Spray",url:`${Img_Server}/EzhilAccessories/3.jpg`,label: 'Inner Beauty is Great but a little Hairspray never Hurts!',},
   {topLine:"Dust Powder",url:`${Img_Server}/EzhilAccessories/2.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',}],
   };
   

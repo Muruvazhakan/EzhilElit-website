@@ -5,7 +5,7 @@ import * as Datas from '../../Datas/Datas';
 import ImgsViewer from "react-images-viewer";
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectFade, Zoom } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import * as animate from 'react-reveal/';
 // Import Swiper styles
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -314,20 +314,20 @@ const StyleImages = (props) => {
                 )} */}
 
                 <div className="full-img-container">
-                {props.Images.map((imageUrls, index) => (
+                    {props.Images.map((imageUrls, index) => (
 
-                    <>
-
-                        <img key={index}
-                            onClick={() => { onSelectImgHandler(index, `${imageUrls}`) }}
-                            // className={props.screenname === "SubTemp" ?
-                            //     "sub-img-cont img-style d-block w-100 "
-                            //     : "img-style d-block w-100"}
-                            alt="Slide Images"
-                            className="Data-all"
-                            src={`${imageUrls}`} />
-
-                        {/* {state.isOpen && (
+                        <>
+                            <animate.LightSpeed left delay={1500}>
+                                <img key={index}
+                                    onClick={() => { onSelectImgHandler(index, `${imageUrls}`) }}
+                                    // className={props.screenname === "SubTemp" ?
+                                    //     "sub-img-cont img-style d-block w-100 "
+                                    //     : "img-style d-block w-100"}
+                                    alt="Slide Images"
+                                    className="Data-all"
+                                    src={`${imageUrls}`} />
+                            </animate.LightSpeed>
+                            {/* {state.isOpen && (
                             <ImageViewer
                                 src={IMG_SETs}
                                 currentIndex={index}
@@ -338,17 +338,18 @@ const StyleImages = (props) => {
                                 }}
                             />
                         )} */}
-                    </>
 
-                ))}
-</div>
+                        </>
+
+                    ))}
+                </div>
                 <div className="ImageViewer-big">
                     {state.isOpen && window.innerWidth > 500 && (
                         <ImageViewer
                             src={props.Images}
                             currentIndex={state.currImg}
                             disableScroll={true}
-                            closeOnClickOutside={true}                            
+                            closeOnClickOutside={true}
                             onClose={() => {
                                 setstate({ ...state, isOpen: !state.isOpen })
                             }}
@@ -357,7 +358,7 @@ const StyleImages = (props) => {
 
 
 
-                   
+
 
                 </div>
                 {/* <ImgsViewer

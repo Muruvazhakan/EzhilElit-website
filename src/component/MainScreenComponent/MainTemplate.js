@@ -139,9 +139,12 @@ const imgs_present = () =>{
                   {props.label}
                 </p>
                 <Link to={props.url}>
-                  {/* <Button buttonSize='btn--wide' buttonColor='blue'>
+
+                  {props.screenname !=="Special" ? 
+                  <Button buttonSize='btn--wide' buttonColor='blue'>
                     {props.buttonLabel}
-                  </Button> */}
+                  </Button>
+                  :null}
                 </Link>
               </div>
             </div>

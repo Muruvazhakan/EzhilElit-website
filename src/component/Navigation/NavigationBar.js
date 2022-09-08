@@ -84,9 +84,9 @@ const NavigationBar = () => {
               {Datas.MenuItem.map((item, index) => {
                 return (
                   <li className='nav-item'>
-                    < Link className='nav-links' to={item.url}
+                    < Links className='nav-links' to={item.url}
                       duration={1000} activeClass="nav-active" spy={true} offset={-50}
-                      smooth onClick={closeMobileMenu}>{item.title}</Link>
+                      smooth onClick={closeMobileMenu}>{item.title}</Links>
 
                     {/* < a className='nav-links' href={item.url} 
                     onClick={closeMobileMenu}
