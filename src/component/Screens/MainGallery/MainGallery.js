@@ -35,12 +35,12 @@ const [state, setstate] = useState(initial);
          let iar = [];
          
          while (icount > 0) {
-             console.log("[MainGallery]icount"+icount);
+            //  console.log("[MainGallery]icount"+icount);
      
              // iar=`${props.types.imgurl}${icount}.jpg`;
      
              iar.push(`${Datas.MainScreen.imgurl}${icount}.jpg`);
-             console.log(iar + "   iar");
+            //  console.log(iar + "   iar");
              icount--;
              // return(
              // <>

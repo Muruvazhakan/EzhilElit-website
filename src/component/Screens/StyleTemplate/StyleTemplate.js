@@ -32,14 +32,14 @@ const StyleTemplate = (props) => {
   const [state, setstate] = useState(initial);
   let sp = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Hockey', 'Rugby','Snooker', 'Tennis'];
   useEffect(() => {
-    console.log("[StyleTemplate] imgcount" + props.types.imgcount);
+    console.log("[StyleTemplate] imgcount StyleTemplate");
 
-    //  console.log("[StyleTemplate] props"+props.types[0]);
-    {
-      props.types.types.map(types => (
-        console.log("[StyleTemplate]1 imgcount&&" + types.topLine)
-      ))
-    }
+     console.log(props.types);
+    // {
+    //   props.types.types.map(types => (
+    //     console.log("[StyleTemplate]1 imgcount&&" + types.topLine)
+    //   ))
+    // }
     {/* <div>{props.types}</div> */ }
     imgdisp(props.types.imgcount);
   }, []);
@@ -125,53 +125,7 @@ const StyleTemplate = (props) => {
   return (
     <div>
 
-      {props.types.types.map((props, index) => (
-
-        <div
-          className={index % 2 === 0 ? 'home__hero-section lightbg' : 'home__hero-section darkBg'}
-        >
-          <div className="container">
-            <div className="row home__hero-row"
-              style={{ display: 'flex', flexDirection: index % 2 === state.displaytype ? 'row-reverse' : 'row' }}
-            >
-              <animate.Zoom delay={100}>
-                <div className='col'>
-                  <div className='home__hero-text-wrapper'>
-                    <div className='top-line'>{props.topLine}</div>
-                    {/* <h1 className={props.lightText ? 'heading' : 'heading dark'}>
-                  {props.title}
-                </h1> */}
-                    <p
-                      className={
-                        index % 2 !== 0
-                          ? 'home__hero-subtitle'
-                          : 'home__hero-subtitle dark'
-                      }
-                    >
-                      {props.label}
-                    </p>
-                    {/* <Button buttonSize='btn--wide' buttonColor='blue' onClick={()=>{setstate({...state, access_more:!state.access_more})}}>
-                   View More
-                  </Button>
-                  {state.access_more ?
-                  <div>More
-                    </div>
-                  :null} */}
-
-                  </div>
-                </div>
-                <div className='col'>
-                  <div className='home__hero-img-wrapper'>
-                    <img key={index} src={props.url} className='home__hero-img' />
-                  </div>
-                </div>
-              </animate.Zoom>
-            </div>
-          </div>
-        </div>
-
-
-      ))}
+  
 
       <div className="top-line styleTemp-button">Our Gallery</div>
 

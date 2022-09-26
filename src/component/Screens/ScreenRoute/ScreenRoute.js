@@ -17,7 +17,9 @@ import Flash from 'react-reveal/Flash';
 import Goup from '../../Goup/Goup';
 import FloatingWhatsApp from 'react-floating-whatsapp';
 import StyleTemplate from '../StyleTemplate/StyleTemplate';
-
+import Login from '../Login/Login';
+import NoData from '../NoData/NoData';
+import Signup from '../Signup/Signup';
 const SareeDrapping = () => {
     return (
         <>      
@@ -64,7 +66,9 @@ const ScreenRoute = (props) => {
                     <Route path="/SareeDrapping" component={SareeDrapping} />
                     <Route path="/Hairstyle" component={Hairstyle} />
                     <Route path="/EzhilAccessories" component={EzhilAccessories} />
-                  
+                    <Route path='/Login' exact component={Login} />
+                    <Route path='/Signup' exact component={Signup} />
+                    <Route path='/' component={NoData} />
                 </Switch>
                
                 <Flash delay={3200}>
@@ -72,12 +76,15 @@ const ScreenRoute = (props) => {
                         <Footer />
                     </section>
                 </Flash>
+                <div className="Floating-style">
                 <FloatingWhatsApp phoneNumber={Datas.whatsapp[0].phno}
-                    className="Floating-style"
+                   
                     accountName={Datas.whatsapp[0].accountName}
                     avatar={Datas.whatsapp[0].Url}
                     allowClickAway />
+                   
                      <Goup />
+                     </div>
             </Router>
 
         </MemoryRouter>

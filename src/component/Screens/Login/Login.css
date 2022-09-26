@@ -1,0 +1,20 @@
+.login-container{
+    align-items:center;
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+   
+}
+.login-card-container{
+    padding: 20px 0 5px 0;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    max-height: 550px;
+    /* padding: 2px; */
+    /* background: rgb(242, 229, 40); */
+}
+.component-styles{
+    padding: 10px;
+}

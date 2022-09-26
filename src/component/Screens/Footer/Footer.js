@@ -10,6 +10,7 @@ import { MdCall, MdMailOutline } from 'react-icons/md';
 import * as Datas from '../../../component/Datas/Datas';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import GoogleReview from '../../GoogleReview/GoogleReview';
 function Footer() {
 
   const initial = {
@@ -294,6 +295,16 @@ function Footer() {
            />
         </Link> */}
         {/* <Map/> */}
+       
+       
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15555.548052313545!2d80.1064869!3d12.9149828!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6394bdbaa97c5490!2sEzhilElit!5e0!3m2!1sen!2sfi!4v1662673608841!5m2!1sen!2sfi" 
+         allowfullscreen="yes" loading="lazy"
+         className="map-img" 
+        // referrerpolicy="no-referrer-when-downgrade"
+        >
+
+        </iframe>
+        <GoogleReview screen='footer'/>
         <section className='social-media'>
           <div className='social-media-wrap'>
             <div className='footer-logo'>
@@ -302,7 +313,7 @@ function Footer() {
                 <h4 className="website-name"> EzhilElit </h4>
               </Link>
             </div>
-            <small className='website-rights'>EzhilElit © 2021</small>
+            <small className='website-rights'>EzhilElit © 2022</small>
           </div>
         </section>
       </div>

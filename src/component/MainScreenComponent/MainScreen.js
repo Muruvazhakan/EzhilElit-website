@@ -22,6 +22,7 @@ import 'react-floating-whatsapp/dist/index.css'
 import Ezhil_Accss from '../Screens/Ezhil_Accss/Ezhil_Accss';
 import AboutMe from '../Screens/AboutMe/AboutMe';
 import MainGallery from '../Screens/MainGallery/MainGallery';
+import MainComponent from '../MainComponent/MainComponent';
 
 
 
@@ -77,7 +78,7 @@ export const MainScreen = () => {
                 <AboutMe />
             </animate.LightSpeed>
             {/* <animate.Flip left delay={1000}></animate.Flip> */}
-
+            <MainComponent />
             <section id="BridalMakeup">
 
                 <MainTemplate {...Datas.BridalMakeup} />

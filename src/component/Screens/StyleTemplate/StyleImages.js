@@ -355,12 +355,7 @@ const StyleImages = (props) => {
                             }}
                         />
                     )}
-
-
-
-
-
-                </div>
+           </div>
                 {/* <ImgsViewer
                     // imgs={[
                     //     { src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/1.jpg" },

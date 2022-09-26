@@ -1,10 +1,16 @@
 // import axios from 'axios';
 // import React, { useEffect,useState } from 'react';
-export const server_Url='http://3.109.191.181/JRModEnt/'; 
+export const server_Url='http://43.204.119.91/EzhilElit/'; 
 export const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
 export const Form_Url =`${server_Url}Contact_Us_Form/Client_Details.php`;
 export const Img_Server =`https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit`;
 export const primary_color="rgba(221,197,78,255);";
+export const User_Details =`${server_Url}Profile/user_profile_upload.php`;
+
+export const Image_Count_Url =`${server_Url}Dynamic/Image_Count_Retrive.php`;
+export const Headrer_Details =`${server_Url}Dynamic/Header_Retrive.php`;
+export const Update_Headrer_Details =`${server_Url}Dynamic/Update_Details/Update_Header_Details.php`;
+export const Insert_Image =`${server_Url}Insert_Image.php`;
 export const HeaderImagUrl=[
   { imageUrls: `${Img_Server}/MainSlide/1.jpg`},
   { imageUrls: `${Img_Server}/MainSlide/2.jpg`},
@@ -14,7 +20,7 @@ export const HeaderImagUrl=[
   { imageUrls: `${Img_Server}/MainSlide/6.jpg`},
   { imageUrls: `${Img_Server}/MainSlide/7.jpg`},
 ]
-
+export const GoogleReviewURL =`https://api.reviewsmaker.com/gmb/?placeid=ChIJXx4ttEZdUjoRkFR8qbq9lGM`;
 export const  primaryblue="#1c2237";
 export const images = [
   { id: 1, src: 'https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/1.jpg', title: 'foo', description: 'bar' },
