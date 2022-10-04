@@ -20,10 +20,13 @@ import StyleTemplate from '../StyleTemplate/StyleTemplate';
 import Login from '../Login/Login';
 import NoData from '../NoData/NoData';
 import Signup from '../Signup/Signup';
+import GoogleReview from '../../GoogleReview/GoogleReview';
+import SelectedHeader from '../SelectedHeader/SelectedHeader';
+import SelectedSubHeader from '../SelectedSubHeader/SelectedSubHeader';
 const SareeDrapping = () => {
     return (
-        <>      
-        <StyleTemplate types={Datas.SareeDrapping}  displaytype="0"/>
+        <>
+            <StyleTemplate types={Datas.SareeDrapping} displaytype="0" />
         </>
     )
 };
@@ -31,22 +34,22 @@ const SareeDrapping = () => {
 const EzhilAccessories = () => {
     return (
         <>
-         <StyleTemplate types={Datas.EzhilAccessories} displaytype="3"/>
+            <StyleTemplate types={Datas.EzhilAccessories} displaytype="3" />
         </>
     )
 };
 const Hairstyle = (props) => {
     return (
-        <>            
-            <StyleTemplate types={Datas.Hairstyle} displaytype="1"/>
+        <>
+            <StyleTemplate types={Datas.Hairstyle} displaytype="1" />
         </>
     )
 };
 
 const Makeup = (props) => {
     return (
-        <>            
-            <StyleTemplate types={Datas.BridalMakeup}  displaytype="0"/>
+        <>
+            <StyleTemplate types={Datas.BridalMakeup} displaytype="0" />
         </>
     )
 };
@@ -62,29 +65,32 @@ const ScreenRoute = (props) => {
                     <Route exact path='/' component={MainScreen} />
                     {/* <Route path='/contact' component={Contact} />
              <Route path='/about' component={About} />  */}
-                    <Route path="/BridalMakeup" component={Makeup} />
+                    {/* <Route path="/BridalMakeup" component={Makeup} />
                     <Route path="/SareeDrapping" component={SareeDrapping} />
                     <Route path="/Hairstyle" component={Hairstyle} />
-                    <Route path="/EzhilAccessories" component={EzhilAccessories} />
+                    <Route path="/EzhilAccessories" component={EzhilAccessories} /> */}
                     <Route path='/Login' exact component={Login} />
                     <Route path='/Signup' exact component={Signup} />
+                    <Route path='/screen=:screen&sub=:sub' component={SelectedSubHeader} />
+                    <Route path='/screen=:screen' component={SelectedHeader} />
+                    <Route path='/reviews' component={GoogleReview} />
                     <Route path='/' component={NoData} />
                 </Switch>
-               
+
                 <Flash delay={3200}>
                     <section id="ContactUs">
                         <Footer />
                     </section>
                 </Flash>
                 <div className="Floating-style">
-                <FloatingWhatsApp phoneNumber={Datas.whatsapp[0].phno}
-                   
-                    accountName={Datas.whatsapp[0].accountName}
-                    avatar={Datas.whatsapp[0].Url}
-                    allowClickAway />
-                   
-                     <Goup />
-                     </div>
+                    <FloatingWhatsApp phoneNumber={Datas.whatsapp[0].phno}
+
+                        accountName={Datas.whatsapp[0].accountName}
+                        avatar={Datas.whatsapp[0].Url}
+                        allowClickAway />
+
+                    <Goup />
+                </div>
             </Router>
 
         </MemoryRouter>

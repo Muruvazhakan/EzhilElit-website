@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './MainTemplate.css';
 import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
@@ -39,75 +39,84 @@ const MainTemplate = (props) => {
   //   // return request
   // }
 
-// const fet =async ()=>{
-//   const server_Url='http://13.232.180.192/JRModEnt/';
-//   const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
-//   const aws='https://storage.googleapis.com/helpone-9bf33.appspot.com/jrmodularenterprises/ModularKitchen/ModularKitchenImage.txt';
-//   const response = await fetch(Modularkitchen_Url);
-//   const data =  response.json();
-//   // console.log("response php");
-//   // console.log(response);
-//   // console.log(data);
+  // const fet =async ()=>{
+  //   const server_Url='http://13.232.180.192/JRModEnt/';
+  //   const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
+  //   const aws='https://storage.googleapis.com/helpone-9bf33.appspot.com/jrmodularenterprises/ModularKitchen/ModularKitchenImage.txt';
+  //   const response = await fetch(Modularkitchen_Url);
+  //   const data =  response.json();
+  //   // console.log("response php");
+  //   // console.log(response);
+  //   // console.log(data);
 
-//   fetch(Modularkitchen_Url,
-//      {
-//     // mode: 'no-cors',
-//     // method: 'post',
-//     header: {
-//       'Accept': 'application/json',
-//       'Content-type': 'application/json',
-//     },      
-//   }
-//   ).then(res => res.json()).then(res => {
-//     console.log("jsonasdasd");
-//     console.log(res);   
-    
-//     // if (res == "No") {
-//     //   console.log("No");           
+  //   fetch(Modularkitchen_Url,
+  //      {
+  //     // mode: 'no-cors',
+  //     // method: 'post',
+  //     header: {
+  //       'Accept': 'application/json',
+  //       'Content-type': 'application/json',
+  //     },      
+  //   }
+  //   ).then(res => res.json()).then(res => {
+  //     console.log("jsonasdasd");
+  //     console.log(res);   
 
-//     // }
-//     // else {       
-//     //   console.log("else");
-//     //   console.log(res);        
-    
-//     // }
-   
-//   })
-//     .catch((error) => {
-//       console.error(error);
-//     });
-// }
-const imgs_present = () =>{
-  // console.log("imageUrl");
-  // console.log("imgcount imgurl" + imgcount+imgurl);  
-  // fet();
-  // const response1 =  fetch(aws);
-  // console.log("response1");
-  // console.log(response1);
-}
+  //     // if (res == "No") {
+  //     //   console.log("No");           
+
+  //     // }
+  //     // else {       
+  //     //   console.log("else");
+  //     //   console.log(res);        
+
+  //     // }
+
+  //   })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
+  const imgs_present = () => {
+    // console.log("imageUrl");
+    // console.log("imgcount imgurl" + imgcount+imgurl);  
+    // fet();
+    // const response1 =  fetch(aws);
+    // console.log("response1");
+    // console.log(response1);
+  }
+  const initialval = {
+
+    Display_No_Result: props.Display_No % 2,
+    titleimage: `${Datas.Img_Server}${props.titleimage}`,
+    // Modularkitchen:false,
+
+  };
+  const [state, setState] = useState(initialval);
   useEffect(() => {
     imgs_present();
-    // console.log(" imgscr/");
-    // console.log(label+"label &&&" );
+    // console.log("props MainTemplate");
+    // console.log(props);
+    console.log(props.screen);
+    // console.log(state.titleimage + ": state.titleimage");
+  }, [state.titleimage])
 
-    // console.log(imgs+" ssimgscr/");
-  }, [])  
 
   return (
     <>
-     
+
       <div
-        className={props.lightBg ? 'home__hero-section lightbg' : 'home__hero-section darkBg'}
+        className={state.Display_No_Result === 1 ? 'home__hero-section lightbg' : 'home__hero-section darkBg'}
       >
         <div className="container">
-        <div className="row home__hero-row"
-        style={{display:'flex',flexDirection:props.imgStart ==="start" ? 'row-reverse' :'row'}}
-        >
-        
+          <div className="row home__hero-row"
+            style={{ display: 'flex', flexDirection: state.Display_No_Result === 0 ? 'row-reverse' : 'row' }}
+          >
 
-       
-          {/* {imgs.map(imageUrl => renderImage(imageUrl))} */}
-          {/* {imgs.map((i,index)=>{
+
+
+            {/* {imgs.map(imageUrl => renderImage(imageUrl))} */}
+            {/* {imgs.map((i,index)=>{
                     console.log(i.src+" map index "+ index);
                     
                     // <img src={i.src} 
@@ -116,51 +125,59 @@ const imgs_present = () =>{
                     // key={index}  className='home__hero-img' />
                 })}                 */}
 
-         
 
-          {/* <img src={logo}  className='home__hero-img' /> */}
 
-          {/* <CarouselContainer imgs={props.imgs} lightBg={props.lightBg} title={props.title}imgcount={props.imgcount} imgurl={props.imgurl} label={props.label} topLine={props.topLine} autoplay={props.autoplay} /> */}
-          {/* <CarouselContainer props={props} /> */}
-          <animate.Zoom delay={200}>
-          <div className='col'>
-              <div className='home__hero-text-wrapper'>
-                <div className='top-line'>{props.topLine}</div>
-                <h1 className={props.lightText ? 'heading' : 'heading dark'}>
-                  {props.title}
-                </h1>
-                <p
-                  className={
-                    props.lightTextDesc
-                      ? 'home__hero-subtitle'
-                      : 'home__hero-subtitle dark'
+            {/* <img src={logo}  className='home__hero-img' /> */}
+
+            {/* <CarouselContainer imgs={props.imgs} lightBg={props.lightBg} title={props.title}imgcount={props.imgcount} imgurl={props.imgurl} label={props.label} topLine={props.topLine} autoplay={props.autoplay} /> */}
+            {/* <CarouselContainer props={props} /> */}
+            <animate.Zoom delay={200}>
+              <div className='col'>
+                <div className='home__hero-text-wrapper'>
+                  <div className='top-line'>{props.alt}</div>
+                  <h1 className={state.Display_No_Result === 0 ? 'heading' : 'heading dark'}>
+                    {props.title}
+                  </h1>
+                  <p
+                    className={
+                      state.Display_No_Result === 0
+                        ? 'home__hero-subtitle'
+                        : 'home__hero-subtitle dark'
+                    }
+                  >
+                    {props.label}
+                  </p>
+                  <Link to={props.screen === 'SubScreen' ? {
+                    pathname: `/screen=${props.screenname}&sub=${props.topLine}`,
+                    selectedtitle: props.alt,
+                    selectedtheadercomponent: props,
+                    screen: 'home'
                   }
-                >
-                  {props.label}
-                </p>
-                <Link to={props.url}>
+                    : {
+                      pathname: `/screen=${props.topLine}`,
+                      selectedtitle: props.alt,
+                      selectedtheadercomponent: props,
+                      screen: 'home'
+                    }}>
 
-                  {props.screenname !=="Special" ? 
-                  <Button buttonSize='btn--wide' buttonColor='blue'>
-                    {props.buttonLabel}
-                  </Button>
-                  :null}
-                </Link>
+                    {props.screenname !== "Special" ?
+                      <Button buttonSize='btn--wide' buttonColor='blue' >
+                        View More
+                      </Button>
+                      : null}
+                  </Link>
+                </div>
               </div>
-            </div>
-            <div className='col'>
-              <div className='home__hero-img-wrapper'>
-              <img src={props.titleimage}  className='home__hero-img' />
+              <div className='col'>
+                <div className='home__hero-img-wrapper'>
+                  <img src={state.titleimage} className='home__hero-img' />
+                </div>
               </div>
-            </div>
             </animate.Zoom>
-
-
-       
-        </div>
+          </div>
         </div>
       </div>
-     
+
     </>
   )
 }

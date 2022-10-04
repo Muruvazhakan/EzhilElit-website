@@ -79,7 +79,7 @@ export const MainScreen = () => {
             </animate.LightSpeed>
             {/* <animate.Flip left delay={1000}></animate.Flip> */}
             <MainComponent />
-            <section id="BridalMakeup">
+            {/* <section id="BridalMakeup">
 
                 <MainTemplate {...Datas.BridalMakeup} />
 
@@ -108,12 +108,11 @@ export const MainScreen = () => {
 
             <Flash delay={3200}>
                 <section id="EzhilAccessories" >
-                    {/* <Ezhil_Accss /> */}
                     <MainTemplate {...Datas.EzhilAccessories} screenname="Main" />
 
 
                 </section>
-            </Flash>
+            </Flash> */}
             <Flash delay={3200}>
                 <section id="MainGallery" >
 

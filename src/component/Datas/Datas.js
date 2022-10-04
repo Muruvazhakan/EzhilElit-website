@@ -7,8 +7,9 @@ export const Img_Server =`https://storage.googleapis.com/helpone-9bf33.appspot.c
 export const primary_color="rgba(221,197,78,255);";
 export const User_Details =`${server_Url}Profile/user_profile_upload.php`;
 
-export const Image_Count_Url =`${server_Url}Dynamic/Image_Count_Retrive.php`;
+export const Image_Count =`${server_Url}Dynamic/Sub_Details/Image_Retrive.php`;
 export const Headrer_Details =`${server_Url}Dynamic/Header_Retrive.php`;
+export const Sub_Details =`${server_Url}Dynamic/Sub_Details/Sub_Details.php`;
 export const Update_Headrer_Details =`${server_Url}Dynamic/Update_Details/Update_Header_Details.php`;
 export const Insert_Image =`${server_Url}Insert_Image.php`;
 export const HeaderImagUrl=[

@@ -9,21 +9,21 @@ import '../MainComponent.css';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Button from 'react-bootstrap/Button';
-import SubHeaderDetails from './SubHeaderDetails';
-const HeaderDetails = (props) => {
+
+const SubHeaderDetails = (props) => {
     const initial = {
-        headerName: props.details[0].alt,
-        headerid: props.details[0].Header_Details_id,
-        label: props.details[0].label,
-        title: props.details[0].title,
-        displayheader: props.details[0].user_display,
-        titleimage: '',
-        autoplay: props.details[0].autoplay,
-        load: false,        
-        imgcount: props.details[0].imgcount,
-        imgs: props.details[0].imgs,
-        displayno: props.details[0].Display_No
+        headerName: props.details[0].Sub_Alt,
+        detailid: props.details[0].Sub_Detail_Id,
+        label: props.details[0].Sub_Lable,
+        title: props.details[0].Sub_Title,
+        displayheader: props.details[0].Sub_User_Display,
+        titleimage: props.details[0].Sub_TitleImage,
+        load: false,
+        optarr: [],
+        imgcount: props.details[0].Sub_ImgCount,
+        displayno: props.details[0].Sub_Display_No
     };
+
 
     const [state, setState] = useState(initial);
     const display = [
@@ -70,7 +70,7 @@ const HeaderDetails = (props) => {
     }, []);
     let header;
     const handletitle = () => {
-        header = props.details[0].titleimage;
+        header = props.details[0].Sub_TitleImage;
         var last = header.substring(header.lastIndexOf("/") + 1, header.length);
         var arrVars = last.split(".");
         console.log(arrVars + ' header arrVars');
@@ -160,34 +160,35 @@ const HeaderDetails = (props) => {
         head = head.replace(/\s+/g, '');
         head = `/${head}/`;
         console.log('head ' + head);
-        fetch(Datas.Update_Headrer_Details,
+        fetch(Datas.Sub_Details,
             {
                 method: 'post',
                 header: {
                     'Accept': 'application/json',
                     'Content-type': 'application/json',
-                }, body: JSON.stringify({                  
+                }, body: JSON.stringify({
+                    // we will pass our input data to server                  
                     label: state.label,
-                    title: state.title,                
-                    alt: state.headerName,                   
-                    userdisplay: state.displayheader,                 
-                    headerid: state.headerid,
+                    title: state.title,            
+                    alt: state.headerName,                    
+                    userdisplay: state.displayheader,                    
+                    subheaderid:state.detailid,
                     topLine: state.headerName.trim(),
-                    screen: screen,     
-                    imgurl:head,    
-                    displayno:state.displayno          
+                    type: screen, 
+                    displayno:state.displayno,
+                    headerid:props.details[0].Header_Details_id
                 })
             }
         ).then(res => res.json()).then(res => {
             console.log("res imagecomponent");
             console.log(res);
             if (res == 'Added' || 'Updated') {
-                alert(res+' Header Details');
+                alert(res);
                 // window.location.reload();
             }
             else {
                 console.log('issue');
-                alert('issue in Header Details: '+res);
+                alert('issue');
             }
             // setstate({
             //     ...state,
@@ -228,21 +229,21 @@ const HeaderDetails = (props) => {
                 onChange={changeHeaderName}
             /> */}
 
-            <div className="sitetext-font top-line why_pvc_head menu-details menu-header-top">Main Menu Details</div>
+            <div className="sitetext-font top-line why_pvc_head menu-details menu-header-top">Sub Menu Details</div>
             <div className="sitetext-font top-line why_pvc_head menu-details">{state.headerName}</div>
             <InputGroup
                 // as={Col} 
                 className=" header-content"
             >
-                <label htmlFor="Details" className={screenstyle}>Header Id : {state.headerid}</label>
-                <label htmlFor="Details" className={screenstyle}>Header Name</label>
+                <label htmlFor="Details" className={screenstyle}>Sub Header Id : {state.detailid}</label>
+                <label htmlFor="Details" className={screenstyle}>Sub Header Name</label>
                 <FormControl placeholder="Header Name" as="textarea" value={state.headerName} aria-label="With textarea"
                     onChange={changeHeaderName}
                 />
 
-                <label htmlFor="Details" className={screenstyle}>Title</label>
+                <label htmlFor="Details" className={screenstyle}>Sub Title</label>
                 <FormControl placeholder="Title" as="textarea" rows={3} cols={30} value={state.title} aria-label="With textarea" onChange={changeTitle} />
-                <label htmlFor="Details" className={screenstyle}>Description </label>
+                <label htmlFor="Details" className={screenstyle}>Sub Description </label>
                 <FormControl placeholder="Header Details" size="lg" as="textarea" rows={3} cols={40} value={state.label} aria-label="With textarea" onChange={changelabel} />
 
                 <label htmlFor="Details" className={screenstyle}>Display</label>
@@ -250,9 +251,9 @@ const HeaderDetails = (props) => {
                 {/* <FormControl  type="switch"  placeholder="Display Header" as="textarea" value={state.displayheader}  aria-label="With textarea" onChange={changedisplayheader}/> */}
 
                 <Switch onChange={changedisplayheader} checked={state.displayheader} />
-                <label htmlFor="Details" className={screenstyle}>Title Image:</label>
+                <label htmlFor="Details" className={screenstyle}>Sub Title Image:</label>
                 <label htmlFor="Details" className={screenstyle}>{headti}</label>
-                <label htmlFor="Details" className={screenstyle}>Display Order</label>
+                <label htmlFor="Details" className={screenstyle}>Sub Display Order</label>
                 <FormControl placeholder="Display No" as="textarea" value={state.displayno} aria-label="With textarea" onChange={changeTitle} />
 
                 {!state.displayheader ?
@@ -264,19 +265,19 @@ const HeaderDetails = (props) => {
 
             <div className="top-line menu-details">
                 {props.screen == 'create' ?
-                    <Button className="new-but-sty" onClick={insertHandler} variant="outline-primary">Add Header Details</Button>
+                    <Button className="new-but-sty" onClick={insertHandler} variant="outline-primary">Add Sub Header Details</Button>
                     :
-                    <Button className="menu-details new-but-sty " onClick={updateHandler} variant="outline-primary">Update Header Details</Button>
+                    <Button className="menu-details new-but-sty " onClick={updateHandler} variant="outline-primary">Update Sub Header Details</Button>
                 }
             </div>
-
             <div className={props.lightTextDesc === 'true' ? "photo-desc white-text-desc " : "photo-desc   "}>{state.title}</div>
             <div className={props.lightBg === 'true' ? "photo-desc-lable photo-desc white-text-label" : "photo-desc-lable photo-desc "}>{state.label}</div>
 
+          
             {/* </ScrollToTop> */}
 
         </>
     );
 }
 
-export default HeaderDetails;
+export default SubHeaderDetails;

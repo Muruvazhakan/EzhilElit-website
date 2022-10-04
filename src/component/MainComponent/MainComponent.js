@@ -4,14 +4,15 @@ import * as Datas from '../Datas/Datas';
 import Card from '../Card/Card';
 import InnerComponent from './InnerComponent/InnerComponent';
 import Jello from 'react-reveal/Jello';
-import CarouselContainer from '../CarouselContainer/CarouselContainer';
+
 // import * as Datas from '../../Datas/Datas';
 import { Link } from 'react-router-dom';
-import TitleCard from '../TitleCard/TitleCard';
+
 import SubTemplate from '../Screens/SmallComponent/SubTemplate';
 import Spinner from '../Spinner/Spinner';
 import NoData from '../Screens/NoData/NoData';
-import StyleTemplate from '../Screens/StyleTemplate/StyleTemplate';
+import MainTemplate from '../MainScreenComponent/MainTemplate';
+
 const MainComponent = (props) => {
     const initialval = {
         imageobj: [],
@@ -45,10 +46,10 @@ const MainComponent = (props) => {
 
    
     const fetchdetails = () => {
-        console.log("fetchdetails from MainComponent");
+        // console.log("fetchdetails from MainComponent");
         let ls = localStorage.getItem('useredit');
 
-        //console.log('ls '+ls);
+        // console.log('ls '+ls);
         let imgs;
         if (ls == '66656d6364') {
             imgs = 'all';
@@ -69,7 +70,7 @@ const MainComponent = (props) => {
                 })
             }
         ).then(res => res.json()).then(res => {
-            console.log("res UploadComponent");
+            console.log("res MainComponent");
             console.log(res);
             if(res == 'No Data' ||res == 'Something Went Wrong'  )
             {
@@ -111,8 +112,9 @@ const MainComponent = (props) => {
             //         data: true,
             //     })     
             // }
-            console.log("res UploadComponent");
-            console.log(res);
+            // console.log("res MainComponent");
+            // console.log(res);
+            // console.log(state.allheadercomponent);
             //     setTimeout(() => {
             //         setState({
             //             ...state,
@@ -135,7 +137,7 @@ const MainComponent = (props) => {
             //         console.log(i.topLine + " up " + index);
             //     })
             // }   
-            // console.log('all state1 UploadComponent');
+            // console.log('all state1 MainComponent');
 
 
 
@@ -195,32 +197,29 @@ const MainComponent = (props) => {
             <div className="upload-style  ">
                 {/* <div className="sitetext-font top-line why_pvc_head">Title </div> */}
                 {state.load && state.data ?
-                    <div className="why_pvc_div-style" >
+                    <  >
                         {/* <Jello delay={2500} > */}
                         {state.allheadercomponent.map((i, index) => (
-                            <div onClick={() => handleheaderClick(i.alt, i)} className="select-title" key={index} >
-                                <StyleTemplate types={i}  displaytype="0"/>
-                                <Link
+                            <div  key={index} >
+                                
+                                {/* <Link
                                     style={{ padding: 10, textDecoration: 'none', alignItems: 'center' }}
                                     to={{
                                         pathname: `/screen=${i.topLine}`,
                                         selectedtitle: i.alt,
                                         selectedtheadercomponent: i,
                                         screen:'home'
-                                    }}>
-                                    <Card className="why_pvc_card-style space-text" >
-                                        {i.alt}
+                                    }}> */}
+                                    {/* <Card className="why_pvc_card-style space-text" > */}
+                                     
+                                        <MainTemplate {...i} />
 
-                                    </Card>
-                                    <Card className="SmallComp-form-cards img-style d-block w-100 ">
-
-                                        <TitleCard data={i} />
-                                    </Card>
-                                </Link>
+                                    {/* </Card>                                     */}
+                                {/* </Link> */}
                             </div>
                         ))}
                         {/* </Jello> */}
-                    </div>
+                    </>
                     : null}
 
 
