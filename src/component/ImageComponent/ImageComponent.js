@@ -16,7 +16,7 @@ const ImageComponent = (props) => {
 
     useEffect(() => {
         // console.log('ImageComponent  1');
-        // // console.log(state.selectedtheadercomponent);
+        // console.log(props.data[0]);
         // console.log(props);
         // console.log(props.data.alt);
         // console.log(props.screen);
@@ -25,12 +25,12 @@ const ImageComponent = (props) => {
     const initial = {
         imgchange: false,
         newimgurl: '',
-        headercomponent: props.selectedtheadercomponent,
+        data: props.data[0],
         imagecomponent: '',
         load: false,
         imgtitle: '',
         imgdesc: '',
-        selectedtitle: props.data.alt,
+        // selectedtitle: props.data.alt,
         screen: props.screen,
         imgnewno: '',
         uploadimg:'',
@@ -41,14 +41,14 @@ const ImageComponent = (props) => {
 
     const imgUpload = () => {
         // console.log('imgUpload');
-        // console.log( state);
-        
-        // console.log(props);
+        // console.log( state.data);
+        // console.log(props.data[0]);
+        // console.log(props.data[0].Image_Url_No);
         // console.log('topline ' + props.topline);
-        let temp = state.uploadimg;
-        let  filename=props.selectedImage+'.jpg';
-        let foldername=props.topline.replace(/\s+/g, '');
-        
+        // let temp = state.uploadimg;
+        // let  filename=props.selectedImage+'.jpg';
+        // let foldername=props.topline.replace(/\s+/g, '');
+        // console.log(foldername + ' foldername');
         // temp.webkitRelativePath='1.png';
         // console.log("insertImg from UploadComponent " +  state.uploadimg + state.newimgurl +props.selectedImage,props.screen);
         insertImg();
@@ -67,17 +67,22 @@ const ImageComponent = (props) => {
         const formData = new FormData();
         formData.append('avatar', state.uploadimg);
         // formData.append('avatar', {avatar:state.uploadimg,filename:'22.jpg'});
-        let  filename=props.selectedImage+'.jpg';
-        let foldername=props.topline.replace(/\s+/g, '');
-        let imgtitle = props.screen === 'modify' ? props.imgtitle : state.imgtitle;
-        let imgdesc = props.screen === 'modify' ? props.imgdesc : state.imgdesc;
+        let  filename=props.data[0].Image_Url_No+'.jpg'; // img no
+
+        let foldername=props.data[0].topLine.replace(/\s+/g, '');
+        // let imgtitle = props.screen === 'modify' ? props.imgtitle : state.imgtitle;
+        // let imgdesc = props.screen === 'modify' ? props.imgdesc : state.imgdesc;
+        let subfoldername = props.data[0].Sub_TopLine.replace(/\s+/g, '');
+        // console.log('subfoldername ' + subfoldername +foldername);
         formData.append('uploadtype', props.screen);
         formData.append('foldername', foldername);
         formData.append('filename', filename);
-        formData.append('imgtitle', imgtitle);
-        formData.append('imgdesc', imgdesc);
-        formData.append('headerid', props.headerid);
-        formData.append('imageurlno', props.selectedImage); 
+        // formData.append('imgtitle', imgtitle);
+        // formData.append('imgdesc', imgdesc);
+        // formData.append('headerid', props.headerid); 
+        formData.append('subfoldername',subfoldername );
+        formData.append('subheaderid',props.data[0].Sub_Detail_Id );
+        formData.append('imageurlno', props.data[0].Image_Url_No); 
         // console.log("insertImg from UploadComponent " +  state.uploadimg + state.newimgurl +props.selectedImage,props.screen);
         // console.log(state.newimgurl);
         // console.log( formData);
@@ -89,9 +94,9 @@ const ImageComponent = (props) => {
             }).then((res) => {
             //    console.log('File uploaded!' );
             //    console.log(res);
-            if (res.data == 'Added')
+            if (res.data == 'Image Added')
             {
-                alert('Added');
+                alert('Image Added');
                 setstate('');
                 window.location.reload(false);
             }
@@ -208,7 +213,7 @@ const ImageComponent = (props) => {
         <>
 
 
-            <div className="sitetext-font top-line why_pvc_head"> {state.screen == 'create' ? 'Add New Images' : 'Change the Image'}
+            <div className="sitetext-font top-line why_pvc_head menu-details menu-header-top"> {state.screen == 'create' ? 'Add New Images' : 'Change the Image'}
                 {state.selectedtitle ? ' to ' : null} {state.selectedtitle} </div>
 
             <div className={'addNewImg'}>
@@ -248,7 +253,7 @@ const ImageComponent = (props) => {
                                 value={state.imgdesc} aria-label="With textarea" onChange={changedesc} />
                         </InputGroup>
                         : null}
-                    <div className="top-line">
+                    <div className="top-line update-button-style">
 
                         <Button className="new-but-sty" onClick={imgUpload} variant="outline-primary">Upload Image</Button>
                     </div>

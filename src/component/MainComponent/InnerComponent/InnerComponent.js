@@ -8,6 +8,8 @@ import Button from 'react-bootstrap/Button';
 import { FormControl, InputGroup } from 'react-bootstrap';
 import ImageComponent from '../../ImageComponent/ImageComponent';
 import SubHeaderDetails from './SubHeaderDetails';
+import StyleTemplate from '../../Screens/StyleTemplate/StyleTemplate';
+import MainTemplate from '../../MainScreenComponent/MainTemplate';
 
 // import { Storage } from "@google-cloud/storage";
 // import express from "express";
@@ -22,6 +24,7 @@ const InnerComponent = (props) => {
         imgchange: false,
         newimgurl: '',
         headercomponent: props.selectedtheadercomponent,
+        selectedtsubheadercomponent:props.selectedtsubheadercomponent,
         imagecomponent: '',
         load: false,
         imgtitle: '',
@@ -30,11 +33,12 @@ const InnerComponent = (props) => {
     };
     const [state, setstate] = useState(initial);
     useEffect(() => {
-        console.log('InnerComponent selectedtheadercomponent 1');
-        // console.log(state.selectedtheadercomponent);
-        console.log(props.selectedtheadercomponent[0]);
+        // console.log('InnerComponent selectedtheadercomponent 1');
+        // console.log(props.selectedtsubheadercomponent);
+        // console.log(props.selectedtheadercomponent[0]);
         console.log(props.screen);
-
+        console.log(props.selectedtsubheadercomponent);
+        
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         // window.scrollTop(0);
     }, [])
@@ -47,36 +51,33 @@ const InnerComponent = (props) => {
                 // className={state.headercomponent.lightBg == "true" ? 'home__hero-section darkBg ' : 'home__hero-section '}
                 className={' font-color-text'}
             >
-                {state.useredits == '66656d6364' ?
-
-                    // {
-                    //     props.screen === 'SubDetails' ?
-                    //         <SubHeaderDetails headerDetails={props.selectedtheadercomponent} />
-                    //         :
-
-
-                    // }
+                {state.useredits === '66656d6364' ?
                     <>
-                        <Card className="        
-             top-card 
-            top-card-style selected-title-space ">
-                            <HeaderDetails details={props.selectedtheadercomponent} />
+                        <Card className=" top-card top-card-style selected-title-space ">
+                            <HeaderDetails details={props.selectedtsubheadercomponent} />
                         </Card>
-                        < Card className="        
-             top-card 
-            top-card-style selected-title-space ">
-                            <SubHeaderDetails details={props.selectedtheadercomponent} />
-
+                        < Card className="top-card top-card-style selected-title-space ">
+                            <SubHeaderDetails details={props.selectedtsubheadercomponent} />
                         </Card>
                     </>
-                    : <div className="sitetext-font top-line why_pvc_head">{state.headercomponent.alt}</div>}
-
-
+                    : 
+                  
+                    
+                     <>
+                        {props.selectedtsubheadercomponent.map((i, index) => (
+                            <div key={index} >
+                               <MainTemplate {...i} screen={'SelectedSubScreen'}/>
+                            </div>
+                        ))}
+                    </>
+                   }
+                {props.selectedtheadercomponent.length>0 ?
+                <StyleTemplate details={props.selectedtheadercomponent} screen='SelectedDetails' useredits={state.useredits}/>
+                : null }
                 {/* {state.useredits =='66656d6364' ?
                         <ImageComponent screen='create'  data={state.headercomponent} topline={state.headercomponent.topLine} headerid={state.headercomponent.Header_Details_id}/>
                         : null} */}
             </div>
-
         </>
     )
 }

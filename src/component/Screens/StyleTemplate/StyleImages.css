@@ -13,7 +13,12 @@ max-width: 450px;
 max-height: 450px;
 
 }
+.update-button-style{
 
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
 @media screen and (max-width:600px){
     .Data-all{     
         max-width: 200px;

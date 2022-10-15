@@ -188,6 +188,10 @@ const CarouselContainer = (props) => {
             //     <img className="img-style d-block w-100" src={`${props.imgurl}${icount}.jpg`} />
             // </>)
         }
+        prop.map(prop => {
+            console.log('prop ' )
+            console.log(prop )
+        })
         // console.log(iar);
         // setstate({
         //     ...state,

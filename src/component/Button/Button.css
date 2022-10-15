@@ -30,6 +30,11 @@
   font-size: 18px;
 }
 
+.btn--small {
+  padding: 4px 10px;
+  font-size: 9px;
+}
+
 .btn--large {
   padding: 12px 26px;
   font-size: 20px;

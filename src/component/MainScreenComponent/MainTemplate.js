@@ -87,8 +87,9 @@ const MainTemplate = (props) => {
   }
   const initialval = {
 
-    Display_No_Result: props.Display_No % 2,
-    titleimage: `${Datas.Img_Server}${props.titleimage}`,
+    Display_No_Result: props.screen === 'SubScreen' ? props.Sub_Display_No % 2 : props.Display_No % 2,
+    titleimage: props.screen === 'SelectedSubScreen' ? `${Datas.Img_Server}${props.Sub_TitleImage}`: `${Datas.Img_Server}${props.titleimage}`,
+    
     // Modularkitchen:false,
 
   };
@@ -98,6 +99,7 @@ const MainTemplate = (props) => {
     // console.log("props MainTemplate");
     // console.log(props);
     console.log(props.screen);
+    console.log(state.titlesubimage);
     // console.log(state.titleimage + ": state.titleimage");
   }, [state.titleimage])
 
@@ -134,9 +136,9 @@ const MainTemplate = (props) => {
             <animate.Zoom delay={200}>
               <div className='col'>
                 <div className='home__hero-text-wrapper'>
-                  <div className='top-line'>{props.alt}</div>
+                  <div className='top-line'>{props.screen === 'SelectedSubScreen' ? props.Sub_Alt : props.alt}</div>
                   <h1 className={state.Display_No_Result === 0 ? 'heading' : 'heading dark'}>
-                    {props.title}
+                    {props.screen === 'SelectedSubScreen' ? props.Sub_Title : props.title}
                   </h1>
                   <p
                     className={
@@ -145,27 +147,29 @@ const MainTemplate = (props) => {
                         : 'home__hero-subtitle dark'
                     }
                   >
-                    {props.label}
+                    {props.screen === 'SelectedSubScreen' ? props.Sub_Lable : props.label}
                   </p>
-                  <Link to={props.screen === 'SubScreen' ? {
-                    pathname: `/screen=${props.screenname}&sub=${props.topLine}`,
-                    selectedtitle: props.alt,
-                    selectedtheadercomponent: props,
-                    screen: 'home'
-                  }
-                    : {
-                      pathname: `/screen=${props.topLine}`,
+                  {props.screen !== 'SelectedSubScreen' ?
+                    <Link to={props.screen === 'SubScreen' ? {
+                      pathname: `/screen=${props.screenname}&sub=${props.topLine}`,
                       selectedtitle: props.alt,
                       selectedtheadercomponent: props,
                       screen: 'home'
-                    }}>
+                    }
+                      : {
+                        pathname: `/screen=${props.topLine}`,
+                        selectedtitle: props.alt,
+                        selectedtheadercomponent: props,
+                        screen: 'home'
+                      }}>
 
-                    {props.screenname !== "Special" ?
-                      <Button buttonSize='btn--wide' buttonColor='blue' >
-                        View More
-                      </Button>
-                      : null}
-                  </Link>
+                      {props.screenname !== "Special" ?
+                        <Button buttonSize='btn--wide' buttonColor='blue' >
+                          View More
+                        </Button>
+                        : null}
+                    </Link>
+                    : null}
                 </div>
               </div>
               <div className='col'>

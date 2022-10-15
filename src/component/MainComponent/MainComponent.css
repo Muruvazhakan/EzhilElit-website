@@ -79,3 +79,10 @@
 .light-text-style{
  color: white;
 }
+.changedisno-stype{
+    font-size: x-large;
+    width: 60px;
+    color: black;
+    font-family: monospace;
+    font-weight: bold;
+}

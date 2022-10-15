@@ -23,36 +23,36 @@ import Signup from '../Signup/Signup';
 import GoogleReview from '../../GoogleReview/GoogleReview';
 import SelectedHeader from '../SelectedHeader/SelectedHeader';
 import SelectedSubHeader from '../SelectedSubHeader/SelectedSubHeader';
-const SareeDrapping = () => {
-    return (
-        <>
-            <StyleTemplate types={Datas.SareeDrapping} displaytype="0" />
-        </>
-    )
-};
+// const SareeDrapping = () => {
+//     return (
+//         <>
+//             <StyleTemplate types={Datas.SareeDrapping} displaytype="0" />
+//         </>
+//     )
+// };
 
-const EzhilAccessories = () => {
-    return (
-        <>
-            <StyleTemplate types={Datas.EzhilAccessories} displaytype="3" />
-        </>
-    )
-};
-const Hairstyle = (props) => {
-    return (
-        <>
-            <StyleTemplate types={Datas.Hairstyle} displaytype="1" />
-        </>
-    )
-};
+// const EzhilAccessories = () => {
+//     return (
+//         <>
+//             <StyleTemplate types={Datas.EzhilAccessories} displaytype="3" />
+//         </>
+//     )
+// };
+// const Hairstyle = (props) => {
+//     return (
+//         <>
+//             <StyleTemplate types={Datas.Hairstyle} displaytype="1" />
+//         </>
+//     )
+// };
 
-const Makeup = (props) => {
-    return (
-        <>
-            <StyleTemplate types={Datas.BridalMakeup} displaytype="0" />
-        </>
-    )
-};
+// const Makeup = (props) => {
+//     return (
+//         <>
+//             <StyleTemplate types={Datas.BridalMakeup} displaytype="0" />
+//         </>
+//     )
+// };
 
 const ScreenRoute = (props) => {
     return (

@@ -6,6 +6,9 @@ import * as Datas from '../../Datas/Datas';
 import RubberBand from 'react-reveal/RubberBand';
 import NoData from '../NoData/NoData';
 import MainTemplate from '../../MainScreenComponent/MainTemplate';
+import Spinner from '../../Spinner/Spinner';
+import CreateSubHeaderDetails from '../../MainComponent/CreateComponent/CreateSubHeaderDetails';
+import MainGallery from '../MainGallery/MainGallery';
 const SelectedHeader = (props) => {
 
 
@@ -24,6 +27,7 @@ const SelectedHeader = (props) => {
             // window.location.href = '/';
             fetchdetails(last);
         }
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
     const initial = {
         urlname: location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length),
@@ -83,6 +87,9 @@ const SelectedHeader = (props) => {
     //     {
     //         return <NoData />
     //     }
+    if (!state.load) {
+        return <Spinner />
+    }
     return (
         <>
             <RubberBand delay={500}>
@@ -98,7 +105,14 @@ const SelectedHeader = (props) => {
                     </>
                     : <NoData />
                 }
+                  <>
+                {state.useredits === '66656d6364' ?
+                    <CreateSubHeaderDetails />
+                    :null}
+                </>
             </RubberBand>
+
+          <MainGallery />
         </>
     )
 }

@@ -11,7 +11,7 @@ export const Image_Count =`${server_Url}Dynamic/Sub_Details/Image_Retrive.php`;
 export const Headrer_Details =`${server_Url}Dynamic/Header_Retrive.php`;
 export const Sub_Details =`${server_Url}Dynamic/Sub_Details/Sub_Details.php`;
 export const Update_Headrer_Details =`${server_Url}Dynamic/Update_Details/Update_Header_Details.php`;
-export const Insert_Image =`${server_Url}Insert_Image.php`;
+export const Insert_Image =`http://43.204.119.91/JRModEnt/Ezhil_Insert_Image.php`;
 export const HeaderImagUrl=[
   { imageUrls: `${Img_Server}/MainSlide/1.jpg`},
   { imageUrls: `${Img_Server}/MainSlide/2.jpg`},

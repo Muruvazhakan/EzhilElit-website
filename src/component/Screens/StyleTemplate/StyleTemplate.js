@@ -19,29 +19,37 @@ const StyleTemplate = (props) => {
 
   const initial = {
     allimgs: [],
-    count: props.topLine === "Bridal Makeup" ? 2 : props.topLine === "Hairstyle" ? 5 : 6,
+    count: '3',
     proc: false,
     shortImg: null,
-    displaytype: props.displaytype === "1" ? 1 : 0,
+    details: props.details,
     access_more: false,
     imgcount: 10,
     finalimgcount: 10,
     moreflag: true,
+    imgurl: '',
+    nondisp: '',
+    detailsaval: false
   };
   const [allimg, setAllImg] = useState([]);
   const [state, setstate] = useState(initial);
-  let sp = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Hockey', 'Rugby','Snooker', 'Tennis'];
+  let sp = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Hockey', 'Rugby', 'Snooker', 'Tennis'];
   useEffect(() => {
-    console.log("[StyleTemplate] imgcount StyleTemplate");
-
-     console.log(props.types);
-    // {
-    //   props.types.types.map(types => (
-    //     console.log("[StyleTemplate]1 imgcount&&" + types.topLine)
-    //   ))
-    // }
+    // console.log("[StyleTemplate] imgcount StyleTemplate");
+    // console.log(props);
     {/* <div>{props.types}</div> */ }
-    imgdisp(props.types.imgcount);
+    if (props.details === 'No') {
+      console.log(props);
+      setstate({
+        ...state,
+        detailsaval: false,
+      })
+    }
+    else {
+      imgdisp(props.details);
+
+    }
+
   }, []);
 
   // useEffect(() => {
@@ -63,19 +71,24 @@ const StyleTemplate = (props) => {
     // let icount = state.count;
     let icount = prop;
     let iar = [];
+    let noniar = [];
+    let imgurl;
+    // console.log("props lenght " + prop.length);
+    {
+      prop.map(x => {
+        // console.log("  props val stateallimg")
+        // console.log(x)
+        // console.log(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`)
+        if (x.User_Display === '1') {
+          iar.push(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`);
+        }
+        else {
+          // console.log(" non dis props val stateallimg")
+          noniar.push(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`);
+        }
 
-    while (icount > 0) {
-      console.log("icount" + icount);
-
-      // iar=`${props.types.imgurl}${icount}.jpg`;
-
-      iar.push(`${props.types.imgurl}${icount}.jpg`);
-      console.log(iar + "   iar");
-      icount--;
-      // return(
-      // <>
-      //     <img className="img-style d-block w-100" src={`${props.imgurl}${icount}.jpg`} />
-      // </>)
+        imgurl = `${x.Sub_ImgUrl}`;
+      })
     }
     // console.log(iar);
     // setstate({
@@ -83,22 +96,25 @@ const StyleTemplate = (props) => {
     //     allimgs: iar,
     // })
     // console.log("iar.length " + iar.length);
-    if (iar.length > 10) {
-      const items = iar.slice(0, state.imgcount);
-      setAllImg(items);
-      // console.log("more[] slice*$$ ")
+    // if (prop.length > 5) {
+    //   const items = iar.slice(0,prop.length/2 );
+    //   setAllImg(items);
+    //   // console.log("more[] slice*$$ ")
 
-    }
-    else {
-      setAllImg(iar);
-      // console.log("less[] slice*$$ ")
-    }
-
+    // }
+    // else {
+    //   setAllImg(iar);
+    //   // console.log("less[] slice*$$ ")
+    // }
+    setAllImg(iar);
     setstate({
       ...state,
       shortImg: [...iar],
       finalimgcount: iar.length,
-      allimgs: iar
+      allimgs: iar,
+      imgurl: imgurl,
+      nondisp: noniar,
+      detailsaval: true,
     })
     // console.log(state.shortImg)
     // console.log(state.shortImg + "   shortImg[]&&&")
@@ -109,63 +125,57 @@ const StyleTemplate = (props) => {
     // }
   }
 
-  const moreHandler = (props) => {
-
-    setstate({
-      ...state,
-      moreflag: props
-    })
-   
-  }
-  var Data     = ['this', 'example', 'isnt', 'funny'],
-            MakeItem = function(X) {
-                return <option>{X}</option>;
-            };
+  var Data = ['this', 'example', 'isnt', 'funny'],
+    MakeItem = function (X) {
+      return <option>{X}</option>;
+    };
 
   return (
-    <div>
+    <>
 
-  
-
-      <div className="top-line styleTemp-button">Our Gallery</div>
-
-      {state.moreflag ?
+      {state.detailsaval ?
         <>
-          <StyleImages Images={allimg} shortImg={state.shortImg} />
+        {props.screen === 'Main' ? <div className="top-line styleTemp-button">Latest Updates</div> : 
+          <div className="top-line styleTemp-button">Our Gallery</div>
+        }
+        
+
+          {/* {state.moreflag ?
+        <>
+          <StyleImages Images={allimg} shortImg={state.shortImg} imglength={allimg.length}/>
         </>
         :
-        <StyleImages Images={state.allimgs} shortImg={state.shortImg} />
-      }
-      <div className="styleTemp-button">
-
-        {state.moreflag && state.finalimgcount > 10 ?
-          <>
-
-            <Button buttonSize='btn--wide' buttonColor='blue' onClick={() => moreHandler(false)}>
-              View More
-            </Button>
-
-          </>
+        <StyleImages Images={state.allimgs} shortImg={state.shortImg} imglength={allimg.length} />
+      } */}
+          {state.allimgs.length > 0 ?
+            <StyleImages Images={state.allimgs} imglength={state.allimgs.length} headerid={props.details[0].Header_Details_id} subheaderid={props.details[0].Image_Sub_Header_Id}
+              screen={props.screen} imgurl={state.imgurl} useredits={props.useredits}
+            />
+            : <h2 className=" styleTemp-button">All Images are Hidden</h2>}
           :
-          <>
-
-            {state.finalimgcount > 10 ?
-              <Button buttonSize='btn--wide' buttonColor='blue' onClick={() => moreHandler(true)}>
-                View Less
-              </Button> : null}
-          </>
-        }
 
 
-      </div>
+          {props.useredits == '66656d6364' ?
+            <>
+              {state.nondisp.length > 0 ?
+                <>
+                  <div className="top-line styleTemp-button">Hidden Images</div>
 
-    
+                  <StyleImages Images={state.nondisp} imglength={state.allimgs.length} headerid={props.details[0].Header_Details_id} subheaderid={props.details[0].Image_Sub_Header_Id}
+                    screen={props.screen} imgurl={state.imgurl} useredits={props.useredits} view={'Hidden'} details={props.details}
+                  />
+                </>
+                : null
+              }
 
-  {/* <select>{Datas.EAProducts.Lens.map(MakeItem)}</select> */}
+            </>
+            : null}
+        </>
+        : <div className="top-line styleTemp-button">No Image</div>}
+      {/* <select>{Datas.EAProducts.Lens.map(MakeItem)}</select> */}
 
-     {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />; */}
-
-    </div>
+      {/* <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />; */}
+    </>
 
   );
 };

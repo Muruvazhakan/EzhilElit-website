@@ -18,7 +18,10 @@ import "swiper/components/navigation/navigation.min.css"
 import "swiper/components/pagination/pagination.min.css"
 import RubberBand from 'react-reveal/RubberBand';
 import ImageViewer from 'react-simple-image-viewer';
-import './StyleImages.css'
+import Button from '../../Button/Button';
+import './StyleImages.css';
+import Spinner from '../../Spinner/Spinner';
+import ImageComponent from '../../ImageComponent/ImageComponent';
 SwiperCore.use([Zoom, Navigation, Pagination, Scrollbar, A11y, EffectFade]);
 const StyleImages = (props) => {
     const initial = {
@@ -28,6 +31,13 @@ const StyleImages = (props) => {
         currImg: 0,
         isOpen: false,
         src: 0,
+        moreflag: true,
+        disval: 2,
+        totallength: props.imglength,
+        headerid: props.headerid,
+        subheaderid: props.subheaderid,
+        load:false,
+        change:false,
         // onClickPrev={this.gotoPrevious}
         // onClickNext={this.gotoNext}
         // onClose
@@ -35,222 +45,141 @@ const StyleImages = (props) => {
     let imgslist = [...props.Images];
     const [state, setstate] = useState(initial);
     const [allimg, setAllImg] = useState([]);
-    useEffect(() => {
-        console.log("CarouselContainer");
+    const moreHandler = (prop) => {
+        let disval = '';
+        console.log(props + ' :props moreHandler val: ' +disval);
+        console.log(props);
+        if (prop) {
+            disval = props.imglength / 2;
+        }
+        else {
+            disval = props.imglength;
+        }
+        setstate({
+            ...state,
+            moreflag: prop,
+            disval: disval
+        })
 
-        // console.log(props.imgs);
-        // imgdisp();
-        calcout();
-        // if(state.count>=6)
-        // {
-        //     imgdisp();
-        // }
-
-    }, [state.count]);
+    }
     useEffect(() => {
         console.log("CarouselContainer imgdisp@@@@");
         console.log(props + "label &&&");
-        console.log(props);
-        console.log("window.innerWidth < 720 &&&" + window.innerWidth);
-        console.log("imgslist " + window.innerWidth);
-        console.log(imgslist);
+        // console.log('props.imgurl ' + props.imgurl);
+        // console.log(props);
+        // console.log("window.innerWidth < 720 &&&" + window.innerWidth);
+        // console.log("imgslist " + window.innerWidth);
+        // console.log(imgslist);
+        // console.log(props.disval+ ' props.disval2 ' + props.imglength);
+        if (props.imglength > 0) {
+            setstate({
+                ...state,
+                disval: props.imglength / 2,
+            });
+        }
+        // console.log(state.disval + ' val');
         // if(props.imgcount<=state.count)
         // {
         //     imgdisp();
         // }
-
-    }, [state.count]);
-
-    const calcout = () => {
-        let proc = "1";
-        let con = 5;
-        fetch(Datas.Modularkitchen_Url,
-            {
-                // mode: 'no-cors',
-                // method: 'post',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-            }
-        ).then(res => res.json()).then(res => {
-            console.log("jsonasdasd");
-            proc = "0";
-            console.log(res);
-            // console.log(res[0].Modularkitchen);
-            // console.log(res[0].CupBoard);
-            // console.log(res[0].FalseCeiling);
-            // console.log(res[0].PvcDoor);
+        setTimeout(() => {
             setstate({
-                ...state,
-                proc: true,
+                ...state,                
+                load: true
             });
-            if (props.topLine === "PvcDoor") {
-                setstate({
-                    ...state,
-                    count: res[0].PvcDoor
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor insisde");
-            }
-            if (props.topLine === "Netlon") {
-                setstate({
-                    ...state,
-                    count: res[0].Netlon
-                });
-                con = res[0].PvcDoor;
-                console.log("Netlon insisde", state.count);
-            }
-            if (props.topLine === "False Ceiling") {
-                setstate({
-                    ...state,
-                    count: res[0].FalseCeiling
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor insisde", state.count);
-            }
-            if (props.topLine === "Modular kitchen") {
-                setstate({
-                    ...state,
-                    count: res[0].Modularkitchen
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor2 insisde");
-            }
-            if (props.topLine === "Showcases") {
-                setstate({
-                    ...state,
-                    count: res[0].SHOWCASES,
-                });
-                con = res[0].Showcases;
-                console.log("CupBoard insisde");
-            }
-            if (props.topLine === "Wardrobe") {
-                setstate({
-                    ...state,
-                    count: res[0].CupBoard,
-                });
-                con = res[0].PvcDoor;
-                console.log("CupBoard insisde");
-            }
-
-            if (props.topLine === "Aluminium Windows") {
-                setstate({
-                    ...state,
-                    count: res[0].AluminumWindow,
-                });
-                con = res[0].AluminiumWindow;
-                console.log("Aluminium Window");
-            }
-            if (props.topLine === "OurWork") {
-                setstate({
-                    ...state,
-                    count: res[0].extra1,
-                });
-                con = res[0].extra1;
-                console.log("OurWork Window");
-            }
-            // if (res == "No") {
-            //   console.log("No");           
-
-            // }
-            // else {       
-            //   console.log("else");
-            //   console.log(res);        
-
-            // }
-
-        })
-            .catch((error) => {
-                console.error(error);
-            });
-
-        if (state.proc) {
-
-        }
-        imgdisp(state.count);
-    }
-
-    // const imglen = () => {
-    //     console.log("props");
-    //     console.log(props);
-    //     let icount = props.imgcount;
-    //     while (icount > 0) {
-    //         console.log("icount" + icount);
-    //         icount--;
-    //     }
-    // }
-
-    const imgdisp = (prop) => {
-        // let icount = props.imgcount;
-
-        // let icount = state.count;
-        let icount = prop;
-        let iar = [];
-        while (icount > 0) {
-            // console.log("icount"+icount);
-
-            // iar=`${props.imgurl}${icount}.jpg`;
-
-            iar.push(`${props.imgurl}${icount}.jpg`);
-            console.log(iar + "   iar");
-            icount--;
-            // return(
-            // <>
-            //     <img className="img-style d-block w-100" src={`${props.imgurl}${icount}.jpg`} />
-            // </>)
-        }
-        // console.log(iar);
-        // setstate({
-        //     ...state,
-        //     allimgs: iar,
-        // })
-        setAllImg(iar);
-        // allimages = iar;
-        // {
-        //     state.allimgs.map(imageUrls => {
-        //         console.log(imageUrls + "   stateallimg")
-        //     })
-        // }
-    }
+        }, 2000);
+    }, [props.imglength]);
 
 
-    const IMG_SETs = [
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/1.jpg",
-
-        },
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/2.jpg",
-
-        },
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/3.jpg",
-
-        },
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/3.jpg",
-
-        },
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/5.jpg",
-
-        },
-        {
-            src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/1.jpg",
-
-        },
-
-    ];
 
     const onSelectImgHandler = (index, src) => {
-        console.log("index [onSelectImgHandler]" + index);
+        // console.log("index [onSelectImgHandler]" + index);
         setstate({
             ...state,
             currImg: index,
             isOpen: !state.isOpen,
             src: src,
         })
+    }
+    const updateHandler = (type, imgurl) => {
+        // console.log(imgurl);
+        // console.log("iupdateHandler " + type + ' ' + imgurl);
+        let imgnodesc = imgurl.substring(imgurl.lastIndexOf("/") + 1, imgurl.length)
+        // console.log(imgnodesc);
+        let imgno = imgnodesc.split('.')
+        // console.log(imgno[0]);
+        // let imgno=imgnodesc.
+        let finalname = `${props.imgurl}${imgnodesc}`;
+        // console.log(finalname);
+        // console.log("headerid  " + state.headerid + state.subheaderid);        
+        setstate({
+            ...state,
+            load:false,
+        })
+        updateImage(type,finalname,imgno[0])
+    }
+    const changeImageHandler = () =>{
+        //  console.log("changeImageHandler  "+state.change);
+        //  console.log(props);
+        //  console.log(state);
+        setstate({
+            ...state,
+            change:!state.change,
+        })
+    }
+
+    const updateImage = (type, imgurlname, imgno) => {
+        // console.log("updateImage  ");
+        let dispval='';
+        if(type ==='Show')
+        {
+            dispval='1';
+            type='Hide';
+        }
+        else{
+            dispval='0';           
+        }
+        // console.log(dispval + ' disp val ' + type +imgno);
+        fetch(Datas.Image_Count,
+            {
+                // mode: 'no-cors',
+                method: 'post',
+                header: {
+                    'Accept': 'application/json',
+                    'Content-type': 'application/json',
+                }, body: JSON.stringify({
+                    // we will pass our input data to server                    
+                    request: 'update',
+                    headerid: state.headerid,
+                    subheaderid: state.subheaderid,
+                    type: type,
+                    imgurl: imgurlname,
+                    imgno: imgno,
+                    dispval:dispval
+                })
+            }
+        ).then(res => res.json()).then(res => {
+            // console.log("res SelectedHeader");
+            // console.log(res);
+            if(res ==='Issue in Update' || res ==='Issue' )
+            {
+                alert(res);
+            }
+            else{
+                alert(res);
+                window.location.reload(false);
+                window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+            }
+            setstate({
+                ...state,                
+                load: true,
+            })
+            //   console.log('state.user_display' + state.user_display);
+        }).catch((error) => {
+            console.error(error);
+        })
+        // fetchimagedetails();
+
     }
     // const HandleNavi = (props) => {
     //     console.log("props [HandleNavi]" + props);
@@ -267,6 +196,10 @@ const StyleImages = (props) => {
     //         })
     //     }
     // }
+
+    if (!state.load) {
+        return <Spinner />
+    }
     return (
         <RubberBand delay={2000}>
             <div
@@ -314,19 +247,42 @@ const StyleImages = (props) => {
                 )} */}
 
                 <div className="full-img-container">
-                    {props.Images.map((imageUrls, index) => (
+                    {props.Images.slice(0, state.disval).map((imageUrls, index) => (
 
                         <>
                             <animate.LightSpeed left delay={1500}>
-                                <img key={index}
-                                    onClick={() => { onSelectImgHandler(index, `${imageUrls}`) }}
-                                    // className={props.screenname === "SubTemp" ?
-                                    //     "sub-img-cont img-style d-block w-100 "
-                                    //     : "img-style d-block w-100"}
-                                    alt="Slide Images"
-                                    className="Data-all"
-                                    src={`${imageUrls}`} />
+                                <div>
+                                    <img key={index}
+                                        onClick={() => { onSelectImgHandler(index, `${imageUrls}`) }}
+                                        // className={props.screenname === "SubTemp" ?
+                                        //     "sub-img-cont img-style d-block w-100 "
+                                        //     : "img-style d-block w-100"}
+                                        alt="Slide Images"
+                                        className="Data-all"
+                                        src={`${imageUrls}`} />
+                                    {
+                                        props.screen === "SelectedDetails" && props.useredits === '66656d6364' ?
+                                            <div class='update-button-style'>
+                                                <div>
+                                                    {props.view === 'Hidden' ? 
+                                                     <Button buttonSize='btn--small' buttonColor='blue' onClick={() => updateHandler('Show', imageUrls)}>Show Image</Button>
+                                                     :
+                                                     <Button buttonSize='btn--small' buttonColor='blue' onClick={() => updateHandler('Hide', imageUrls)}>Hide Image</Button>
+                                                    }
+                                               
+                                                    <Button buttonStyle='btn--primary' buttonSize='btn--small' buttonColor='blue' onClick={() => updateHandler('Header', imageUrls)}>Set Header Image</Button>
+                                                  
+                                                </div>
+                                              <div>
+                                                <Button buttonSize='btn--small' buttonColor='blue' onClick={() => updateHandler('SubHeader', imageUrls)}>Set Sub Header Image</Button>
+                                                <Button buttonSize='btn--small' buttonColor='blue' onClick={() => changeImageHandler('SubHeader', imageUrls)}>Change</Button>
+                                                </div>
+                                            </div>
+                                            : null}
+                                </div>
                             </animate.LightSpeed>
+
+
                             {/* {state.isOpen && (
                             <ImageViewer
                                 src={IMG_SETs}
@@ -355,37 +311,35 @@ const StyleImages = (props) => {
                             }}
                         />
                     )}
-           </div>
-                {/* <ImgsViewer
-                    // imgs={[
-                    //     { src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/1.jpg" },
-                    //     { src: "https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit/MainSlide/2.jpg" },
-                    // ]}                  
-                    // imgs={`${Datas.HeaderImagUrlArr}`}
-                    // imgs={`${props.Images}`}
-                    // imgs={imgslist}
-                    imgs={IMG_SET}
-                    currImg={state.currImg}
-                    isOpen={state.isOpen}
-                    onClose={() => {
-                        setstate({ ...state, isOpen: !state.isOpen })
-                    }}
-
-                    onClickPrev={() => HandleNavi(0)}
-                    onClickNext={() => HandleNavi(1)}
-                /> */}
+                </div>
+                <div className="styleTemp-button">
 
 
-                {/* { Datas.images.map(({id, src, title, description}) => 
+                    {state.moreflag ?
+                        <>
 
-                )}   */}
+                            <Button buttonSize='btn--wide' buttonColor='blue' onClick={() => moreHandler(false)}>
+                                View More
+                            </Button>
 
-                {/* <Imgview /> */}
-
-
-                {/* <div className={props.lightBg ? "photo-desc-lable photo-desc" : "photo-desc-lable photo-desc white-shade"}>{props.label}</div>
-
-                <div className={props.lightBg ? "photo-desc " : "photo-desc white-shade"}>{props.title}</div> */}
+                        </>
+                        :
+                        <>
+                            <Button buttonSize='btn--wide' buttonColor='blue' onClick={() => moreHandler(true)}>
+                                View Less
+                            </Button>
+                        </>
+                    }
+                   
+                </div>
+                <div>
+                     {props.useredits === '66656d6364' && props.details && state.change?
+                    <ImageComponent screen={'modify'} 
+                    data={props.details} topline={props.details.topLine} headerid={props.details.Header_Details_id}
+                   
+                    />
+                    :null}
+                    </div>
             </div>
         </RubberBand>
     )

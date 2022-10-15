@@ -12,7 +12,7 @@ import SubTemplate from '../Screens/SmallComponent/SubTemplate';
 import Spinner from '../Spinner/Spinner';
 import NoData from '../Screens/NoData/NoData';
 import MainTemplate from '../MainScreenComponent/MainTemplate';
-
+import CreateHeaderDetails from './CreateComponent/CreateHeaderDetails';
 const MainComponent = (props) => {
     const initialval = {
         imageobj: [],
@@ -26,7 +26,7 @@ const MainComponent = (props) => {
         imagecomponent: [],
         selectedtheadercomponent: '',
         data:false,
-      
+        useredits: localStorage.getItem('useredit')
     };
     let display = false;
     let imgurl = '';
@@ -221,7 +221,11 @@ const MainComponent = (props) => {
                         {/* </Jello> */}
                     </>
                     : null}
-
+                    <>
+                    {state.useredits === '66656d6364' ?
+                    <CreateHeaderDetails />
+                    :null}
+                    </>
 
                 {/* <CarouselContainer  imgcount={state.imageCount} imgurl={state.imgurl} topLine={state.selectedtitle} autoplay='true' /> */}
             </div>

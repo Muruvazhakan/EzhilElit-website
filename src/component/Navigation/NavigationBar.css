@@ -72,8 +72,8 @@
     color: rgba(221,197,78,255);
   }
   .logo-name:hover{
-    animation-name: bounce;
-    -moz-animation-name: bounce;
+    /* animation-name: bounce;
+    -moz-animation-name: bounce; */
     list-style: none;
     color: rgba(135,112,56,32);     
     text-decoration: none;
