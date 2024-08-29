@@ -98,8 +98,8 @@ const MainTemplate = (props) => {
     imgs_present();
     // console.log("props MainTemplate");
     // console.log(props);
-    console.log(props.screen);
-    console.log(state.titlesubimage);
+    // console.log(props.screen);
+    // console.log(state.titlesubimage);
     // console.log(state.titleimage + ": state.titleimage");
   }, [state.titleimage])
 

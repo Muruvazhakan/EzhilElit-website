@@ -8,7 +8,6 @@ import Jello from 'react-reveal/Jello';
 // import * as Datas from '../../Datas/Datas';
 import { Link } from 'react-router-dom';
 
-import SubTemplate from '../Screens/SmallComponent/SubTemplate';
 import Spinner from '../Spinner/Spinner';
 import NoData from '../Screens/NoData/NoData';
 import MainTemplate from '../MainScreenComponent/MainTemplate';
@@ -70,8 +69,8 @@ const MainComponent = (props) => {
                 })
             }
         ).then(res => res.json()).then(res => {
-            console.log("res MainComponent");
-            console.log(res);
+            // console.log("res MainComponent");
+            // console.log(res);
             if(res == 'No Data' ||res == 'Something Went Wrong'  )
             {
                 setState({

@@ -105,14 +105,6 @@ const MainGallery = (props) => {
     })
 
   }
-  const moreHandler = (props) => {
-
-    setstate({
-      ...state,
-      moreflag: props
-    })
-
-  }
 
   return (
     <>
@@ -125,7 +117,7 @@ const MainGallery = (props) => {
       
       /> */}
       {state.load  ?
-        <StyleTemplate details={state.selectedtheadercomponent} screen='Main' useredits={'false'} />
+        <StyleTemplate details={state.selectedtheadercomponent} screen='Main' useredits={'false'}  />
         : null}
     </>
   )

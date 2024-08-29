@@ -39,7 +39,7 @@ const StyleTemplate = (props) => {
     // console.log(props);
     {/* <div>{props.types}</div> */ }
     if (props.details === 'No') {
-      console.log(props);
+      // console.log(props);
       setstate({
         ...state,
         detailsaval: false,
@@ -50,7 +50,7 @@ const StyleTemplate = (props) => {
 
     }
 
-  }, []);
+  }, [props.details]);
 
   // useEffect(() => {
   //   // console.log("CarouselContainer");

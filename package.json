@@ -41,7 +41,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3300 react-scripts start",
     "build": "react-scripts build",
     "client-s3-deploy": "aws s3 sync build/ s3://website-deploy-static/JR Modular Enterprises/",
     "test": "react-scripts test",

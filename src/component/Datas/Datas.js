@@ -1,5 +1,7 @@
 // import axios from 'axios';
 // import React, { useEffect,useState } from 'react';
+
+export const isbackendconnect = "No";
 export const server_Url='http://43.204.119.91/EzhilElit/'; 
 export const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
 export const Form_Url =`${server_Url}Contact_Us_Form/Client_Details.php`;
@@ -307,65 +309,6 @@ export const Hairstyle = {
   {topLine:"Dust Powder",url:`${Img_Server}/EzhilAccessories/2.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',}],
   };
   
-  export const PvcDoor = {
-    lightBg:  true,
-    lightText: false,
-    lightTextDesc: false,
-    title:'',
-    topLine: 'PvcDoor',   
-    label: 'Get Started',
-    imgStart: '',
-    img: 'images/svg-1.svg',
-    imgcount:imgcountdata.PvcDoor,
-    imgurl:`${Img_Server}/PvcDoor/`,
-    alt: 'img',
-    autoplay:"false"
-  };
-
-  export const Netlon = {
-    lightBg:  true,
-    lightText: false,
-    lightTextDesc: false,
-    topLine: 'Netlon',   
-    title:'',
-    label: 'Get Started',
-    imgStart: '',    
-    imgcount:imgcountdata.PvcDoor,
-    imgurl:`${Img_Server}/Netlon/`,
-    alt: 'img',
-    autoplay:"false"
-  };
-
-  export const FalseCeiling = {
-    lightBg:  true,
-    lightText: false,
-    lightTextDesc: false,
-    topLine: 'False Ceiling',   
-    title:'',
-    label: 'Get Started',
-    imgStart: '',
-    img: 'images/svg-1.svg',
-    imgcount:imgcountdata.PvcDoor,
-    imgurl:`${Img_Server}/FalseCeiling/`,
-    alt: 'img',
-    autoplay:"false"
-  };
-
-  export const AluminiumWindow = {
-    lightBg:  true,
-    lightText: false,
-    lightTextDesc: false,
-    topLine: 'Aluminium Windows',   
-    title:'',
-    label: '',
-    imgStart: '',
-    img: 'images/svg-1.svg',
-    imgcount:imgcountdata.Netlon,
-    imgurl:`${Img_Server}/AluminumWindow/`,
-    alt: 'img',
-    autoplay:"false"
-  };
-
   // const aws='https://storage.googleapis.com/helpone-9bf33.appspot.com/jrmodularenterprises/ModularKitchen/ModularKitchenImage.txt';
   // const response =  fetch(Modularkitchen_Url);
   // const data =  response.json();

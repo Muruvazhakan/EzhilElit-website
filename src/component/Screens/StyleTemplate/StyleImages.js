@@ -32,7 +32,7 @@ const StyleImages = (props) => {
         isOpen: false,
         src: 0,
         moreflag: true,
-        disval: 2,
+        disval: props.imglength > 0 ?props.imglength / 2:null ,
         totallength: props.imglength,
         headerid: props.headerid,
         subheaderid: props.subheaderid,
@@ -47,8 +47,8 @@ const StyleImages = (props) => {
     const [allimg, setAllImg] = useState([]);
     const moreHandler = (prop) => {
         let disval = '';
-        console.log(props + ' :props moreHandler val: ' +disval);
-        console.log(props);
+        // console.log(props + ' :props moreHandler val: ' +disval);
+        // console.log(props);
         if (prop) {
             disval = props.imglength / 2;
         }
@@ -63,8 +63,8 @@ const StyleImages = (props) => {
 
     }
     useEffect(() => {
-        console.log("CarouselContainer imgdisp@@@@");
-        console.log(props + "label &&&");
+        // console.log("CarouselContainer imgdisp@@@@");
+        // console.log(props + "label &&&");
         // console.log('props.imgurl ' + props.imgurl);
         // console.log(props);
         // console.log("window.innerWidth < 720 &&&" + window.innerWidth);
@@ -77,6 +77,7 @@ const StyleImages = (props) => {
                 disval: props.imglength / 2,
             });
         }
+        // console.log(state.disval + "disval " +props.imglength/2);
         // console.log(state.disval + ' val');
         // if(props.imgcount<=state.count)
         // {

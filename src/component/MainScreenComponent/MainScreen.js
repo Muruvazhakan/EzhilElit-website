@@ -8,7 +8,7 @@ import Footer from '../Screens/Footer/Footer';
 // import ContactUS from '../PopUpForm/ContactUS';
 import './MainScreen.css'
 // import CardSwipe from '../CardSwipe/CardSwipe';
-import SmallComponent from '../Screens/SmallComponent/SmallComponent';
+
 import TitleCard from '../TitleCard/TitleCard';
 // import e from 'cors';
 import Why_PVC from '../PVC/Why_PVC';
@@ -39,7 +39,7 @@ export const MainScreen = () => {
     };
     const [state, setState] = useState(initialval);
     const handletitleclick = (props) => {
-        console.log("props " + props);
+        // console.log("props " + props);
         if (props === "modularkitchen") {
             setState({
                 ...state,

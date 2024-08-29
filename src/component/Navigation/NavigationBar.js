@@ -62,72 +62,77 @@ const NavigationBar = () => {
     else {
       imgs = 'single';
     }
-    fetch(Datas.Headrer_Details,
-      {
-        // mode: 'no-cors',
-        method: 'post',
-        header: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json',
-        }, body: JSON.stringify({
-          // we will pass our input data to server
-          imgs: imgs,
-        })
-      }
-    ).then(res => res.json()).then(res => {
-      console.log("res NavBar values");
-      console.log(res);
-      if (res == 'No Data' || res == 'Something Went Wrong') {
-        setState({
-          ...state,
-          load: true,
-          errorcode: res
-        })
-      }
-      else if (ls != '66656d6364') {
-        const arr2 = res.filter(d => d.user_display == '1');
-        // setTimeout(() => {
-        setState({
-          ...state,
-          allheadercomponent: arr2,
-          load: true,
-          data: true,
-        })
-        // }, 3000);
-        // console.log(arr2);
-      }
-      else {
-        setTimeout(() => {
+
+    if(Datas.isbackendconnect =="Yes") {
+      fetch(Datas.Headrer_Details,
+        {
+          // mode: 'no-cors',
+          method: 'post',
+          header: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json',
+          }, body: JSON.stringify({
+            // we will pass our input data to server
+            imgs: imgs,
+          })
+        }
+      ).then(res => res.json()).then(res => {
+        // console.log("res NavBar values");
+        // console.log(res);
+        if (res == 'No Data' || res == 'Something Went Wrong') {
           setState({
             ...state,
-            allheadercomponent: res,
+            load: true,
+            errorcode: res
+          })
+        }
+        else if (ls != '66656d6364') {
+          const arr2 = res.filter(d => d.user_display == '1');
+          // setTimeout(() => {
+          setState({
+            ...state,
+            allheadercomponent: arr2,
             load: true,
             data: true,
           })
-        }, 3000);
-      }
-
-
-
-
-
-      //   console.log('after filter header$$$$$$');
-      //   console.log(header);
-
-
-      // allheadercomponent = res;
-      {
-        state.allheadercomponent.map((i, index) => {
-          console.log(i.topLine + " up " + index);
-        })
-      }
-      // console.log('all state1 MainComponent');
-
-
-
-    }).catch((error) => {
-      console.error(error);
-    });
+          // }, 3000);
+          // console.log(arr2);
+        }
+        else {
+          setTimeout(() => {
+            setState({
+              ...state,
+              allheadercomponent: res,
+              load: true,
+              data: true,
+            })
+          }, 3000);
+        }
+        //   console.log('after filter header$$$$$$');
+        //   console.log(header);
+  
+  
+        // allheadercomponent = res;
+        // {
+        //   state.allheadercomponent.map((i, index) => {
+        //     console.log(i.topLine + " up " + index);
+        //   })
+        // }
+        // console.log('all state1 MainComponent');
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+    else{
+      setState({
+        ...state,
+        allheadercomponent: Datas.MenuItem,
+        load: true,
+        data: true,
+      })
+    }
+    console.log(" allheadercomponent");
+    console.log(state.allheadercomponent);
     // fetchimagedetails();
 
   }
@@ -186,14 +191,22 @@ const NavigationBar = () => {
                   return (
                     <div className='nav-item' onClick={() => handleheaderClick()} key={index}>
                     <li className='nav-item'>
-                      < Link className='nav-links' to={{ pathname: `/screen=${item.topLine}`, }}
+                      {/* this code was used for backend connected */}
+                      {/* < Link className='nav-links' to={{ pathname: `/screen=${item.topLine}`, }}   
                         duration={1000} activeClass="nav-active" spy={true} offset={-50}
                         smooth 
                         onClick={closeMobileMenu}
                         >
                           {item.alt}
-                        </Link>
+                        </Link> */} 
 
+                        < Link className='nav-links' to={{ pathname: `${item.url}`, }}
+                        duration={1000} activeClass="nav-active" spy={true} offset={-50}
+                        smooth 
+                        onClick={closeMobileMenu}
+                        >
+                          {item.title}
+                        </Link>
                       {/* < a className='nav-links' href={item.url} 
                     onClick={closeMobileMenu}
                     >{item.title}</a> */}
@@ -201,13 +214,15 @@ const NavigationBar = () => {
                     </div>
                   )
                 })}
-              </>
-              : null }
-              <li onClick={closeMobileMenu} className={window.innerWidth <= 1360 ? 'nav-item nav-active ' : 'nav-item nav-links nav-active'}
+                 <li onClick={closeMobileMenu} 
+                 className={window.innerWidth <= 1360 ? ' nav-active ' : 'nav-item nav-active'}
               // 'nav-item  '
               >
                 <ContactUS />
               </li>
+              </>
+              : null }
+             
               <div className='nav-item menu-icon2' onClick={handleClick}>
                 {click ? <FaTimes size="40px" /> : <FaBars />}
               </div>

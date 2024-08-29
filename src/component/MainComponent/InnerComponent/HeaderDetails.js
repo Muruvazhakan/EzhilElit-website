@@ -83,10 +83,10 @@ const HeaderDetails = (props) => {
     
     const handletitle = () => {
         header = props.details[0].titleimage;
-        console.log(header + ' header');
+        // console.log(header + ' header');
         var last = header.substring(header.lastIndexOf("/") + 1, header.length);
         var arrVars = last.split(".");
-        console.log(arrVars + ' header arrVars');
+        // console.log(arrVars + ' header arrVars');
         // for (let i = 1; i <= props.headerDetails.imgcount; i++) {
         //     // console.log('handletitle i '+i);   
         //     optarr.push(i);
@@ -184,12 +184,12 @@ const HeaderDetails = (props) => {
     }
     const headerdetailsHandler = ( screen) => {
         // console.log("updateheaderdetails from UploadComponent " + screen + props.details[0].Header_Details_id);
-        console.log(state);
-        console.log(props);
+        // console.log(state);
+        // console.log(props);
         let head = state.headerName.trim();
         head = head.replace(/\s+/g, '');
         head = `/${head}/`;
-        console.log('head ' + head);
+        // console.log('head ' + head);
         fetch(Datas.Update_Headrer_Details,
             {
                 method: 'post',
@@ -209,8 +209,8 @@ const HeaderDetails = (props) => {
                 })
             }
         ).then(res => res.json()).then(res => {
-            console.log("res imagecomponent");
-            console.log(res);
+            // console.log("res imagecomponent");
+            // console.log(res);
             if (res == 'Added' || 'Updated') {
                 alert(res+' Header Details');
                 window.location.reload();
