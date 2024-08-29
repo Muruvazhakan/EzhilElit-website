@@ -1,12 +1,12 @@
 import React from 'react';
 import * as Datas from '../../Datas/Datas';
 import {
-    BrowserRouter as Router,
+    // BrowserRouter as Router,
     Switch,
     Route,
     // useParams,
     // Link,
-    MemoryRouter
+    MemoryRouter, HashRouter as Router
 } from "react-router-dom";
 import Footer from '../Footer/Footer';
 import MainScreen from '../../MainScreenComponent/MainScreen';

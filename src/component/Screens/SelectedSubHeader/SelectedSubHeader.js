@@ -13,21 +13,27 @@ const SelectedSubHeader = (props) => {
 
 
     const location = useLocation();
-    var last = '';
+    var header='',last = '';
     let allheadercomponent = [];
     useEffect(() => {
-        // console.log("Selected SUB Header selected");
+        console.log("Selected SUB Header selected");
 
-        // console.log(props);
+        console.log(props);
         // console.log('props scren ');
-        // console.log(props);
+        console.log(props.match.params.screen);
         // const encrypted_text = crypt("salt", "login");
         // localStorage.setItem('useredit', encrypted_text);
-        last = location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length);
-        // console.log(' location.selectedtitle ' + last);
+        header = props.match.params.screen;
+        last = props.match.params.sub;
+        console.log(header +' location.selectedtitle ' + last );
         if (last) {
             // window.location.href = '/';
-            fetchdetails(last);
+           
+            if (Datas.isbackendconnect == "Yes")
+                fetchdetails(last);
+            else {
+                fetchOffline(header,last);
+            }
             // fetchImagedetails(last);
         }
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -45,9 +51,9 @@ const SelectedSubHeader = (props) => {
             .join("");
     };
     const initial = {
-        urlname: location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length),
+        urlname:  props.match.params.sub,
         selectedtheadercomponent: location.selectedtheadercomponent ? location.selectedtheadercomponent : null,
-        selectedtitle: location.selectedtitle ? location.selectedtitle : null,
+        selectedtitle: props.match.params.screen ? props.match.params.screen : null,
         load: false,
         useredit: props.location.useredit ? props.location.useredit : false,
         allheadercomponent: [],
@@ -56,12 +62,45 @@ const SelectedSubHeader = (props) => {
         screen: 'home',        
     };
     const initialimg = {        
-        selectedtheadercomponent: location.selectedtheadercomponent ? location.selectedtheadercomponent : null,
+        selectedtheadercomponent: props.match.params.screen ? props.match.params.screen : null,
        
     };
     const [state, setstate] = useState(initial);
     const [imgstate, imgsetstate] = useState(initialimg);
 
+    const fetchOffline = (header,last) =>{
+
+        let selectheaderscreen = Datas.MyServices.filter((myservice)=>{
+            return myservice.screenname == header
+        });
+
+        if(selectheaderscreen.length>0) {
+            let filterdataarr= selectheaderscreen[0].types.filter((subservice)=>{
+                return subservice.subscreenname == last
+            })
+    
+            console.log("filterdata is  ");
+            console.log(filterdataarr);
+
+            setstate({
+                ...state,
+                selectedtsubheadercomponent:filterdataarr.length>0 && filterdataarr ,
+                selectedtitle: header,
+                load: true,
+            });
+    
+            imgsetstate({
+                ...imgstate,
+                selectedtheadercomponent: selectheaderscreen,
+                // selectedtitle: last,
+                // load: true,
+            });
+
+            console.log("selectheaderscreen is..  ");
+            console.log(imgsetstate.selectedtheadercomponent,selectheaderscreen[0]);
+        }
+        
+    }
     const fetchdetails = (last) => {
         // console.log("fetchdetails from SelectedHeader " + last);
         let userlogin= state.useredits  === '66656d6364' ?'yes':'no'; 
@@ -145,8 +184,7 @@ const SelectedSubHeader = (props) => {
             <RubberBand delay={500}>
                 {state.load && imgstate.selectedtheadercomponent
                  && state.selectedtsubheadercomponent
-                 ?
-                  
+                 ?             
                     <>
                         {/* {state.selectedtheadercomponent.map((i, index) => (
                             <div key={index} >

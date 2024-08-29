@@ -33,10 +33,10 @@ const StyleTemplate = (props) => {
   };
   const [allimg, setAllImg] = useState([]);
   const [state, setstate] = useState(initial);
-  let sp = ['Badminton', 'Basketball', 'Cricket', 'Football', 'Golf', 'Hockey', 'Rugby', 'Snooker', 'Tennis'];
+  
   useEffect(() => {
-    // console.log("[StyleTemplate] imgcount StyleTemplate");
-    // console.log(props);
+    console.log("[StyleTemplate] imgcount StyleTemplate ");
+    console.log(props.details);
     {/* <div>{props.types}</div> */ }
     if (props.details === 'No') {
       // console.log(props);
@@ -45,11 +45,9 @@ const StyleTemplate = (props) => {
         detailsaval: false,
       })
     }
-    else {
+    else if (props.details.length <0 || props.details ){
       imgdisp(props.details);
-
     }
-
   }, [props.details]);
 
   // useEffect(() => {
@@ -73,22 +71,29 @@ const StyleTemplate = (props) => {
     let iar = [];
     let noniar = [];
     let imgurl;
-    // console.log("props lenght " + prop.length);
+    console.log("props lenght " + prop.length);
     {
       prop.map(x => {
-        // console.log("  props val stateallimg")
-        // console.log(x)
-        // console.log(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`)
-        if (x.User_Display === '1') {
-          iar.push(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`);
+        console.log("  props val stateallimg")
+        console.log(x)
+        console.log(`${Datas.Img_Server}/${x.topLine}/${x.imgcount}.jpg`)
+        if (x.User_Display === '1') 
+          {
+          for(var i=1;i<x.imgcount;i++)
+          {
+            iar.push(`${Datas.Img_Server}/${x.topLine}/${i}.jpg`);
+          }
+        
         }
         else {
-          // console.log(" non dis props val stateallimg")
-          noniar.push(`${Datas.Img_Server}${x.Sub_ImgUrl}${x.Image_Url_No}.jpg`);
-        }
+          console.log(" non dis props val stateallimg ")
+          noniar.push(`${Datas.Img_Server}/${x.topLine}/${x.imgcount}.jpg`);
+        };
+        console.log("iar");
+        console.log(iar);
+        imgurl = `${x.topLine}`;
+      });
 
-        imgurl = `${x.Sub_ImgUrl}`;
-      })
     }
     // console.log(iar);
     // setstate({

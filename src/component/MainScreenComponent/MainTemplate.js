@@ -39,44 +39,7 @@ const MainTemplate = (props) => {
   //   // return request
   // }
 
-  // const fet =async ()=>{
-  //   const server_Url='http://13.232.180.192/JRModEnt/';
-  //   const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
-  //   const aws='https://storage.googleapis.com/helpone-9bf33.appspot.com/jrmodularenterprises/ModularKitchen/ModularKitchenImage.txt';
-  //   const response = await fetch(Modularkitchen_Url);
-  //   const data =  response.json();
-  //   // console.log("response php");
-  //   // console.log(response);
-  //   // console.log(data);
-
-  //   fetch(Modularkitchen_Url,
-  //      {
-  //     // mode: 'no-cors',
-  //     // method: 'post',
-  //     header: {
-  //       'Accept': 'application/json',
-  //       'Content-type': 'application/json',
-  //     },      
-  //   }
-  //   ).then(res => res.json()).then(res => {
-  //     console.log("jsonasdasd");
-  //     console.log(res);   
-
-  //     // if (res == "No") {
-  //     //   console.log("No");           
-
-  //     // }
-  //     // else {       
-  //     //   console.log("else");
-  //     //   console.log(res);        
-
-  //     // }
-
-  //   })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
+  
   const imgs_present = () => {
     // console.log("imageUrl");
     // console.log("imgcount imgurl" + imgcount+imgurl);  
@@ -86,9 +49,9 @@ const MainTemplate = (props) => {
     // console.log(response1);
   }
   const initialval = {
-
-    Display_No_Result: props.screen === 'SubScreen' ? props.Sub_Display_No % 2 : props.Display_No % 2,
-    titleimage: props.screen === 'SelectedSubScreen' ? `${Datas.Img_Server}${props.Sub_TitleImage}`: `${Datas.Img_Server}${props.titleimage}`,
+    fromParentScreen: (props.screen === 'SelectedSubScreen' ||props.screen === 'SubScreen' ) ? true:false,
+    Display_No_Result:  (props.screen === 'SelectedSubScreen' ||props.screen === 'SubScreen' )  ? props.Sub_Display_No % 2 : props.Display_No % 2,
+    titleimage: (props.screen === 'SelectedSubScreen' ||props.screen === 'SubScreen' ) ? `${Datas.Img_Server}${props.Sub_TitleImage}`: `${Datas.Img_Server}${props.titleimage}`,
     
     // Modularkitchen:false,
 
@@ -96,17 +59,17 @@ const MainTemplate = (props) => {
   const [state, setState] = useState(initialval);
   useEffect(() => {
     imgs_present();
-    // console.log("props MainTemplate");
+    // console.log("props MainTemplate 123");
     // console.log(props);
     // console.log(props.screen);
-    // console.log(state.titlesubimage);
+    // console.log(state.titleimage );
     // console.log(state.titleimage + ": state.titleimage");
   }, [state.titleimage])
 
 
   return (
     <>
-
+     
       <div
         className={state.Display_No_Result === 1 ? 'home__hero-section lightbg' : 'home__hero-section darkBg'}
       >
@@ -114,9 +77,6 @@ const MainTemplate = (props) => {
           <div className="row home__hero-row"
             style={{ display: 'flex', flexDirection: state.Display_No_Result === 0 ? 'row-reverse' : 'row' }}
           >
-
-
-
             {/* {imgs.map(imageUrl => renderImage(imageUrl))} */}
             {/* {imgs.map((i,index)=>{
                     console.log(i.src+" map index "+ index);
@@ -136,9 +96,10 @@ const MainTemplate = (props) => {
             <animate.Zoom delay={200}>
               <div className='col'>
                 <div className='home__hero-text-wrapper'>
-                  <div className='top-line'>{props.screen === 'SelectedSubScreen' ? props.Sub_Alt : props.alt}</div>
+                  {/* <div className='top-line'>{props.screen === 'SelectedSubScreen' ? props.Sub_Alt : props.alt}</div> */} 
+                  <div className='top-line'>{ state.fromParentScreen ? props.topLine : props.alt}</div> 
                   <h1 className={state.Display_No_Result === 0 ? 'heading' : 'heading dark'}>
-                    {props.screen === 'SelectedSubScreen' ? props.Sub_Title : props.title}
+                    {state.fromParentScreen  ? null : props.title}
                   </h1>
                   <p
                     className={
@@ -147,18 +108,19 @@ const MainTemplate = (props) => {
                         : 'home__hero-subtitle dark'
                     }
                   >
-                    {props.screen === 'SelectedSubScreen' ? props.Sub_Lable : props.label}
+                    {state.fromParentScreen  ? props.subLable : props.label}
                   </p>
                   {props.screen !== 'SelectedSubScreen' ?
                     <Link to={props.screen === 'SubScreen' ? {
-                      pathname: `/screen=${props.screenname}&sub=${props.topLine}`,
+                      pathname: `/screen=${props.screenname}&sub=${props.subscreenname}`,
+                      // pathname: `/screen=${props.screenname}`,
                       selectedtitle: props.alt,
                       selectedtheadercomponent: props,
                       screen: 'home'
                     }
                       : {
-                        pathname: `/screen=${props.topLine}`,
-                        selectedtitle: props.alt,
+                        pathname: `/screen=${props.screenname}`,
+                        selectedtitle: props.screenname,
                         selectedtheadercomponent: props,
                         screen: 'home'
                       }}>

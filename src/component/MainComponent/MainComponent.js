@@ -24,7 +24,7 @@ const MainComponent = (props) => {
         allheadercomponent: [],
         imagecomponent: [],
         selectedtheadercomponent: '',
-        data:false,
+        data: false,
         useredits: localStorage.getItem('useredit')
     };
     let display = false;
@@ -40,10 +40,22 @@ const MainComponent = (props) => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         // const decrypted_string = decrypt("salt", "66656d6364"); // login - 66656d6364 6c6b66796f - false
         // console.log(decrypted_string + ' :decrypted_string');
-        fetchdetails();
+
+        if (Datas.isbackendconnect == "Yes")
+            fetchdetails();
+        else {
+            fetchOffline();
+        }
     }, [])
 
-   
+    const fetchOffline = () => {
+        setState({
+            ...state,
+            allheadercomponent: Datas.MyServices,
+            load: true,
+            data: true,
+        })
+    }
     const fetchdetails = () => {
         // console.log("fetchdetails from MainComponent");
         let ls = localStorage.getItem('useredit');
@@ -71,23 +83,22 @@ const MainComponent = (props) => {
         ).then(res => res.json()).then(res => {
             // console.log("res MainComponent");
             // console.log(res);
-            if(res == 'No Data' ||res == 'Something Went Wrong'  )
-            {
+            if (res == 'No Data' || res == 'Something Went Wrong') {
                 setState({
-                    ...state,                   
+                    ...state,
                     load: true,
-                    errorcode:res
-                })   
+                    errorcode: res
+                })
             }
             else if (ls != '66656d6364') {
                 const arr2 = res.filter(d => d.user_display == '1');
                 // setTimeout(() => {
-                    setState({
-                        ...state,
-                        allheadercomponent: arr2,
-                        load: true,
-                        data: true,
-                    })
+                setState({
+                    ...state,
+                    allheadercomponent: arr2,
+                    load: true,
+                    data: true,
+                })
                 // }, 3000);
                 // console.log(arr2);
             }
@@ -122,7 +133,7 @@ const MainComponent = (props) => {
             //         })
             //  }, 3000);
 
-           
+
 
 
 
@@ -185,13 +196,12 @@ const MainComponent = (props) => {
     if (!state.load) {
         return <Spinner />
     }
-    if(state.load && !state.data)
-    {
-        return <NoData errorcode={state.errorcode}/>
+    if (state.load && !state.data) {
+        return <NoData errorcode={state.errorcode} />
     }
-    
+
     return (
-        <> <Jello delay={500}>  
+        <> <Jello delay={500}>
 
             <div className="upload-style  ">
                 {/* <div className="sitetext-font top-line why_pvc_head">Title </div> */}
@@ -199,8 +209,8 @@ const MainComponent = (props) => {
                     <  >
                         {/* <Jello delay={2500} > */}
                         {state.allheadercomponent.map((i, index) => (
-                            <div  key={index} >
-                                
+                            <div key={index} >
+
                                 {/* <Link
                                     style={{ padding: 10, textDecoration: 'none', alignItems: 'center' }}
                                     to={{
@@ -209,27 +219,27 @@ const MainComponent = (props) => {
                                         selectedtheadercomponent: i,
                                         screen:'home'
                                     }}> */}
-                                    {/* <Card className="why_pvc_card-style space-text" > */}
-                                     
-                                        <MainTemplate {...i} />
+                                {/* <Card className="why_pvc_card-style space-text" > */}
 
-                                    {/* </Card>                                     */}
+                                <MainTemplate {...i} />
+
+                                {/* </Card>                                     */}
                                 {/* </Link> */}
                             </div>
                         ))}
                         {/* </Jello> */}
                     </>
                     : null}
-                    <>
+                <>
                     {state.useredits === '66656d6364' ?
-                    <CreateHeaderDetails />
-                    :null}
-                    </>
+                        <CreateHeaderDetails />
+                        : null}
+                </>
 
                 {/* <CarouselContainer  imgcount={state.imageCount} imgurl={state.imgurl} topLine={state.selectedtitle} autoplay='true' /> */}
             </div>
 
-            </Jello>
+        </Jello>
         </>
     )
 }

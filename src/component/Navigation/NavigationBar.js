@@ -131,8 +131,8 @@ const NavigationBar = () => {
         data: true,
       })
     }
-    console.log(" allheadercomponent");
-    console.log(state.allheadercomponent);
+    // console.log(" allheadercomponent");
+    // console.log(state.allheadercomponent);
     // fetchimagedetails();
 
   }
@@ -184,13 +184,15 @@ const NavigationBar = () => {
             <div className='menu-icon' onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}
             </div>
-            <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+            <ul className={click ? 'nav-menu  nav-active  active' : 'nav-menu '}>
               {state.load ? 
               <>
                 {state.allheadercomponent.map((item, index) => {
+                  let pathnameurl=  item.title=="Home"? "/" : `/screen=${item.url}` ;
+                  console.log(pathnameurl + " pathnameurl ");
                   return (
-                    <div className='nav-item' onClick={() => handleheaderClick()} key={index}>
-                    <li className='nav-item'>
+                    <div className='nav-item  nav-active ' onClick={() => handleheaderClick()} key={index}>
+                    <li className='nav-item  nav-active '>
                       {/* this code was used for backend connected */}
                       {/* < Link className='nav-links' to={{ pathname: `/screen=${item.topLine}`, }}   
                         duration={1000} activeClass="nav-active" spy={true} offset={-50}
@@ -199,14 +201,15 @@ const NavigationBar = () => {
                         >
                           {item.alt}
                         </Link> */} 
-
-                        < Link className='nav-links' to={{ pathname: `${item.url}`, }}
+                     
+                        < Link className='nav-links' to={ { pathname: pathnameurl }}
                         duration={1000} activeClass="nav-active" spy={true} offset={-50}
                         smooth 
                         onClick={closeMobileMenu}
                         >
                           {item.title}
-                        </Link>
+                         </Link>
+                      
                       {/* < a className='nav-links' href={item.url} 
                     onClick={closeMobileMenu}
                     >{item.title}</a> */}
@@ -214,12 +217,14 @@ const NavigationBar = () => {
                     </div>
                   )
                 })}
+               
                  <li onClick={closeMobileMenu} 
-                 className={window.innerWidth <= 1360 ? ' nav-active ' : 'nav-item nav-active'}
+                 className={window.innerWidth <= 1360 ? ' nav-active ' : ' nav-active'}
               // 'nav-item  '
               >
                 <ContactUS />
               </li>
+             
               </>
               : null }
              

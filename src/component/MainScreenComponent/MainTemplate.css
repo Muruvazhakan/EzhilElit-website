@@ -10,7 +10,15 @@
 .home__hero-row {
   align-items: center;
 }
-
+.screentitle{
+  align-items: center;
+  font-size: 45px;
+  text-align: center;
+  margin-top: 3%;
+  font-weight: bolder;
+  color: rgb(118 115 31);
+  font-family: fantasy;
+}
 .row {
   display: flex;
   /* margin-right: -15px; */

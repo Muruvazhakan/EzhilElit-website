@@ -23,9 +23,10 @@ const SelectedHeader = (props) => {
         // console.log(props);
         last = location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length);
         // console.log(' location.selectedtitle ' + last);
-        if (last) {
-            // window.location.href = '/';
+        if (Datas.isbackendconnect == "Yes")
             fetchdetails(last);
+        else {
+            fetchOffline(last);
         }
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
@@ -41,6 +42,31 @@ const SelectedHeader = (props) => {
     };
     const [state, setstate] = useState(initial);
 
+    const fetchOffline = (last) =>{
+
+        let filterdata = Datas.MyServices.filter((myservice)=>{
+            return myservice.screenname == last
+        })
+        let datas=true;
+            if(filterdata.length == 0)
+            {
+                
+                datas=false;
+            }
+
+        // console.log("filterdata is :");
+        // console.log(filterdata[0]);
+        setstate({
+            ...state,
+            load: true,
+            selectedtheadercomponent: filterdata[0].types,
+            selectedtitle: filterdata[0].alt,
+            screenname: filterdata[0].screenname,
+            load: true,
+            data:datas,
+        })
+        // console.log(state.selectedtheadercomponent);
+    }
     const fetchdetails = (last) => {
         // console.log("fetchdetails from SelectedHeader" + last);
 
@@ -97,9 +123,10 @@ const SelectedHeader = (props) => {
                     // <InnerComponent selectedtitle={state.urlname} 
                     // selectedtheadercomponent={state.selectedtheadercomponent} />
                     <>
+                     {<div className='screentitle'>{state.selectedtitle} </div>}
                         {state.selectedtheadercomponent.map((i, index) => (
                             <div key={index} >
-                               <MainTemplate {...i} screenname={state.selectedtitle} screen={'SubScreen'}/>
+                               <MainTemplate {...i} screenname={state.screenname} screenTitle={state.selectedtitle} screen={'SubScreen'}/>
                             </div>
                         ))}
                     </>

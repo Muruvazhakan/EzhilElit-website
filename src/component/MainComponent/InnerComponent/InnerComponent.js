@@ -23,7 +23,7 @@ const InnerComponent = (props) => {
     const initial = {
         imgchange: false,
         newimgurl: '',
-        headercomponent: props.selectedtheadercomponent,
+        headercomponent: (props.selectedtheadercomponent? props.selectedtheadercomponent : null),
         selectedtsubheadercomponent:props.selectedtsubheadercomponent,
         imagecomponent: '',
         load: false,
@@ -33,11 +33,13 @@ const InnerComponent = (props) => {
     };
     const [state, setstate] = useState(initial);
     useEffect(() => {
-        // console.log('InnerComponent selectedtheadercomponent 1');
-        // console.log(props.selectedtsubheadercomponent);
-        // console.log(props.selectedtheadercomponent[0]);
-        console.log(props.screen);
+        console.log('InnerComponent selectedtheadercomponent is');
         console.log(props.selectedtsubheadercomponent);
+        // console.log(props.selectedtheadercomponent[0]);
+        // console.log(props.screen);
+        
+        // console.log(props.selectedtheadercomponent);
+        console.log(state.headercomponent);
         
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         // window.scrollTop(0);
@@ -71,8 +73,8 @@ const InnerComponent = (props) => {
                         ))}
                     </>
                    }
-                {props.selectedtheadercomponent.length>0 ?
-                <StyleTemplate details={props.selectedtheadercomponent} screen='SelectedDetails' useredits={state.useredits}/>
+                {state.headercomponent ?
+                <StyleTemplate details={state.headercomponent} screen='SelectedDetails' useredits={state.useredits}/>
                 : null }
                 {/* {state.useredits =='66656d6364' ?
                         <ImageComponent screen='create'  data={state.headercomponent} topline={state.headercomponent.topLine} headerid={state.headercomponent.Header_Details_id}/>

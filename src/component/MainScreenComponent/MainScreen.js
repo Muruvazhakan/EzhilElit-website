@@ -79,6 +79,7 @@ export const MainScreen = () => {
             </animate.LightSpeed>
             {/* <animate.Flip left delay={1000}></animate.Flip> */}
             <MainComponent />
+            
             {/* <section id="BridalMakeup">
 
                 <MainTemplate {...Datas.BridalMakeup} />

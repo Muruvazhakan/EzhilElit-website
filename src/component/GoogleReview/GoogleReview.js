@@ -16,8 +16,11 @@ const GoogleReview = (props) => {
     const [state, setstate] = useState(initial);
     const isMobile = window.innerWidth <= 1060;
     useEffect(() => {
-        fetchreview();
-        // console.log('isMobile '+ isMobile +window.innerWidth );
+      
+            fetchreview();
+        
+        
+        console.log('isMobile ' + isMobile + window.innerWidth);
     }, []);
     useEffect(() => {
         // console.log('isMobile '+ isMobile +window.innerWidth );
@@ -83,8 +86,8 @@ const GoogleReview = (props) => {
                 }
             }
         ).then(res => res.json()).then(res => {
-            // console.log("res imagecomponent cas");
-            // console.log(res);
+            console.log("res imagecomponent cas");
+            console.log(res);
 
             setstate({
                 ...state,
@@ -101,26 +104,26 @@ const GoogleReview = (props) => {
                 console.error(error);
             });
     }
-   
+
     if (!state.load) {
         return <Spinner />
     }
     return (
         <>
-        {/* screen='footer' */}
-        {/* <div 
+            {/* screen='footer' */}
+            {/* <div 
         // className={props.screen ==='footer'? null : 'rev-cont1'}
         > */}
             {
                 state.review.status !== "success" ?
-                    <div  className={props.screen ==='footer'? 'review-text' : 'rev-cont1'} >
+                    <div className={props.screen === 'footer' ? 'review-text' : 'rev-cont1'} >
                         No Reviews
                     </div> :
                     <>
-                        <div className={props.screen ==='footer'? 'review-text' : 'rev-cont1'} >
+                        <div className={props.screen === 'footer' ? 'review-text' : 'rev-cont1'} >
                             Google Review
                         </div>
-                        <div className={props.screen ==='footer'? 'review-text' : 'rev-cont1' } >
+                        <div className={props.screen === 'footer' ? 'review-text' : 'rev-cont1'} >
 
                             {state.rating ?
                                 <div >
@@ -132,34 +135,35 @@ const GoogleReview = (props) => {
                         </div>
                     </>
             }
+            {
+                state.review.status == "success" &&
+                <div className={props.screen === 'footer' ? 'rev-container footer-style' : 'rev-container '} >
 
-            <div className={props.screen ==='footer'? 'rev-container footer-style' : 'rev-container ' } >
+                    {state.load ?
+                        <Swiper
+                            effect="cube"
+                            spaceBetween={10}
+                            zoom={true}
+                            // onZoomChange
+                            Autoplay
+                            slidesPerView={isMobile ? 1 : 3}
+                            navigation
+                        // pagination={{ clickable: true }}
+                        >
 
-                {state.load ?
-                    <Swiper
-                        effect="cube"
-                        spaceBetween={10}
-                        zoom={true}
-                        // onZoomChange
-                        Autoplay
-                        slidesPerView={isMobile? 1:3}
-                        navigation
-                    // pagination={{ clickable: true }}
-                    >
+                            {state.review.reviews.map(rev => {
+                                return (
+                                    <SwiperSlide key={rev._key} style={{ padding: 10, textDecoration: 'none' }}>
+                                        <ReviewDetails props={rev} key={rev._key} />
+                                    </SwiperSlide>
+                                )
+                            })
+                            }
+                        </Swiper>
+                        : null}
 
-                        {state.review.reviews.map(rev => {
-                            return (
-                                <SwiperSlide key={rev._key} style={{ padding: 10, textDecoration: 'none' }}>
-                                    <ReviewDetails props={rev} key={rev._key} />
-                                </SwiperSlide>
-                            )
-                        })
-                        }
-                    </Swiper>
-                    : null}
-
-            </div>
-          
+                </div>
+            }
         </>
     )
 
