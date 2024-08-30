@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+src/component/ImageComponent/*
+
 # testing
 /coverage
 
@@ -25,4 +27,3 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 
-./src/component/ImageComponent/helpone-d08bde72c412_gcp-storage.json
