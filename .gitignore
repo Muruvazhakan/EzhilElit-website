@@ -24,3 +24,5 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+./src/component/ImageComponent/helpone-d08bde72c412_gcp-storage.json
