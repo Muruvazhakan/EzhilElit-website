@@ -3,7 +3,7 @@
 
 export const isbackendconnect = "No";
 export const server_Url='http://43.204.119.91/EzhilElit/'; 
-export const Modularkitchen_Url =`${server_Url}Image/Image_Retrive.php`;
+
 export const Form_Url =`${server_Url}Contact_Us_Form/Client_Details.php`;
 export const Img_Server =`https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit`;
 export const primary_color="rgba(221,197,78,255);";

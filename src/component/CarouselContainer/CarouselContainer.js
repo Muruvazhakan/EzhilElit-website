@@ -53,106 +53,106 @@ const CarouselContainer = (props) => {
     const calcout = () => {
         let proc = "1";
         let con = 5;
-        fetch(Datas.Modularkitchen_Url,
-            {
-                // mode: 'no-cors',
-                // method: 'post',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                },
-            }
-        ).then(res => res.json()).then(res => {
-            console.log("jsonasdasd");
-            proc = "0";
-            console.log(res);
-            // console.log(res[0].Modularkitchen);
-            // console.log(res[0].CupBoard);
-            // console.log(res[0].FalseCeiling);
-            // console.log(res[0].PvcDoor);
-            setstate({
-                ...state,
-                proc: true,
-            });
-            if (props.topLine === "PvcDoor") {
-                setstate({
-                    ...state,
-                    count: res[0].PvcDoor
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor insisde");
-            }
-            if (props.topLine === "Netlon") {
-                setstate({
-                    ...state,
-                    count: res[0].Netlon
-                });
-                con = res[0].PvcDoor;
-                console.log("Netlon insisde", state.count);
-            }
-            if (props.topLine === "False Ceiling") {
-                setstate({
-                    ...state,
-                    count: res[0].FalseCeiling
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor insisde", state.count);
-            }
-            if (props.topLine === "Modular kitchen") {
-                setstate({
-                    ...state,
-                    count: res[0].Modularkitchen
-                });
-                con = res[0].PvcDoor;
-                console.log("PvcDoor2 insisde");
-            }
-            if (props.topLine === "Showcases") {
-                setstate({
-                    ...state,
-                    count: res[0].SHOWCASES,
-                });
-                con = res[0].Showcases;
-                console.log("CupBoard insisde");
-            }
-            if (props.topLine === "Wardrobe") {
-                setstate({
-                    ...state,
-                    count: res[0].CupBoard,
-                });
-                con = res[0].PvcDoor;
-                console.log("CupBoard insisde");
-            }
+        // fetch(Datas.Modularkitchen_Url,
+        //     {
+        //         // mode: 'no-cors',
+        //         // method: 'post',
+        //         header: {
+        //             'Accept': 'application/json',
+        //             'Content-type': 'application/json',
+        //         },
+        //     }
+        // ).then(res => res.json()).then(res => {
+        //     console.log("jsonasdasd");
+        //     proc = "0";
+        //     console.log(res);
+        //     // console.log(res[0].Modularkitchen);
+        //     // console.log(res[0].CupBoard);
+        //     // console.log(res[0].FalseCeiling);
+        //     // console.log(res[0].PvcDoor);
+        //     setstate({
+        //         ...state,
+        //         proc: true,
+        //     });
+        //     if (props.topLine === "PvcDoor") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].PvcDoor
+        //         });
+        //         con = res[0].PvcDoor;
+        //         console.log("PvcDoor insisde");
+        //     }
+        //     if (props.topLine === "Netlon") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].Netlon
+        //         });
+        //         con = res[0].PvcDoor;
+        //         console.log("Netlon insisde", state.count);
+        //     }
+        //     if (props.topLine === "False Ceiling") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].FalseCeiling
+        //         });
+        //         con = res[0].PvcDoor;
+        //         console.log("PvcDoor insisde", state.count);
+        //     }
+        //     if (props.topLine === "Modular kitchen") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].Modularkitchen
+        //         });
+        //         con = res[0].PvcDoor;
+        //         console.log("PvcDoor2 insisde");
+        //     }
+        //     if (props.topLine === "Showcases") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].SHOWCASES,
+        //         });
+        //         con = res[0].Showcases;
+        //         console.log("CupBoard insisde");
+        //     }
+        //     if (props.topLine === "Wardrobe") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].CupBoard,
+        //         });
+        //         con = res[0].PvcDoor;
+        //         console.log("CupBoard insisde");
+        //     }
 
-            if (props.topLine === "Aluminium Windows") {
-                setstate({
-                    ...state,
-                    count: res[0].AluminumWindow,
-                });
-                con = res[0].AluminiumWindow;
-                console.log("Aluminium Window");
-                }
-                if (props.topLine === "OurWork") {
-                    setstate({
-                        ...state,
-                        count: res[0].extra1,
-                    });
-                    con = res[0].extra1;
-                    console.log("OurWork Window");
-                    }
-            // if (res == "No") {
-            //   console.log("No");           
+        //     if (props.topLine === "Aluminium Windows") {
+        //         setstate({
+        //             ...state,
+        //             count: res[0].AluminumWindow,
+        //         });
+        //         con = res[0].AluminiumWindow;
+        //         console.log("Aluminium Window");
+        //         }
+        //         if (props.topLine === "OurWork") {
+        //             setstate({
+        //                 ...state,
+        //                 count: res[0].extra1,
+        //             });
+        //             con = res[0].extra1;
+        //             console.log("OurWork Window");
+        //             }
+        //     // if (res == "No") {
+        //     //   console.log("No");           
 
-            // }
-            // else {       
-            //   console.log("else");
-            //   console.log(res);        
+        //     // }
+        //     // else {       
+        //     //   console.log("else");
+        //     //   console.log(res);        
 
-            // }
+        //     // }
 
-        })
-            .catch((error) => {
-                console.error(error);
-            });
+        // })
+        //     .catch((error) => {
+        //         console.error(error);
+        //     });
 
         if (state.proc) {
 
