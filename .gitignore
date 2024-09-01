@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 
-src/component/ImageComponent/*
+/src/component/ImageComponent/helpone-d08bde72c412_gcp-storage.json
 
 # testing
 /coverage

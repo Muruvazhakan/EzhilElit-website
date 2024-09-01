@@ -68,40 +68,50 @@ const SelectedHeader = (props) => {
         // console.log(state.selectedtheadercomponent);
     }
     const fetchdetails = (last) => {
-        // console.log("fetchdetails from SelectedHeader" + last);
-
-        fetch(Datas.Sub_Details,
+        // console.log("fetchdetails from SelectedHeader " + last + "     " + Datas.getHeaderDetailsUrl);
+        const selectedhearter = `${Datas.getHeaderDetailsUrl}/${last}`;
+        fetch(selectedhearter,
             {
                 // mode: 'no-cors',
-                method: 'post',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                }, body: JSON.stringify({
-                    // we will pass our input data to server
-                    userlogin: 'yes',
-                    headername: last,
-                    type: 'get'
-                })
+                method: 'get',
+                // header: {
+                //     'Accept': 'application/json',
+                //     'Content-type': 'application/json',
+                // }, body: JSON.stringify({
+                //     // we will pass our input data to server
+                //     userlogin: 'yes',
+                //     headername: last,
+                //     type: 'get'
+                // })
             }
         ).then(res => res.json()).then(res => {
             // console.log("res SelectedHeader");
             // console.log(res);
             // console.log(res.length +  ' res.length ');
             let datas=true;
-            if(res === 'No Data')
+            if(res === 'No Data' || res.length <1)
             {
-                
-                datas=false;
+
+                 setstate({
+                    ...state,
+                   
+                    load: false,
+                  
+                })
+              
             }
-            
-            setstate({
-                ...state,
-                selectedtheadercomponent: res,
-                selectedtitle: last,
-                load: true,
-                data:datas
-            })
+            else
+            {
+                setstate({
+                    ...state,
+                    selectedtheadercomponent: res[0].types,
+                    selectedtitle: res[0].alt,
+                    screenname: res[0].screenname,
+                    load: true,
+                    data:datas
+                })
+            }
+           
             //   console.log('state.user_display' + state.user_display);
         }).catch((error) => {
             console.error(error);

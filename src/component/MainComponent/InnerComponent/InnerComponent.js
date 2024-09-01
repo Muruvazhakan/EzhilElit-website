@@ -34,12 +34,12 @@ const InnerComponent = (props) => {
     const [state, setstate] = useState(initial);
     useEffect(() => {
         console.log('InnerComponent selectedtheadercomponent is');
-        console.log(props.selectedtsubheadercomponent);
-        // console.log(props.selectedtheadercomponent[0]);
+        // console.log(props.selectedtsubheadercomponent);
+        console.log(props.selectedtheadercomponent);
         // console.log(props.screen);
         
         // console.log(props.selectedtheadercomponent);
-        console.log(state.headercomponent);
+        console.log("state.headercomponent "+state.headercomponent);
         
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         // window.scrollTop(0);
@@ -73,9 +73,12 @@ const InnerComponent = (props) => {
                         ))}
                     </>
                    }
-                {state.headercomponent ?
+                {state.headercomponent.length>0  ?
                 <StyleTemplate details={state.headercomponent} screen='SelectedDetails' useredits={state.useredits}/>
-                : null }
+                :null }
+                {/* {props.selectedtheadercomponen.length>0  ?
+                <StyleTemplate details={props.selectedtheadercomponen} screen='SelectedDetails' useredits={state.useredits}/>
+                :null } */}
                 {/* {state.useredits =='66656d6364' ?
                         <ImageComponent screen='create'  data={state.headercomponent} topline={state.headercomponent.topLine} headerid={state.headercomponent.Header_Details_id}/>
                         : null} */}

@@ -64,17 +64,11 @@ const NavigationBar = () => {
     }
 
     if(Datas.isbackendconnect =="Yes") {
-      fetch(Datas.Headrer_Details,
+      // console.log(Datas.getMenudataUrl + " getMenudataUrl");
+      fetch(Datas.getMenudataUrl,
         {
           // mode: 'no-cors',
-          method: 'post',
-          header: {
-            'Accept': 'application/json',
-            'Content-type': 'application/json',
-          }, body: JSON.stringify({
-            // we will pass our input data to server
-            imgs: imgs,
-          })
+          method: 'get',
         }
       ).then(res => res.json()).then(res => {
         // console.log("res NavBar values");
@@ -120,7 +114,7 @@ const NavigationBar = () => {
         // }
         // console.log('all state1 MainComponent');
       }).catch((error) => {
-        console.error(error);
+        console.error(error+ " navbar issue");
       });
     }
     else{

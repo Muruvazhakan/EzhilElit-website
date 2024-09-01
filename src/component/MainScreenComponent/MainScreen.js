@@ -11,8 +11,7 @@ import './MainScreen.css'
 
 import TitleCard from '../TitleCard/TitleCard';
 // import e from 'cors';
-import Why_PVC from '../PVC/Why_PVC';
-import My_Site from '../PVC/My_Site';
+
 // import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import * as animate from 'react-reveal/';
 
@@ -23,9 +22,6 @@ import Ezhil_Accss from '../Screens/Ezhil_Accss/Ezhil_Accss';
 import AboutMe from '../Screens/AboutMe/AboutMe';
 import MainGallery from '../Screens/MainGallery/MainGallery';
 import MainComponent from '../MainComponent/MainComponent';
-
-
-
 
 export const MainScreen = () => {
 

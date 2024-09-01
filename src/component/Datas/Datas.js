@@ -1,7 +1,12 @@
 // import axios from 'axios';
 // import React, { useEffect,useState } from 'react';
 
-export const isbackendconnect = "No";
+export const isbackendconnect = "Yes";
+export const backendUrl = "http://localhost:4000/";
+export const getMenudataUrl = `${backendUrl}menuData`;
+export const getHeaderDetailsUrl= `${backendUrl}header`;
+export const getSelectedHeaderDetailsUrl= `${backendUrl}header`;
+
 export const server_Url='http://43.204.119.91/EzhilElit/'; 
 
 export const Form_Url =`${server_Url}Contact_Us_Form/Client_Details.php`;
@@ -43,6 +48,19 @@ let imgcountdata=[];
 export const contact_number=[{Title:"Primary Number",Number:'7397292434'},
  {Title:"Sec Number",Number:'9176176499'}
 ];
+
+export const aboutMe = {
+  title:"Makeup artist at Chennai",
+  quotes:"Get dolledup on your Big Day.",
+  name:"Kodhai Ezhil",
+  prof:"MAKEUP ARTIST",
+  contact_number: [{Title:"Primary Number",Number:'7397292434'},
+    {Title:"Sec Number",Number:'9176176499'}],
+  mail_id:'ezhilelit@gmail.com',
+  instagram:"//www.instagram.com/ezhil_elit/",
+  youtube:"//www.youtube.com/channel/UCL5homLXX6x8eXzO4_M2xgw"
+
+}
 export const my_img=`${Img_Server}/Main-Img/me.jpg`;
 export const mail_id='ezhilelit@gmail.com';
 // const [allimgcount,setallimgcount]=useState(initi);

@@ -35,7 +35,7 @@ const StyleTemplate = (props) => {
   const [state, setstate] = useState(initial);
   
   useEffect(() => {
-    console.log("[StyleTemplate] imgcount StyleTemplate ");
+    console.log("[StyleTemplate] imgcount StyleTemplate2 ");
     console.log(props.details);
     {/* <div>{props.types}</div> */ }
     if (props.details === 'No') {
@@ -77,7 +77,7 @@ const StyleTemplate = (props) => {
         console.log("  props val stateallimg")
         console.log(x)
         console.log(`${Datas.Img_Server}/${x.topLine}/${x.imgcount}.jpg`)
-        if (x.User_Display === '1') 
+        if (x.user_display === '1') 
           {
           for(var i=1;i<x.imgcount;i++)
           {

@@ -159,7 +159,7 @@ const AboutMe = (props) => {
                                     <Link
                                         className='social-icon-link'
                                         to={Datas.Insta_link}
-                                        target='_blank'
+                                        // target='_blank'
                                         aria-label='Instagram'
                                     >
                                         <FaInstagram color={Datas.primaryblue} />

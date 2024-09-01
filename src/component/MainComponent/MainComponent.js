@@ -57,7 +57,8 @@ const MainComponent = (props) => {
         })
     }
     const fetchdetails = () => {
-        // console.log("fetchdetails from MainComponent");
+        console.log("fetchdetails from MainComponent");
+        console.log("Datas.getHeaderDetailsUrl " +Datas.getHeaderDetailsUrl);
         let ls = localStorage.getItem('useredit');
 
         // console.log('ls '+ls);
@@ -68,21 +69,23 @@ const MainComponent = (props) => {
         else {
             imgs = 'single';
         }
-        fetch(Datas.Headrer_Details,
+        fetch(Datas.getHeaderDetailsUrl,
             {
                 // mode: 'no-cors',
-                method: 'post',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                }, body: JSON.stringify({
-                    // we will pass our input data to server
-                    imgs: imgs,
-                })
+                method: 'get',
+                // header: {
+                //     'Accept': 'application/json',
+                //     'Content-type': 'application/json',
+                // }, body: JSON.stringify({
+                //     // we will pass our input data to server
+                //     imgs: imgs,
+                // })
             }
         ).then(res => res.json()).then(res => {
-            // console.log("res MainComponent");
-            // console.log(res);
+            console.log("res MainComponent");
+            console.log(res);
+            console.log("Datas.MyServices ");
+            console.log(Datas.MyServices);
             if (res == 'No Data' || res == 'Something Went Wrong') {
                 setState({
                     ...state,

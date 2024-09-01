@@ -30,7 +30,7 @@ const SelectedSubHeader = (props) => {
             // window.location.href = '/';
            
             if (Datas.isbackendconnect == "Yes")
-                fetchdetails(last);
+                fetchdetails(header,last);
             else {
                 fetchOffline(header,last);
             }
@@ -101,40 +101,78 @@ const SelectedSubHeader = (props) => {
         }
         
     }
-    const fetchdetails = (last) => {
+    const fetchdetails = (header,last) => {
         // console.log("fetchdetails from SelectedHeader " + last);
+        
+        const selectedSubhearter = `${Datas.getHeaderDetailsUrl}/${header}`;
+        console.log("fetchdetails from SelectedHeader " + last + "     " + selectedSubhearter);
         let userlogin= state.useredits  === '66656d6364' ?'yes':'no'; 
-        fetch(Datas.Image_Count,
+        fetch(selectedSubhearter,
             {
                 // mode: 'no-cors',
-                method: 'post',
-                header: {
-                    'Accept': 'application/json',
-                    'Content-type': 'application/json',
-                }, body: JSON.stringify({
-                    // we will pass our input data to server
-                    userlogin: userlogin,
-                    subheadername: last,
-                    request:'get',
-                    content:'subheader'
-                })
+                method: 'get',
+                // header: {
+                //     'Accept': 'application/json',
+                //     'Content-type': 'application/json',
+                // }, body: JSON.stringify({
+                //     // we will pass our input data to server
+                //     userlogin: userlogin,
+                //     subheadername: last,
+                //     request:'get',
+                //     content:'subheader'
+                // })
             }
         ).then(res => res.json()).then(res => {
-            // console.log("res SelectedHeader");
-            // console.log(res);
+            console.log("res SelectedHeader");
+            console.log(res);
             
-            setstate({
-                ...state,
-                selectedtsubheadercomponent: res,
-                selectedtitle: last,
-                load: true,
-            })
+            if(res === 'No Data' || res.length <1)
+                {
+    
+                     setstate({
+                        ...state,
+                       
+                        load: false,
+                      
+                    })
+                  
+                }
+                else {
+                    imgsetstate({
+                        ...imgstate,
+                        selectedtheadercomponent: res,
+                        // selectedtitle: last,
+                        // load: true,
+                    });
+                    
+                    let filterdataarr= res[0].types.filter((subservice)=>{
+                        return subservice.subscreenname == last
+                    })
+            
+                    console.log("filterdata is  ");
+                    console.log(filterdataarr);
+        
+                    setstate({
+                        ...state,
+                        selectedtsubheadercomponent:filterdataarr.length>0 && filterdataarr,
+                        selectedtitle: header,
+                        load: true,
+                    });
+            
+                   
+        
+                    console.log("selectheaderscreen is..  ");
+                    console.log(imgsetstate.selectedtheadercomponent,res);
+                   
+                }
+                
+
             //   console.log('state.user_display' + state.user_display);
 
         }).catch((error) => {
             console.error(error);
         })
-        fetchImagedetails(last);
+        // fetchImagedetails(last); it was managed by above
 
     }
     const fetchImagedetails = (last) => {
