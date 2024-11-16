@@ -69,12 +69,13 @@ const InnerComponent = (props) => {
                         {props.selectedtsubheadercomponent.map((i, index) => (
                             <div key={index} >
                                <MainTemplate {...i} screen={'SelectedSubScreen'}/>
+                               
                             </div>
                         ))}
                     </>
                    }
                 {state.headercomponent.length>0  ?
-                <StyleTemplate details={state.headercomponent} screen='SelectedDetails' useredits={state.useredits}/>
+                <StyleTemplate details={state.headercomponent} screen='SelectedDetails' useredits={state.useredits} selectedtsubheadercomponent={props.selectedtsubheadercomponent}/>
                 :null }
                 {/* {props.selectedtheadercomponen.length>0  ?
                 <StyleTemplate details={props.selectedtheadercomponen} screen='SelectedDetails' useredits={state.useredits}/>

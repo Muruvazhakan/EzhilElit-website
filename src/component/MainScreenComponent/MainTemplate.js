@@ -59,8 +59,8 @@ const MainTemplate = (props) => {
   const [state, setState] = useState(initialval);
   useEffect(() => {
     imgs_present();
-    // console.log("props MainTemplate 123");
-    // console.log(props);
+    console.log("props MainTemplate 123");
+    console.log(props);
     // console.log(props.screen);
     // console.log(state.titleimage );
     // console.log(state.titleimage + ": state.titleimage");
@@ -137,6 +137,7 @@ const MainTemplate = (props) => {
               <div className='col'>
                 <div className='home__hero-img-wrapper'>
                   <img src={state.titleimage} className='home__hero-img' />
+                  
                 </div>
               </div>
             </animate.Zoom>

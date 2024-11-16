@@ -16,7 +16,7 @@ const options = [
 
 const StyleTemplate = (props) => {
   const [isVisible, setIsVisible] = useState(false);
-
+ 
   const initial = {
     allimgs: [],
     count: '3',
@@ -36,7 +36,7 @@ const StyleTemplate = (props) => {
   
   useEffect(() => {
     console.log("[StyleTemplate] imgcount StyleTemplate2 ");
-    console.log(props.details);
+    // console.log(props.details);
     {/* <div>{props.types}</div> */ }
     if (props.details === 'No') {
       // console.log(props);
@@ -72,22 +72,23 @@ const StyleTemplate = (props) => {
     let noniar = [];
     let imgurl;
     console.log("props lenght " + prop.length);
+    // console.log(props.selectedtsubheadercomponent[0].subscreenname);
     {
       prop.map(x => {
         console.log("  props val stateallimg")
-        console.log(x)
-        console.log(`${Datas.Img_Server}/${x.topLine}/${x.imgcount}.jpg`)
+        // console.log(x)
+        // console.log(`${Datas.Img_Server}/${x.topLine}/${props.selectedtsubheadercomponent[0].subscreenname}/${x.imgcount}.jpg`);
         if (x.user_display === '1') 
           {
-          for(var i=1;i<x.imgcount;i++)
+          for(var i=1;i<=props.selectedtsubheadercomponent[0].imgcount;i++)
           {
-            iar.push(`${Datas.Img_Server}/${x.topLine}/${i}.jpg`);
+            iar.push(`${Datas.Img_Server}/${x.topLine}/${props.selectedtsubheadercomponent[0].subscreenname}/${i}.jpg`);
           }
         
         }
         else {
           console.log(" non dis props val stateallimg ")
-          noniar.push(`${Datas.Img_Server}/${x.topLine}/${x.imgcount}.jpg`);
+          noniar.push(`${Datas.Img_Server}/${x.topLine}/${x.subscreenname}/${x.imgcount}.jpg`);
         };
         console.log("iar");
         console.log(iar);
@@ -152,6 +153,7 @@ const StyleTemplate = (props) => {
         :
         <StyleImages Images={state.allimgs} shortImg={state.shortImg} imglength={allimg.length} />
       } */}
+      
           {state.allimgs.length > 0 ?
             <StyleImages Images={state.allimgs} imglength={state.allimgs.length} headerid={props.details[0].Header_Details_id} subheaderid={props.details[0].Image_Sub_Header_Id}
               screen={props.screen} imgurl={state.imgurl} useredits={props.useredits}

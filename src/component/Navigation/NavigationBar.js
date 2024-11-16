@@ -145,7 +145,7 @@ const NavigationBar = () => {
     //console.log(" headerName,headerdetails click" + headerName + headerdetails);
     //console.log(headerdetails);
    
-    window.location.reload()
+    // window.location.reload()
   }
   const handleLogout = () => {
     localStorage.removeItem('useredit');
@@ -185,7 +185,10 @@ const NavigationBar = () => {
                   let pathnameurl=  item.title=="Home"? "/" : `/screen=${item.url}` ;
                   console.log(pathnameurl + " pathnameurl ");
                   return (
-                    <div className='nav-item  nav-active ' onClick={() => handleheaderClick()} key={index}>
+                    <div className='nav-item  nav-active '
+                    //  onClick={() => handleheaderClick()} 
+                    key={index}
+                    >
                     <li className='nav-item  nav-active '>
                       {/* this code was used for backend connected */}
                       {/* < Link className='nav-links' to={{ pathname: `/screen=${item.topLine}`, }}   

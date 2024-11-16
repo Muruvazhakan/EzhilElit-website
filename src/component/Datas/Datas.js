@@ -1,8 +1,9 @@
 // import axios from 'axios';
 // import React, { useEffect,useState } from 'react';
-
+// export const isbackendconnect = "No";
 export const isbackendconnect = "Yes";
-export const backendUrl = "http://localhost:4000/";
+// export const backendUrl = "http://localhost:4000/";
+export const backendUrl = "https://ezhilelit-backend.onrender.com/";
 export const getMenudataUrl = `${backendUrl}menuData`;
 export const getHeaderDetailsUrl= `${backendUrl}header`;
 export const getSelectedHeaderDetailsUrl= `${backendUrl}header`;

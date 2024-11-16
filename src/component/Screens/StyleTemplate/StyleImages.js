@@ -47,8 +47,8 @@ const StyleImages = (props) => {
     const [allimg, setAllImg] = useState([]);
     const moreHandler = (prop) => {
         let disval = '';
-        // console.log(props + ' :props moreHandler val: ' +disval);
-        // console.log(props);
+        console.log(props + ' :props moreHandler val: ' +disval);
+        console.log(props);
         if (prop) {
             disval = props.imglength / 2;
         }
@@ -246,10 +246,8 @@ const StyleImages = (props) => {
 
                     </>
                 )} */}
-
                 <div className="full-img-container">
                     {props.Images.slice(0, state.disval).map((imageUrls, index) => (
-
                         <>
                             <animate.LightSpeed left delay={1500}>
                                 <div>
@@ -301,6 +299,7 @@ const StyleImages = (props) => {
                     ))}
                 </div>
                 <div className="ImageViewer-big">
+                    
                     {state.isOpen && window.innerWidth > 500 && (
                         <ImageViewer
                             src={props.Images}
