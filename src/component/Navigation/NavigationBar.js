@@ -44,6 +44,7 @@ const NavigationBar = () => {
   const initialState = {
     menuflag: false,
     load:false,
+    allheadercomponent: Datas.MenuItem,
     useredits:localStorage.getItem('useredit'),
   }
   const [state, setState] = useState(initialState);
@@ -141,11 +142,17 @@ const NavigationBar = () => {
   //     menuflag: !state.menuflag,
   //   })
   // }
-  const handleheaderClick = () => {
-    //console.log(" headerName,headerdetails click" + headerName + headerdetails);
-    //console.log(headerdetails);
+
+  const handleheaderClick = (item1,item2) => {
+
    
-    // window.location.reload()
+    // console.log(" headerName,headerdetails click" + headerName + headerdetails);
+    console.log(item1,item2);
+   if(item1!='/' && item2!='Home'){
+    console.log(item1+ " not /");
+    window.location.reload();
+   }
+  
   }
   const handleLogout = () => {
     localStorage.removeItem('useredit');
@@ -153,9 +160,9 @@ const NavigationBar = () => {
     window.location.href = '/';
   }
   
-  if (!state.load) {
-    return <Spinner />
-}
+//   if (!state.load) {
+//     return <Spinner />
+// }
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
@@ -179,17 +186,18 @@ const NavigationBar = () => {
               {click ? <FaTimes /> : <FaBars />}
             </div>
             <ul className={click ? 'nav-menu  nav-active  active' : 'nav-menu '}>
-              {state.load ? 
-              <>
+              {/* {state.load ? 
+              <> */}
                 {state.allheadercomponent.map((item, index) => {
-                  let pathnameurl=  item.title=="Home"? "/" : `/screen=${item.url}` ;
+                  let pathnameurl='';
+                   pathnameurl=  item.title=="Home"? "/"  :  `/screen=${item.url}` ;
                   console.log(pathnameurl + " pathnameurl ");
                   return (
                     <div className='nav-item  nav-active '
-                    //  onClick={() => handleheaderClick()} 
+                     onClick={() => handleheaderClick(pathnameurl,item.title)} 
                     key={index}
                     >
-                    <li className='nav-item  nav-active '>
+                    {/* <li className='nav-item  nav-active '> */}
                       {/* this code was used for backend connected */}
                       {/* < Link className='nav-links' to={{ pathname: `/screen=${item.topLine}`, }}   
                         duration={1000} activeClass="nav-active" spy={true} offset={-50}
@@ -199,7 +207,7 @@ const NavigationBar = () => {
                           {item.alt}
                         </Link> */} 
                      
-                        < Link className='nav-links' to={ { pathname: pathnameurl }}
+                        < Link className='nav-links' to={ { pathname: pathnameurl }} key={pathnameurl}
                         duration={1000} activeClass="nav-active" spy={true} offset={-50}
                         smooth 
                         onClick={closeMobileMenu}
@@ -210,7 +218,7 @@ const NavigationBar = () => {
                       {/* < a className='nav-links' href={item.url} 
                     onClick={closeMobileMenu}
                     >{item.title}</a> */}
-                    </li>
+                    {/* </li> */}
                     </div>
                   )
                 })}
@@ -222,8 +230,8 @@ const NavigationBar = () => {
                 <ContactUS />
               </li>
              
-              </>
-              : null }
+              {/* </>
+              : null } */}
              
               <div className='nav-item menu-icon2' onClick={handleClick}>
                 {click ? <FaTimes size="40px" /> : <FaBars />}
