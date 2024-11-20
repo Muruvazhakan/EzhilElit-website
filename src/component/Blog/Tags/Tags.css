@@ -1,0 +1,11 @@
+.tags {
+    font-size: 0.7rem;
+    background: linear-gradient(to right, #ceda30bd, #ebd9d9);
+    color: #171616;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+    width: fit-content;
+    text-transform: capitalize;
+    font-weight: 700;
+  }
+  

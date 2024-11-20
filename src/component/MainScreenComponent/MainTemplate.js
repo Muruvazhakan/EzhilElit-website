@@ -108,8 +108,19 @@ const MainTemplate = (props) => {
                         : 'home__hero-subtitle dark'
                     }
                   >
-                    {state.fromParentScreen  ? props.subLable : props.label}
+                    {state.fromParentScreen  ? props.subLable : props.label} 
                   </p>
+                  <p
+                    className={
+                      state.Display_No_Result === 0
+                        ? 'home__hero-subtitle'
+                        : 'home__hero-subtitle dark'
+                    }
+                  >
+                    {props.screen === 'SelectedSubScreen'? props.desc : null} 
+                  </p>
+
+
                   {props.screen !== 'SelectedSubScreen' ?
                     <Link to={props.screen === 'SubScreen' ? {
                       pathname: `/screen=${props.screenname}&sub=${props.subscreenname}`,
@@ -142,9 +153,37 @@ const MainTemplate = (props) => {
               </div>
             </animate.Zoom>
           </div>
+          <>
+      <h4  className={
+                      state.Display_No_Result === 0
+                        ? ''
+                        : ' dark'
+                    }>
+        Posts:
+            {Datas.lenspost.map((data,index)=>{
+              return <>
+              <h2> {data.title}</h2> 
+              <h3>{data.content.map((subcontent,index2)=>{
+                return <>
+                  <h4>{subcontent.subtitle}</h4>
+                  <h6>{subcontent.desc}</h6>
+                  {subcontent.parts.map((subheader,index3)=>{
+                    return <>
+                     <h5> {subheader.subheader}</h5>
+                     <h6>{subheader.desc}</h6>
+                    </>
+                  })}
+                </>
+              })}</h3>
+              </>
+            })}
+        </h4>     
+        </>  
         </div>
+       
+       
       </div>
-
+              
     </>
   )
 }

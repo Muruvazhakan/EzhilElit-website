@@ -190,7 +190,7 @@ const NavigationBar = () => {
               <> */}
                 {state.allheadercomponent.map((item, index) => {
                   let pathnameurl='';
-                   pathnameurl=  item.title=="Home"? "/"  :  `/screen=${item.url}` ;
+                   pathnameurl=  item.title=="Home"? "/"  : item.title=="Blog"? "/blog"  : `/screen=${item.url}` ;
                   console.log(pathnameurl + " pathnameurl ");
                   return (
                     <div className='nav-item  nav-active '

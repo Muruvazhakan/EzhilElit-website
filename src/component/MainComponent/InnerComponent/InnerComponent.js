@@ -74,6 +74,7 @@ const InnerComponent = (props) => {
                         ))}
                     </>
                    }
+                   
                 {state.headercomponent.length>0  ?
                 <StyleTemplate details={state.headercomponent} screen='SelectedDetails' useredits={state.useredits} selectedtsubheadercomponent={props.selectedtsubheadercomponent}/>
                 :null }

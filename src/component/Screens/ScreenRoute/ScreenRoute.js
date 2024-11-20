@@ -54,6 +54,18 @@ import SelectedSubHeader from '../SelectedSubHeader/SelectedSubHeader';
 //     )
 // };
 
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import BlogListDetails from '../../Blog/BlogDetails/BlogListDetails';
+import HomeBlog from '../../Blog/HomeBlog/HomeBlog';
+import SingleBlog from '../../Blog/BlogDetails/SingleBlog';
+
+if (process.env.NODE_ENV === 'production') {
+  disableReactDevTools();
+  console.log = () =>{};
+}
+else{
+  console.log(process.env );
+}
 const ScreenRoute = (props) => {
     return (
 
@@ -63,6 +75,8 @@ const ScreenRoute = (props) => {
                 <Switch>
                     {/* <Route path='/' exact component={ScreenRoute} />    */}
                     <Route exact path='/' component={MainScreen} />
+                    <Route path='/blog' exact component={HomeBlog} />
+                    <Route path='/blog/:blogid'  component={SingleBlog} />
                     {/* <Route path='/contact' component={Contact} />
              <Route path='/about' component={About} />  */}
                     {/* <Route path="/BridalMakeup" component={Makeup} />
@@ -70,6 +84,7 @@ const ScreenRoute = (props) => {
                     <Route path="/Hairstyle" component={Hairstyle} />
                     <Route path="/EzhilAccessories" component={EzhilAccessories} /> */}
                     <Route path='/Login' exact component={Login} />
+                   
                     <Route path='/Signup' exact component={Signup} />
                     <Route path='/screen=:screen&sub=:sub' component={SelectedSubHeader} />
                     <Route path='/screen=:screen' component={SelectedHeader} />
