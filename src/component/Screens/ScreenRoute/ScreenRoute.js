@@ -58,6 +58,7 @@ import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 import BlogListDetails from '../../Blog/BlogDetails/BlogListDetails';
 import HomeBlog from '../../Blog/HomeBlog/HomeBlog';
 import SingleBlog from '../../Blog/BlogDetails/SingleBlog';
+import CreateBlogDetails from '../../Blog/BlogDetails/CreateBlogDetails/CreateBlogDetails';
 
 if (process.env.NODE_ENV === 'production') {
   disableReactDevTools();
@@ -76,6 +77,7 @@ const ScreenRoute = (props) => {
                     {/* <Route path='/' exact component={ScreenRoute} />    */}
                     <Route exact path='/' component={MainScreen} />
                     <Route path='/blog' exact component={HomeBlog} />
+                    <Route path='/newblog' exact component={CreateBlogDetails} />
                     <Route path='/blog/:blogid'  component={SingleBlog} />
                     {/* <Route path='/contact' component={Contact} />
              <Route path='/about' component={About} />  */}

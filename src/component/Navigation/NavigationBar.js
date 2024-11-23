@@ -103,8 +103,8 @@ const NavigationBar = () => {
             })
           }, 3000);
         }
-        //   console.log('after filter header$$$$$$');
-        //   console.log(header);
+          console.log('after filter header$$$$$$');
+          console.log(res);
   
   
         // allheadercomponent = res;

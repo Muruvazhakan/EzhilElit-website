@@ -3,6 +3,7 @@ import '../Login/Login.css';
 import * as Datas from '../../Datas/Datas';
 import Card from '../../Card/Card';
 import validator from 'validator';
+import axios from 'axios';
 
 
 const Signup = () => {
@@ -15,40 +16,77 @@ const Signup = () => {
     password: '',
     confirmpassword: '',
     mobile: '',
-    passcode:''
+    passcode: ''
   };
 
   const [state, setState] = useState(initialval);
   const submit = (e) => {
     e.preventDefault();
     const encrypted_pass = crypt("salt", state.password);
-      // console.log("state.password "+state.password+" en: "+encrypted_pass);
-    
+    console.log("state.password " + state.password + " en: " + encrypted_pass);
+
     if (state.name.length == 0 || state.password.length == 0 || state.confirmpassword.length == 0 || state.emailid.length == 0) {
       alert('Please enter all the details');
     }
-    else if(state.passcode !=='ezhilelit')
-    {
-      alert('Enter correct Passcode');
-    }
-    else if (!validator.isEmail(state.emailid)) {
-      alert('Not a valid Email');
-    }
-    else if (state.password != state.confirmpassword) {
-      alert('Password is not matching');
-    }
-    else if (state.mobile.length != 10) {
-      alert('Invalid Mobile number');
-    }
-    else {   
-      
+    // else if (state.passcode !== 'ezhilelit') {
+    //   alert('Enter correct Passcode');
+    // }
+    // else if (!validator.isEmail(state.emailid)) {
+    //   alert('Not a valid Email');
+    // }
+    // else if (state.password != state.confirmpassword) {
+    //   alert('Password is not matching');
+    // }
+    // else if (state.mobile.length != 10) {
+    //   alert('Invalid Mobile number');
+    // }
+    else {
+
       insertData();
-     
+
     }
   }
-  const insertData = () => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const insertData = async () => {
     const encrypted_pass = crypt("salt", state.password);
-    fetch(Datas.User_Details,
+    const data = {
+      name: state.name,
+      emailid: state.emailid,
+      password: encrypted_pass,
+      mobile: state.mobile,
+    };
+    console.log(data);
+    let response
+    try {
+      response = await axios.post(Datas.User_Signup, data, config);
+      console.log(response);
+      // return response;
+      if (response.data == "User already exist") {
+        alert('User already exist');
+        window.location.href = '/';
+      }
+      else if (response.status === 201) {
+        alert('User successfully registered');
+        window.location.href = '/';
+        //console.log(userExsist.data);
+      }
+      else {
+        alert('Something went wrong!');
+      }
+    } catch (err) {
+      console.log(err);
+      alert('Something went wrong!');
+      return err;
+    }
+  }
+  const insertDataphp = () => {
+    const encrypted_pass = crypt("salt", state.password);
+    console.log("insertData");
+    fetch(Datas.User_Signup,
       {
         // mode: 'no-cors',
         method: 'post',
@@ -58,34 +96,29 @@ const Signup = () => {
         }, body: JSON.stringify({
           // we will pass our input data to server
           name: state.name,
-          emailid:state.emailid,
-          password: encrypted_pass,         
+          emailid: state.emailid,
+          password: encrypted_pass,
           mobile: state.mobile,
-          type:'create'
+          type: 'create'
         })
       }
     ).then(res => res.json()).then(res => {
-      console.log("res insertData"+encrypted_pass);
+      console.log("res insertData" + encrypted_pass);
       console.log(res);
-      if(res =='1')
-      {
+      if (res == "success") {
         alert('User Created');
         window.location.href = '/Login';
       }
-      else if(res =='2')
-      {
+      else if (res == '2') {
         alert('Login Successful');
       }
-      else if(res =='11')
-      {
+      else if (res == '11') {
         alert('User Already registed');
       }
-      else if(res =='12')
-      {
+      else if (res == '12') {
         alert('User Not found');
       }
-      else
-      {
+      else {
         alert('Something went Wrong');
       }
     }).catch((error) => {

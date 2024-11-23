@@ -154,7 +154,7 @@ const MainTemplate = (props) => {
             </animate.Zoom>
           </div>
           <>
-      <h4  className={
+      {/* <h4  className={
                       state.Display_No_Result === 0
                         ? ''
                         : ' dark'
@@ -177,7 +177,7 @@ const MainTemplate = (props) => {
               })}</h3>
               </>
             })}
-        </h4>     
+        </h4>      */}
         </>  
         </div>
        

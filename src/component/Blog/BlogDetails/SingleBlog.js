@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Tags from '../Tags/Tags';
 import EmptyBlogList from '../EmptyBlogList/EmptyBlogList';
 import * as Datas from "../../Datas/Datas";
+import Button from '../../Button/Button';
 
 
 const SingleBlog = () => {
@@ -47,13 +48,13 @@ const SingleBlog = () => {
                 {subcontent.parts.map((subheader, index3) => {
                   return <>
 
-                    <div className='subheader'> {index3+1}) {subheader.subheader}</div>
-                  
-                     
-                    {subheader.desc && subheader.desc.map((item,index4)=>(
-                       <h6> {item.desc} </h6>
-                ))}
-                  
+                    <div className='subheader'> {index3 + 1}) {subheader.subheader}</div>
+
+
+                    {subheader.desc && subheader.desc.map((item, index4) => (
+                      <h6> {item.desc} </h6>
+                    ))}
+
                   </>
                 })}
               </>
@@ -62,6 +63,15 @@ const SingleBlog = () => {
           <footer>
             <p className='blog-date'>Published {blog.createdAt}</p>
           </footer>
+          <Link style={{ padding: 10, textDecoration: 'none', alignItems: 'center' }}
+            to={{
+              pathname: `/newblog`,
+              details:blog,
+              screen: 'update'
+            }}
+          >
+            <Button >Edit</Button>
+          </Link>
         </div>
       ) : (
         <EmptyBlogList />

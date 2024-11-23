@@ -106,14 +106,16 @@ const MainComponent = (props) => {
                 // console.log(arr2);
             }
             else {
-                setTimeout(() => {
+                console.log(res);
+                
+                // setTimeout(() => {
                     setState({
                         ...state,
                         allheadercomponent: res,
                         load: true,
                         data: true,
                     })
-                }, 3000);
+                // }, 3000);
             }
 
             // else

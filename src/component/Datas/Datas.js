@@ -2,8 +2,8 @@
 // import React, { useEffect,useState } from 'react';
 // export const isbackendconnect = "No";
 export const isbackendconnect = "Yes";
-// export const backendUrl = "http://localhost:4000/";
-export const backendUrl = "https://ezhilelit-backend.onrender.com/";
+export const backendUrl = "http://localhost:4000/";
+// export const backendUrl = "https://ezhilelit-backend.onrender.com/";
 export const getMenudataUrl = `${backendUrl}menuData`;
 export const getHeaderDetailsUrl = `${backendUrl}header`;
 export const getSelectedHeaderDetailsUrl = `${backendUrl}header`;
@@ -13,7 +13,11 @@ export const server_Url = 'http://43.204.119.91/EzhilElit/';
 export const Form_Url = `${server_Url}Contact_Us_Form/Client_Details.php`;
 export const Img_Server = `https://storage.googleapis.com/helpone-9bf33.appspot.com/EzhilElit`;
 export const primary_color = "rgba(221,197,78,255);";
-export const User_Details = `${server_Url}Profile/user_profile_upload.php`;
+// export const User_Details = `${server_Url}Profile/user_profile_upload.php`;
+
+export const User_Login = `${backendUrl}user/login/`;
+export const User_Signup = `${backendUrl}user/signin/`;
+export const Create_Post = `${backendUrl}blog/`;
 
 export const Image_Count = `${server_Url}Dynamic/Sub_Details/Image_Retrive.php`;
 export const Headrer_Details = `${server_Url}Dynamic/Header_Retrive.php`;
@@ -154,7 +158,6 @@ export const MenuItem = [
     cName:'nav-link',
     display:'side',
 },
-
 ];
 // export const Map_link='//https://goo.gl/maps/QZ4EjzuADWZXcgPVA';
 export const Map_link = '//www.google.com/maps/place/EzhilElit/@12.9792461,80.2033786,15z/data=!4m5!3m4!1s0x0:0x6394bdbaa97c5490!8m2!3d12.9792461!4d80.2033786';

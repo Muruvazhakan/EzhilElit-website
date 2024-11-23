@@ -16,11 +16,12 @@
   
   .blogItem-desc {
     position: relative;
-    max-height: 50px;
+    max-height: 60px;
     overflow: hidden;
-    padding-right: 0.6rem;
+    padding-right: 0.5rem;
     font-size: 0.8rem;
-    color: #a9a9a9;
+    color: #000000;
+    font-family: cursive;
   }
   
   .blogItem-desc::before {
