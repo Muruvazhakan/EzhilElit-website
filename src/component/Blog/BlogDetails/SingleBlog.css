@@ -3,7 +3,7 @@
     margin: 0 auto;
   }
 
-  h4,h5,.subheader{
+  h2,h3,.subheader{
     /* font-weight: 900; */
     /* font-style: italic; */
     padding-top: 5px;
@@ -33,8 +33,9 @@
   }
   
   .blog-date {
+    padding-top: 5px;
     font-size: 0.8rem;
-    color: #a9a9a9;
+    color: #343333;
     font-weight: 500;
   }
   

@@ -6,19 +6,59 @@ import Tags from '../Tags/Tags';
 import EmptyBlogList from '../EmptyBlogList/EmptyBlogList';
 import * as Datas from "../../Datas/Datas";
 import Button from '../../Button/Button';
-
+import axios from 'axios';
+import { useLocation } from "react-router-dom";
 
 const SingleBlog = () => {
   const { id } = useParams();
+  const location = useLocation();
   const [blog, setBlog] = useState(null);
   useEffect(() => {
-    let blog = Datas.lenspost.find((blog) => blog.id == (id));
-    if (blog) {
-      setBlog(blog);
-    }
-
+   
+    getPost();
   }, []);
 
+  const getPost = () => {
+
+    getPostinDB();
+  }
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  const getPostinDB = async () => {
+    try {
+      console.log( " location " + location.pathname);
+      let  last = location.pathname.substring(location.pathname.lastIndexOf("/")+1 , location.pathname.length);
+      console.log( last);
+      let getspecpost = `${Datas.Create_Post}${last}/`;
+      console.log(getspecpost + " url" + id);
+      let response = await axios.get(getspecpost, config);
+      // return response;
+      console.log(response);
+      
+      if (response.data == "User already exist") {
+        alert('User already exist');
+
+      }
+      else if (response.status === 200) {
+
+        let blog = response.data[0];
+        if (blog) {
+          setBlog(blog);
+        }
+        //console.log(userExsist.data);
+      }
+      else {
+        alert('Something went wrong!');
+      }
+    } catch (err) {
+      console.log(err);
+      alert('Something went wrong!');
+      return err;
+    }
+  }
   return (
     <>
       <Link className='blog-goBack' to='/blog'>
@@ -38,35 +78,35 @@ const SingleBlog = () => {
             </div>
           </header>
           {blog.coverimg &&
-            <img src={blog.coverimg != null ? `${Datas.blogimgUrl}${blog.coverimg}` : null} alt='cover' />}
+            <img src={blog.coverimg != null ? `${Datas.blogimgUrl}${blog.coverimg}` : null} alt='Ezhil Accessories image' />}
+           
           <body>
+          <Tags label={blog.category} />
             <p className='blog-desc'>{blog.des}</p>
-            <h3>{blog.content.map((subcontent, index2) => {
+            <>{blog.content.map((subcontent, index2) => {
               return <>
-                <h4>{subcontent.subtitle}</h4>
-                <h6>{subcontent.desc}</h6>
+                <h2>{subcontent.subtitle}</h2>
+                <h5>{subcontent.desc}</h5>
                 {subcontent.parts.map((subheader, index3) => {
                   return <>
 
-                    <div className='subheader'> {index3 + 1}) {subheader.subheader}</div>
-
-
-                    {subheader.desc && subheader.desc.map((item, index4) => (
-                      <h6> {item.desc} </h6>
+                    <h3 className='subheader'> {index3 + 1}) {subheader.subcontentitemheader}</h3>
+                    {subheader.subcontentitemdesc && subheader.subcontentitemdesc.map((item, index4) => (
+                      <h6> {item} </h6>
                     ))}
 
                   </>
                 })}
               </>
-            })}</h3>
+            })}</>
           </body>
           <footer>
-            <p className='blog-date'>Published {blog.createdAt}</p>
+            <p className='blog-date'>Published: {Date(blog.createdAt)}</p>
           </footer>
           <Link style={{ padding: 10, textDecoration: 'none', alignItems: 'center' }}
             to={{
               pathname: `/newblog`,
-              details:blog,
+              details: blog,
               screen: 'update'
             }}
           >

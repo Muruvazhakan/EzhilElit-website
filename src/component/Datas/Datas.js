@@ -18,6 +18,8 @@ export const primary_color = "rgba(221,197,78,255);";
 export const User_Login = `${backendUrl}user/login/`;
 export const User_Signup = `${backendUrl}user/signin/`;
 export const Create_Post = `${backendUrl}blog/`;
+// export const Upload_Image_Post = `${backendUrl}blog/imageupload/`;
+export const Upload_Image_Post = `${backendUrl}upload`;
 
 export const Image_Count = `${server_Url}Dynamic/Sub_Details/Image_Retrive.php`;
 export const Headrer_Details = `${server_Url}Dynamic/Header_Retrive.php`;

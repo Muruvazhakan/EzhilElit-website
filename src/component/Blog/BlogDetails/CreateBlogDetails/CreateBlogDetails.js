@@ -8,6 +8,7 @@ import * as Datas from "../../../Datas/Datas";
 import { FormControl, InputGroup } from 'react-bootstrap';
 import Button from '../../../Button/Button';
 import axios from 'axios';
+import UploadImage from '../../UploadImage/UploadImage';
 
 
 const CreateBlogDetails = (props) => {
@@ -28,6 +29,8 @@ const CreateBlogDetails = (props) => {
     createdAt: '',
     subcontentitem: [],
     subcontentitemheader: '',
+    newimgurl:'',
+    uploadimg:'',
   }
   const [subcontentitemheadervalue, setsubcontentitemheadervalue] = useState('');
   const [subcontentitemdesc, setsubcontentitemdesc] = useState([]);
@@ -207,6 +210,9 @@ const CreateBlogDetails = (props) => {
                 </>
                 : null} */}
               {/* <label htmlFor="Details" className={screenstyle}>Blog Title </label> */}
+
+              <UploadImage screen ="create"/>
+
               <FormControl placeholder=" Blog Title" as="textarea" value={state.title} aria-label="With textarea"
                 onChange={(e) => updatetile(e.target.value)}
               />
