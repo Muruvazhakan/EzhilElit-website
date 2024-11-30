@@ -24,7 +24,11 @@ const SelectedHeader = (props) => {
         last = location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length);
         // console.log(' location.selectedtitle ' + last);
         if (Datas.isbackendconnect == "Yes")
+        {
+            fetchOffline(last);
             fetchdetails(last);
+        }
+            
         else {
             fetchOffline(last);
         }

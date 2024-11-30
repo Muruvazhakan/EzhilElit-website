@@ -14,7 +14,7 @@ const SingleBlog = () => {
   const location = useLocation();
   const [blog, setBlog] = useState(null);
   useEffect(() => {
-   
+
     getPost();
   }, []);
 
@@ -29,15 +29,15 @@ const SingleBlog = () => {
   };
   const getPostinDB = async () => {
     try {
-      console.log( " location " + location.pathname);
-      let  last = location.pathname.substring(location.pathname.lastIndexOf("/")+1 , location.pathname.length);
-      console.log( last);
+      console.log(" location " + location.pathname);
+      let last = location.pathname.substring(location.pathname.lastIndexOf("/") + 1, location.pathname.length);
+      console.log(last);
       let getspecpost = `${Datas.Create_Post}${last}/`;
       console.log(getspecpost + " url" + id);
       let response = await axios.get(getspecpost, config);
       // return response;
       console.log(response);
-      
+
       if (response.data == "User already exist") {
         alert('User already exist');
 
@@ -79,18 +79,20 @@ const SingleBlog = () => {
           </header>
           {blog.coverimg &&
             <img src={blog.coverimg != null ? `${Datas.blogimgUrl}${blog.coverimg}` : null} alt='Ezhil Accessories image' />}
-           
+
           <body>
-          <Tags label={blog.category} />
+            <Tags label={blog.category} />
             <p className='blog-desc'>{blog.des}</p>
             <>{blog.content.map((subcontent, index2) => {
               return <>
-                <h2>{subcontent.subtitle}</h2>
-                <h5>{subcontent.desc}</h5>
+                {subcontent.subtitle != "" &&
+                  <h2 className='subtitle'>{subcontent.subtitle}</h2>}
+                {subcontent.desc != "" &&
+                  <h5>{subcontent.desc}</h5>}
                 {subcontent.parts.map((subheader, index3) => {
                   return <>
-
-                    <h3 className='subheader'> {index3 + 1}) {subheader.subcontentitemheader}</h3>
+                    {subheader.subcontentitemheader != "" &&
+                      <h3 className='subheader'> {index3 + 1}) {subheader.subcontentitemheader}</h3>}
                     {subheader.subcontentitemdesc && subheader.subcontentitemdesc.map((item, index4) => (
                       <h6> {item} </h6>
                     ))}

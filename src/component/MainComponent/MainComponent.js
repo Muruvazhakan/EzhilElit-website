@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './MainComponent.css';
 import * as Datas from '../Datas/Datas';
-import Card from '../Card/Card';
-import InnerComponent from './InnerComponent/InnerComponent';
 import Jello from 'react-reveal/Jello';
 
 // import * as Datas from '../../Datas/Datas';
-import { Link } from 'react-router-dom';
+
 
 import Spinner from '../Spinner/Spinner';
 import NoData from '../Screens/NoData/NoData';
@@ -27,11 +25,6 @@ const MainComponent = (props) => {
         data: false,
         useredits: localStorage.getItem('useredit')
     };
-    let display = false;
-    let imgurl = '';
-
-    let imagecomponent = [];
-    let allheadercomponent = [];
     const [state, setState] = useState(initialval);
     useEffect(() => {
         // console.log('retrive');
@@ -42,7 +35,10 @@ const MainComponent = (props) => {
         // console.log(decrypted_string + ' :decrypted_string');
 
         if (Datas.isbackendconnect == "Yes")
+        {
+            fetchOffline();
             fetchdetails();
+        }     
         else {
             fetchOffline();
         }

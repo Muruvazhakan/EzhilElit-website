@@ -29,8 +29,11 @@ const SelectedSubHeader = (props) => {
         if (last) {
             // window.location.href = '/';
            
-            if (Datas.isbackendconnect == "Yes")
+            if (Datas.isbackendconnect == "Yes"){
+                fetchOffline(header,last);
                 fetchdetails(header,last);
+            }
+               
             else {
                 fetchOffline(header,last);
             }
