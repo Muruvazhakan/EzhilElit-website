@@ -19,18 +19,35 @@ const SingleBlog = () => {
   }, []);
 
   const getPost = () => {
+    console.log(" location " + location.pathname);
+    let last = location.pathname.substring(location.pathname.lastIndexOf("/") + 1, location.pathname.length);
+    if (Datas.isbackendconnect == "Yes") {
+      getPostOffline(last);
+      getPostinDB(last);
+    }
+    else {
+      getPostOffline(last);
+    }
 
-    getPostinDB();
+  }
+  const getPostOffline = (last) => {
+    let selectedBlog = Datas.lenspost.filter(blog => {
+      return blog.blog_id == last;
+    })
+    console.log("selectedBlog offline");
+    console.log(selectedBlog.length);
+    if (selectedBlog.length > 0)
+      setBlog(selectedBlog[0]);
   }
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
-  const getPostinDB = async () => {
+  const getPostinDB = async (last) => {
     try {
-      console.log(" location " + location.pathname);
-      let last = location.pathname.substring(location.pathname.lastIndexOf("/") + 1, location.pathname.length);
+
+
       console.log(last);
       let getspecpost = `${Datas.Create_Post}${last}/`;
       console.log(getspecpost + " url" + id);
@@ -51,11 +68,11 @@ const SingleBlog = () => {
         //console.log(userExsist.data);
       }
       else {
-        alert('Something went wrong!');
+        // alert('Something went wrong!');
       }
     } catch (err) {
       console.log(err);
-      alert('Something went wrong!');
+      // alert('Something went wrong!');
       return err;
     }
   }

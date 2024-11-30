@@ -17,8 +17,19 @@ const HomeBlog = () => {
     },[])
 
     const getPost = () => {
-    
-        getPostinDB();
+      if (Datas.isbackendconnect == "Yes")
+        {
+          getPostOffline();
+            getPostinDB();
+        }     
+        else {
+          getPostOffline();
+        }
+        
+      }
+      const getPostOffline = () =>{ 
+        setBlogs(Datas.lenspost);
+        setOrgBlogs(Datas.lenspost);
       }
       const config = {
         headers: {
@@ -43,11 +54,11 @@ const HomeBlog = () => {
             //console.log(userExsist.data);
           }
           else {
-            alert('Something went wrong!');
+            // alert('Something went wrong!');
           }
         } catch (err) {
           console.log(err);
-          alert('Something went wrong!');
+          // alert('Something went wrong!');
           return err;
         }
       }
