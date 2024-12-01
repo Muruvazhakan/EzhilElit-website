@@ -228,7 +228,7 @@ export const MyServices = [
     url: "Hairstyle",
     types: [{ topLine: "Bridas", User_Display: '1', subscreenname: "Bridas", Sub_Display_No: 1, Sub_TitleImage: `/Hairstyle/Bridas/5.jpg`, subLable: 'Different types of briads without extensions',imgcount: 7, desc :"Bridas Styles"
        },
-    { topLine: "Buns", subscreenname: "Buns", Sub_Display_No: 2, Sub_TitleImage: `/Hairstyle/Bun/6.jpg`, subLable: 'Different types of Buns',imgcount: 14, desc :"Buns Styles" },
+    { topLine: "Buns", subscreenname: "Buns", Sub_Display_No: 2, Sub_TitleImage: `/Hairstyle/Buns/6.jpg`, subLable: 'Different types of Buns',imgcount: 14, desc :"Buns Styles" },
     { topLine: "Curls", subscreenname: "Curls", Sub_Display_No: 3, Sub_TitleImage: `/Hairstyle/Curls/3.jpg`, subLable: 'Different types of Curls',imgcount: 5, desc :"Curls Styles" }],
   },
   {
