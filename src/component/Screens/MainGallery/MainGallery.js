@@ -25,15 +25,15 @@ const MainGallery = (props) => {
     //  console.log("[StyleTemplate] props"+props.types[0]);
 
     {/* <div>{props.types}</div> */ }
-    // imgdisp(Datas.MainScreen.imgcount);
+    imgdisp(Datas.MainScreen.imgcount);
     let last = location.pathname.substring(location.pathname.lastIndexOf("=") + 1, location.pathname.length);
     // console.log(' location.selectedtitle ' + last);
     if (last) {
       // window.location.href = '/';
-      fetchdetails(last);
+      // fetchdetails(last);
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }
-    fetchdetails('all');
+    // fetchdetails('all');
   }, []);
 
   const fetchdetails = (last) => {

@@ -2,8 +2,8 @@
 // import React, { useEffect,useState } from 'react';
 // export const isbackendconnect = "No";
 export const isbackendconnect = "Yes";
-export const backendUrl = "http://localhost:4000/";
-// export const backendUrl = "https://ezhilelit-backend.onrender.com/";
+// export const backendUrl = "http://localhost:4000/";
+export const backendUrl = "https://ezhilelit-backend.onrender.com/";
 export const getMenudataUrl = `${backendUrl}menuData`;
 export const getHeaderDetailsUrl = `${backendUrl}header`;
 export const getSelectedHeaderDetailsUrl = `${backendUrl}header`;
@@ -194,16 +194,16 @@ export const MyServices = [
     img: 'images/svg-1.svg',
     imgcount: 12,
     imgurl: `${Img_Server}/BridalMakeup/`,
-    titleimage: `/BridalMakeup/8.jpg`,
+    titleimage: `/BridalMakeup/1.jpg`,
     alt1: 'Bridal Makeup',
     autoplay: "true",
     buttonLabel: "View More",
     url: "BridalMakeup",
     // types:["Bridal Makeup","Puberty Makeup","Baby Shower"],
-    types: [{ topLine: "Bridal Makeup", subscreenname: "BridalMakeup", Sub_Display_No: 1, Sub_TitleImage: `/BridalMakeup/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson', },
+    types: [{ topLine: "Bridal Makeup", subscreenname: "BridalMakeup", Sub_Display_No: 1, Sub_TitleImage: `/BridalMakeup/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 3, desc :"" },
     // {topLine:"Puberty Makeup",titleimage:`${Img_Server}/MainSlide/7.jpg`,label: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',},
-    { topLine: "Puberty Makeup", subscreenname: "PubertyMakeup", Sub_Display_No: 2, Sub_TitleImage: `/BridalMakeup/8.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson', },
-    { topLine: "Baby Shower", subscreenname: "BabyShower", Sub_Display_No: 3, Sub_TitleImage: `/BridalMakeup/9.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson', }]
+    { topLine: "Puberty Makeup", subscreenname: "PubertyMakeup", Sub_Display_No: 2, Sub_TitleImage: `/BridalMakeup/8.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 4, desc :"" },
+    { topLine: "Baby Shower", subscreenname: "BabyShower", Sub_Display_No: 3, Sub_TitleImage: `/BridalMakeup/9.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 3, desc :"" }]
   },
   {
     // screen: 'SubScreen',
@@ -221,14 +221,15 @@ export const MyServices = [
     img: 'images/svg-1.svg',
     imgcount: 28,
     imgurl: `${Img_Server}/Hairstyle/`,
-    titleimage: `/Hairstyle/5.jpg`,
+    titleimage: `/Hairstyle/1.jpg`,
     alt1: 'Trendy Kitchens built with anodize',
     autoplay: "true",
     buttonLabel: "View More",
     url: "Hairstyle",
-    types: [{ topLine: "Bridas", User_Display: '1', subscreenname: "Bridas", Sub_Display_No: 1, Sub_TitleImage: `/Hairstyle/5.jpg`, subLable: 'Different types of briads without extensions', },
-    { topLine: "Buns", subscreenname: "Buns", Sub_Display_No: 2, Sub_TitleImage: `/Hairstyle/6.jpg`, subLable: 'Different types of Buns', },
-    { topLine: "Curls", subscreenname: "Curls", Sub_Display_No: 3, Sub_TitleImage: `/Hairstyle/7.jpg`, subLable: 'Different types of Curls', }],
+    types: [{ topLine: "Bridas", User_Display: '1', subscreenname: "Bridas", Sub_Display_No: 1, Sub_TitleImage: `/Hairstyle/Bridas/5.jpg`, subLable: 'Different types of briads without extensions',imgcount: 7, desc :"Bridas Styles"
+       },
+    { topLine: "Buns", subscreenname: "Buns", Sub_Display_No: 2, Sub_TitleImage: `/Hairstyle/Bun/6.jpg`, subLable: 'Different types of Buns',imgcount: 14, desc :"Buns Styles" },
+    { topLine: "Curls", subscreenname: "Curls", Sub_Display_No: 3, Sub_TitleImage: `/Hairstyle/Curls/3.jpg`, subLable: 'Different types of Curls',imgcount: 5, desc :"Curls Styles" }],
   },
   {
     // screen: 'SubScreen',
@@ -252,7 +253,7 @@ export const MyServices = [
     buttonLabel: "View More",
     url: "SareeDrapping",
     types: [
-      { topLine: "Traditional Saree Draping", subscreenname: "TraditionalSareeDraping", Sub_Display_No: 1, Sub_TitleImage: `/SareeDrapping/3.jpg`, subLable: 'When you feel troubles wrapping up your life, wrap yourself in a saree and fight them in style!', },],
+      { topLine: "Traditional Saree Draping", subscreenname: "TraditionalSareeDraping", Sub_Display_No: 1, Sub_TitleImage: `/SareeDrapping/3.jpg`, subLable: 'When you feel troubles wrapping up your life, wrap yourself in a saree and fight them in style!', imgcount: 6, desc :""},],
   },
   {
     // screen: 'SubScreen',
@@ -275,8 +276,8 @@ export const MyServices = [
     autoplay: "true",
     buttonLabel: "View More",
     url: "SpecialOccation",
-    types: [{ topLine: "Shoots", subscreenname: "Shoots", Sub_Display_No: 1, Sub_TitleImage: `/SpecialOccation/1.jpg`, subLable: 'Every Eye has it Look', },
-    { topLine: "Outdoor Paties", subscreenname: "OutdoorPaties", Sub_Display_No: 2, Sub_TitleImage: `/SpecialOccation/4.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ', },
+    types: [{ topLine: "Shoots", subscreenname: "Shoots", Sub_Display_No: 1, Sub_TitleImage: `/SpecialOccation/Shoots/1.jpg`, subLable: 'Every Eye has it Look',imgcount: 10, desc :"", },
+    { topLine: "Outdoor Paties", subscreenname: "OutdoorPaties", Sub_Display_No: 2, Sub_TitleImage: `/SpecialOccation/OutdoorPaties/4.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ',imgcount: 10, desc :"", },
 
     ],
   },
@@ -301,10 +302,10 @@ export const MyServices = [
     autoplay: "true",
     buttonLabel: "View More",
     url: "EzhilAccessories",
-    types: [{ topLine: "Lens", subscreenname: "Lens", Sub_Display_No: 1, Sub_TitleImage: `/EzhilAccessories/1.jpg`, subLable: 'Every Eye has it Look', },
-    { topLine: "Lashes", subscreenname: "Lashes", Sub_Display_No: 2, Sub_TitleImage: `/EzhilAccessories/4.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ', },
-    { topLine: "Hair Spray", subscreenname: "Hair Spray", Sub_Display_No: 3, Sub_TitleImage: `/EzhilAccessories/3.jpg`, subLable: 'Inner Beauty is Great but a little Hairspray never Hurts!', },
-    { topLine: "Dust Powder", subscreenname: "DustPowder", Sub_Display_No: 4, Sub_TitleImage: `/EzhilAccessories/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson', }],
+    types: [{ topLine: "Lens", subscreenname: "Lens", Sub_Display_No: 1, Sub_TitleImage: `/EzhilAccessories/Lens/1.jpg`, subLable: 'Every Eye has it Look' ,imgcount: 1, desc :"", },
+    { topLine: "Lashes", subscreenname: "Lashes", Sub_Display_No: 2, Sub_TitleImage: `/EzhilAccessories/Lashes/2.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ', imgcount: 7, desc :"",},
+    { topLine: "Hair Spray", subscreenname: "HairSpray", Sub_Display_No: 3, Sub_TitleImage: `/EzhilAccessories/HairSpray/3.jpg`, subLable: 'Inner Beauty is Great but a little Hairspray never Hurts!',imgcount: 4, desc :"", },
+    { topLine: "Dust Powder", subscreenname: "DustPowder", Sub_Display_No: 4, Sub_TitleImage: `/EzhilAccessories/DustPowder/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 6, desc :"", }],
   },
 
 

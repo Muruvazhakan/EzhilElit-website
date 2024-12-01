@@ -15,32 +15,7 @@ const SelectedSubHeader = (props) => {
     const location = useLocation();
     var header='',last = '';
     let allheadercomponent = [];
-    useEffect(() => {
-        console.log("Selected SUB Header selected");
-
-        console.log(props);
-        // console.log('props scren ');
-        console.log(props.match.params.screen);
-        // const encrypted_text = crypt("salt", "login");
-        // localStorage.setItem('useredit', encrypted_text);
-        header = props.match.params.screen;
-        last = props.match.params.sub;
-        console.log(header +' location.selectedtitle ' + last );
-        if (last) {
-            // window.location.href = '/';
-           
-            if (Datas.isbackendconnect == "Yes"){
-                fetchOffline(header,last);
-                fetchdetails(header,last);
-            }
-               
-            else {
-                fetchOffline(header,last);
-            }
-            // fetchImagedetails(last);
-        }
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    }, []);
+   
     const crypt = (salt, text) => {
         const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
         const byteHex = (n) => ("0" + Number(n).toString(16)).substr(-2);
@@ -70,39 +45,56 @@ const SelectedSubHeader = (props) => {
     };
     const [state, setstate] = useState(initial);
     const [imgstate, imgsetstate] = useState(initialimg);
+    useEffect(() => {
+        console.log("Selected SUB Header selected");
 
+        console.log(props);
+        // console.log('props scren ');
+        console.log(props.match.params.screen);
+        // const encrypted_text = crypt("salt", "login");
+        // localStorage.setItem('useredit', encrypted_text);
+        header = props.match.params.screen;
+        last = props.match.params.sub;
+        console.log(header +' location.selectedtitle ' + last );
+        if (last) {
+            // window.location.href = '/';
+           
+            if (Datas.isbackendconnect == "Yes"){
+                // fetchOffline(header,last);
+                fetchdetails(header,last);
+            }
+               
+            else {
+                fetchOffline(header,last);
+            }
+            // fetchImagedetails(last);
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }, []);
     const fetchOffline = (header,last) =>{
 
         let selectheaderscreen = Datas.MyServices.filter((myservice)=>{
             return myservice.screenname == header
         });
+        imgsetstate({
+            ...imgstate,
+            selectedtheadercomponent: selectheaderscreen,
+            // selectedtitle: last,
+            // load: true,
+        });
+        let filterdataarr= selectheaderscreen[0].types.filter((subservice)=>{
+            return subservice.subscreenname == last
+        })
 
-        if(selectheaderscreen.length>0) {
-            let filterdataarr= selectheaderscreen[0].types.filter((subservice)=>{
-                return subservice.subscreenname == last
-            })
-    
-            console.log("filterdata is  ");
-            console.log(filterdataarr);
+        console.log("filterdata is  ");
+        console.log(filterdataarr);
 
-            setstate({
-                ...state,
-                selectedtsubheadercomponent:filterdataarr.length>0 && filterdataarr ,
-                selectedtitle: header,
-                load: true,
-            });
-    
-            imgsetstate({
-                ...imgstate,
-                selectedtheadercomponent: selectheaderscreen,
-                // selectedtitle: last,
-                // load: true,
-            });
-
-            console.log("selectheaderscreen is..  ");
-            console.log(imgsetstate.selectedtheadercomponent,selectheaderscreen[0]);
-        }
-        
+        setstate({
+            ...state,
+            selectedtsubheadercomponent:filterdataarr.length>0 && filterdataarr,
+            selectedtitle: header,
+            load: true,
+        });
     }
     const fetchdetails = (header,last) => {
         // console.log("fetchdetails from SelectedHeader " + last);
