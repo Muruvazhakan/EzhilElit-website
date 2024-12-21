@@ -1,11 +1,16 @@
 const { Storage } = require('@google-cloud/storage');
 require('dotenv').config();
-
+const { OAuth2Client } = require('google-auth-library');
+const fs = require('fs');
+const path = require('path');
 const projectId = process.env.PROJECT_ID;
-const keyFilename = process.env.KEYFILENAME;
-
-const storage = new Storage({ projectId, keyFilename });
-
+const secrectfolder = process.env.SECRECT_FOLDER;
+// const keyFilename = process.env.KEYFILENAME;
+const keyFilename = path.join('/etc/secrets', 'helpone-9bf33-64e48296ae59.json');
+const storage = new Storage({ projectId, keyFilename
+ });
+ console.log("keyFilename");
+ console.log(keyFilename);
 const express = require('express');
 const app=express();
 const port = process.env.PORT || 4000;
@@ -13,7 +18,6 @@ const {mongoose} = require('mongoose');
 const dotenv = require("dotenv").config();
 const bodyParser = require('body-parser');
 const cors= require('cors');
-const path = require("path");
 const multer = require('multer');
 const multerStorage = multer.memoryStorage();
 const upload = multer({ storage: multerStorage });
@@ -52,13 +56,13 @@ app.use((req, res, next) => {
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: false}))
 
-  app.post('/uploadCompanyLogo/:userid',upload.single("file"), async (req,res,next) =>{
+  app.post('/uploadCompanyLogo',upload.single("file"), async (req,res,next) =>{
   //console.log("app inside");
     console.log("intering123");
-  const body = req.body;
-  const userid = req.params.userid;
-  console.log(res);
-  console.log(userid);
+  // const body = req.body;
+  // const userid = req.params.userid;
+  // console.log(res);
+  // console.log(userid);
   const myFile = req.file
 
   console.log(myFile);
@@ -69,7 +73,21 @@ app.use((req, res, next) => {
           const storagepath = `BillEdge/CompanyLogo/${req.body.filename}`;
 
           const blob = bucket.file(storagepath);
-          const blobStream = blob.createWriteStream();
+          console.log("storagepath ");
+          console.log(storagepath);
+          const blobStream = blob.createWriteStream({
+            metadata: {
+                contentType: req.file.mimetype
+            },
+            resumable: false
+        });
+          // console.log("blobStream ");
+          // console.log(blobStream);
+          blobStream.on('error', err => {
+            next(err);
+            console.log(err);
+            return;
+        })
           blobStream.on('finish',() =>{
             res.status(200).send(storagepath);
           })
