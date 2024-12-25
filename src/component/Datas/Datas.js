@@ -303,9 +303,10 @@ export const MyServices = [
     buttonLabel: "View More",
     url: "EzhilAccessories",
     types: [{ topLine: "Lens", subscreenname: "Lens", Sub_Display_No: 1, Sub_TitleImage: `/EzhilAccessories/Lens/1.jpg`, subLable: 'Every Eye has it Look' ,imgcount: 1, desc :"", },
-    { topLine: "Lashes", subscreenname: "Lashes", Sub_Display_No: 2, Sub_TitleImage: `/EzhilAccessories/Lashes/2.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ', imgcount: 7, desc :"",},
+    { topLine: "Lashes", subscreenname: "Lashes", Sub_Display_No: 2, Sub_TitleImage: `/EzhilAccessories/Lashes/2.jpg`, subLable: 'Life isn\'T perfect but your Eye Brows can be ', imgcount: 11, desc :"",},
     { topLine: "Hair Spray", subscreenname: "HairSpray", Sub_Display_No: 3, Sub_TitleImage: `/EzhilAccessories/HairSpray/3.jpg`, subLable: 'Inner Beauty is Great but a little Hairspray never Hurts!',imgcount: 4, desc :"", },
-    { topLine: "Dust Powder", subscreenname: "DustPowder", Sub_Display_No: 4, Sub_TitleImage: `/EzhilAccessories/DustPowder/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 6, desc :"", }],
+    { topLine: "Dust Powder", subscreenname: "DustPowder", Sub_Display_No: 4, Sub_TitleImage: `/EzhilAccessories/DustPowder/2.jpg`, subLable: 'Love of beauty is taste. The creation of beauty is art. – Ralph Waldo Emerson',imgcount: 6, desc :"", },
+    { topLine: "Hair Accessories", subscreenname: "Hair Accessories", Sub_Display_No: 5, Sub_TitleImage: `/EzhilAccessories/HairAccessories/1.jpg`, subLable: 'Elegance is not about being noticed, it’s about being remembered. Add a touch of timeless grace with our pearl hair accessories',imgcount: 5, desc :"", },],
   },
 
 

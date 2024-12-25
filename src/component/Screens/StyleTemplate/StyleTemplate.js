@@ -80,7 +80,8 @@ const StyleTemplate = (props) => {
         // console.log(`${Datas.Img_Server}/${x.topLine}/${props.selectedtsubheadercomponent[0].subscreenname}/${x.imgcount}.jpg`);
         if (x.user_display === '1') 
           {
-          for(var i=1;i<=props.selectedtsubheadercomponent[0].imgcount;i++)
+          // for(var i=1;i<=props.selectedtsubheadercomponent[0].imgcount;i++)
+          for(var i=props.selectedtsubheadercomponent[0].imgcount;i>=1;i--)
           {
             iar.push(`${Datas.Img_Server}/${x.topLine}/${props.selectedtsubheadercomponent[0].subscreenname}/${i}.jpg`);
           }
