@@ -1,7 +1,7 @@
 
 const { v4: uuidv4 } = require("uuid");
 
-const { CompanyUser, CompanBankDetail, CompanyBasicDetail, CompanyTermsAndConditionDetail } = require('../Module/CompanyDetailModel');
+const { CompanyUser, CompanBankDetail, CompanyBasicDetail, CompanyTermsAndConditionDetail, CompanyUserTokenCheck } = require('../Module/CompanyDetailModel');
 
 // const  =  require('../Module/CompanyDetailModel');
 const HttpError = require("../Module/httpError");
@@ -21,10 +21,41 @@ const findUser = async (req, res, next) => {
     return res.status(200).json('got user request');
 }
 
+const validateUser = (userid) => {
+    var datetime = new Date();
+    console.log("inside Validator123");
+    console.log(userid[0].enddate + " , " + datetime + " :" + userid[0].enddate <= datetime);
+    console.log(userid);
+    if (userid[0].enddate != null && userid[0].enddate <= datetime) {
+        return true;
+    }
+    else return false;
+}
+const fetchUserDetail = async (userid) => {
+    let isUserexit;
+    console.log("inside fetchUserDetail" + userid);
+    if (userid.length > 0) {
+        try {
+            isUserexit = await CompanyUser.find({ userid: userid });
+            // isUserexit = finduserpass(username, password);
+            //console.log('req the isUserexit find ' + isUserexit);
+        } catch (er) {
+            throw new HttpError('User find', 400);
+        }
 
+        if (isUserexit.length > 0) {
+            user = isUserexit[0];
+            if (validateUser(isUserexit)) {
+                return true
+            }
+            else return false;
+        }
+    }
+
+}
 const loginUser = async (req, res, next) => {
     const { username, password } = req.body;
-    // console.log('details ' + username + password);
+    console.log('details ' + username + password);
 
     // finduser = userLoginname.find(item => {
     //     if (item.username === username) {
@@ -43,18 +74,25 @@ const loginUser = async (req, res, next) => {
     } catch (er) {
         throw new HttpError('error in login user' + er, 400);
     }
-    //console.log(finduser);
+    console.log(finduser);
+    console.log("finduser");
+    let isValidUser = validateUser(finduser);
+    console.log(isValidUser + " isValidUser ");
     if (finduser.length === 0) {
         //console.log('undefined');
         res.status(224).json('not found');
-    } else {
+    } else if (validateUser(finduser)) {
+        console.log("inside validateUser login");
+        res.status(250).json('User account Expired');
+    }
+    else {
         res.status(200).json(finduser[0].userid);
     }
 };
 
 const signIn = async (req, res, next) => {
-    const { username, password } = req.body;
-    //console.log(req.body);
+    const { username, password, role, type, oraganisationName, tokenid } = req.body;
+    console.log(req.body);
     //console.log('get ' + username + password);
     // let finduser = finduserpass(username, password);
     // if (finduser == undefined) {
@@ -64,33 +102,81 @@ const signIn = async (req, res, next) => {
     //     res.status(224).json('User alreay exist');
     // }
 
-    let isUserexit, user;
+    let isUserexit, user, isValidToken, validtokendet;
+
     try {
-        isUserexit = await CompanyUser.find({ username: username });
+        isValidToken = await CompanyUserTokenCheck.find({ tokenid: tokenid, tokentype: type});
         // isUserexit = finduserpass(username, password);
-        //console.log('req the isUserexit find ' + isUserexit);
+        console.log('req the isValidToken find ' + isValidToken);
     } catch (er) {
         throw new HttpError('User find', 400);
     }
-    if (isUserexit.length === 0) {
-        //console.log('undefined');
-        try {
-            user = new CompanyUser({
-                userid: uuidv4(),
-                username: username,
-                password: password,
-            });
-            //console.log('req user input ' + user);
-            await user.save();
-            //console.log('req the isUserexit ' + isUserexit);
-        } catch (er) {
-            // return next(new HttpError('error in DB connection in isUserexit process'+er,404));
-            return res.status(400).json("error " + er);
-        }
-        return res.status(201).json(user.userid);
+    if (isValidToken.length === 0) {
+        return res.status(250).json("Invalid token");
+    }
+    else if(isValidToken[0].tokenstatus !="Active"){
+        return res.status(250).json("Token id " + tokenid + " already used.");
     }
     else {
-        res.status(200).json('User already exist');
+        validtokendet = isValidToken[0];
+
+        try {
+            isUserexit = await CompanyUser.find({ username: username });
+            // isUserexit = finduserpass(username, password);
+            console.log('req the isUserexit find ' + isUserexit);
+        } catch (er) {
+            throw new HttpError('User find', 400);
+        }
+        if (isUserexit.length === 0) {
+            console.log('isUserexit');
+            try {
+
+                let registerdates, enddates;
+                let datetime = new Date();
+                let nexttime = new Date();
+                registerdates = datetime;
+
+                if (type == "temp") {
+                    enddates = nexttime.setDate(nexttime.getDate() + 1);
+                }
+                else {
+                    enddates = nexttime.setDate(nexttime.getDate() + 100000);
+                }
+                console.log('datetime ' + registerdates + enddates);
+                user = new CompanyUser({
+                    userid: uuidv4(),
+                    username: username,
+                    password: password,
+                    type: type,
+                    role: role,
+                    oraganisationName: oraganisationName,
+                    registerdate: registerdates,
+                    enddate: enddates
+                });
+                console.log('req user input ' + user);
+                await user.save();
+
+                console.log('req the isUserexit ' + isUserexit);
+                validtokendet.tokenstatus = "Used";
+                var activatedTime = new Date();
+                validtokendet.activatedTimeStamp = activatedTime;
+                try {
+                    await validtokendet.save();
+                } catch (er) {
+                    // return next(new HttpError('error in DB connection in CompanyBasicDetails process'+er,404));
+                    return res.status(400).json("error in updating token status " + er);
+                }
+                // validtokendet
+            } catch (er) {
+                // return next(new HttpError('error in DB connection in isUserexit process'+er,404));
+                return res.status(400).json("error in user creation " + er);
+            }
+            return res.status(201).json(user.userid);
+        }
+
+        else {
+            res.status(200).json('User already exist');
+        }
     }
 
 }
@@ -123,8 +209,8 @@ const addOrModifyCompanyBankDetails = async (req, res, next) => {
     // console.log(allbankdetails.bankdetails);
     let singlebankdetail;
     try {
-        updatebankdet = await CompanBankDetail.deleteMany({userid: userid });
-       
+        updatebankdet = await CompanBankDetail.deleteMany({ userid: userid });
+
     } catch (er) {
         throw new HttpError('error addOrModifyCompanyBankDetails exist search', 400);
     }
@@ -133,8 +219,8 @@ const addOrModifyCompanyBankDetails = async (req, res, next) => {
 
     for (let i = 0; i < allbankdetails.length; i++) {
         singlebankdetail = allbankdetails[i];
-        let  newbankdetal;
-       
+        let newbankdetal;
+
         newbankdetal = new CompanBankDetail({
             id: singlebankdetail.id,
             userid: userid,
@@ -212,20 +298,30 @@ const addOrModifyCompanyBankDetails = async (req, res, next) => {
 const getCompanyBasicDetails = async (req, res, next) => {
     const userid = req.params.userid;
     let isCompanyBasicDetails;
-    try {
-        isCompanyBasicDetails = await CompanyBasicDetail.find({ userid: userid });
-        // isCompanyBasicDetails = finduserpass(username, password);
-        console.log('req the isCompanyBasicDetails find ' + isCompanyBasicDetails);
-    } catch (er) {
-        throw new HttpError('User find', 400);
+    let checkUserExpiry = await fetchUserDetail(userid);
+    console.log(" : checkUserExpiry inside getCompanyBasicDetails ");
+    console.log(checkUserExpiry);
+    if (checkUserExpiry) {
+        res.status(250).json('User account Expired');
     }
-    if (isCompanyBasicDetails.length === 0) {
-        //console.log('undefined');
-        res.status(224).json('Company Basic Details not found');
+    else if (userid.length > 0) {
+        try {
+            isCompanyBasicDetails = await CompanyBasicDetail.find({ userid: userid });
+            // isCompanyBasicDetails = finduserpass(username, password);
+            console.log('req the isCompanyBasicDetails find ' + isCompanyBasicDetails);
+        } catch (er) {
+            throw new HttpError('User find', 400);
+        }
+
+        if (isCompanyBasicDetails.length === 0) {
+            //console.log('undefined');
+            res.status(224).json('Company Basic Details not found');
+        }
+        else {
+            res.status(200).json(isCompanyBasicDetails);
+        }
     }
-    else {
-        res.status(200).json(isCompanyBasicDetails);
-    }
+
 
 }
 
@@ -257,7 +353,7 @@ const addOrModifyCompanyBasicDetails = async (req, res, next) => {
                 companythankyou: basicdetail.companythankyou,
                 invoiceidcount: basicdetail.invoiceidcount,
                 estimateidcount: basicdetail.estimateidcount,
-                companyImage:basicdetail.companyImage
+                companyImage: basicdetail.companyImage
             });
             //console.log('req user input ' + isCompanyBasicDetails);
             await isCompanyBasicDetails.save();
@@ -321,7 +417,7 @@ const addOrModifyCompanyTermsAndConditionDetail = async (req, res, next) => {
     //console.log(allTermsAndConditionDetails);
 
     try {
-        updateTermsAndConditiondet = await CompanyTermsAndConditionDetail.deleteMany({userid: userid });
+        updateTermsAndConditiondet = await CompanyTermsAndConditionDetail.deleteMany({ userid: userid });
 
     } catch (er) {
         throw new HttpError('error addOrModifyCompanyTermsAndConditionDetails exist search', 400);
@@ -332,22 +428,22 @@ const addOrModifyCompanyTermsAndConditionDetail = async (req, res, next) => {
     let singleTermsAndConditionDetails;
     for (let i = 0; i < allTermsAndConditionDetails.length; i++) {
         singleTermsAndConditionDetails = allTermsAndConditionDetails[i];
-        let newTermsAndConditiondetal;  
+        let newTermsAndConditiondetal;
         //console.log('updateTermsAndConditiondet');
         //console.log(updateTermsAndConditiondet);
-            try {
-                newTermsAndConditiondetal = new CompanyTermsAndConditionDetail({
-                    id: singleTermsAndConditionDetails.id,
-                    userid: userid,
-                    title: singleTermsAndConditionDetails.title,
-                    desc: singleTermsAndConditionDetails.desc,
-                    isvisible: singleTermsAndConditionDetails.isvisible
-                });
-                await newTermsAndConditiondetal.save({ upsert: true });
-            } catch (er) {
-                // return next(new HttpError('error in DB connection in isUserexit process'+er,404));
-                return res.status(400).json("error " + er);
-            }
+        try {
+            newTermsAndConditiondetal = new CompanyTermsAndConditionDetail({
+                id: singleTermsAndConditionDetails.id,
+                userid: userid,
+                title: singleTermsAndConditionDetails.title,
+                desc: singleTermsAndConditionDetails.desc,
+                isvisible: singleTermsAndConditionDetails.isvisible
+            });
+            await newTermsAndConditiondetal.save({ upsert: true });
+        } catch (er) {
+            // return next(new HttpError('error in DB connection in isUserexit process'+er,404));
+            return res.status(400).json("error " + er);
+        }
     }
     res.status(200).json('TermsAndCondition Details updated');
 }
@@ -376,7 +472,7 @@ const uploadCompanyLogo = async (req, res, next) => {
 //     //         const ret = await bucket.upload(file, {
 //     //             destination: storagepath
 //     //         });
-    
+
 //     //         // Return the result of the upload operation
 //     //         return ret;
 //     //     } catch (error) {
@@ -384,12 +480,12 @@ const uploadCompanyLogo = async (req, res, next) => {
 //     //         console.error('Error:', error);
 //     //     }
 //     // }
-    
+
 //     // // Use an immediately-invoked function expression (IIFE) to call the uploadFile function
 //     // (async () => {
 //     //     // Call the uploadFile function with the specified parameters
 //     //     const ret = await uploadFile(process.env.BUCKET_NAME, 'test.txt', 'CodingWithAdo.txt');
-    
+
 //     //     // Log the result of the upload operation to the console
 //     //     console.log(ret);
 //     // })();
